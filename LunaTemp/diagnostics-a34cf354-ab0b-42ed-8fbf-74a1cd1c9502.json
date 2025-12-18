@@ -1,0 +1,199 @@
+{
+    "BuildID": "a34cf354-ab0b-42ed-8fbf-74a1cd1c9502",
+    "Command": "project:re",
+    "ProjectID": "01007caba134ace46b9e4290577324b9",
+    "ProjectStateHash": "ca6db56e9637c3d57351a8410a716cf3a45c3f81c4af3443b4915fcba24487c3",
+    "StageCompletedAt": 2,
+    "EarliestFatalError": 0,
+    "StartTime": 1766054079910,
+    "EndTime": 1766054091456,
+    "PlaygroundUserID": 30374,
+    "OperatingSystem": "win32",
+    "TargetPlatform": "develop",
+    "UnityVersion": "2022.3.62f3",
+    "LunaVersion": "7.0.0",
+    "LogCount": 8,
+    "Logs": [
+        {
+            "LogID": "7033a9a6-62bb-456a-8fcc-dc387a4bf0f5",
+            "Order": 7,
+            "Timestamp": 1766053662442,
+            "Stage": 3,
+            "ErrorType": 3,
+            "ErrorCode": "LP3007",
+            "Description": "You are not using any custom events",
+            "Details": [
+                "You are not using any custom events. It is recommended to use custom events to have a better understanding of the playable."
+            ],
+            "DescriptionValues": [
+                ""
+            ],
+            "DetailsValues": [
+                ""
+            ],
+            "LogCount": 1,
+            "LinePosition": null,
+            "FilePath": "",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "85a178db-d366-4876-9441-d89c51e1f143",
+            "Order": 7,
+            "Timestamp": 1766053662442,
+            "Stage": 3,
+            "ErrorType": 3,
+            "ErrorCode": "LP3011",
+            "Description": "You are not using any LunaPlaygroundFields attributes.",
+            "Details": [
+                "You are not using any LunaPlaygroundFields attributes, it allows you to configure your playable to different concepts to find the best variation, which can drastically improve playable performance on all ad networks."
+            ],
+            "DescriptionValues": null,
+            "DetailsValues": null,
+            "LogCount": 1,
+            "LinePosition": null,
+            "FilePath": "",
+            "ClassName": "",
+            "MemberName": "",
+            "Severity": 0
+        },
+        {
+            "LogID": "28b61e68-7527-4540-a299-43574809d376",
+            "Timestamp": 1766054080837,
+            "Stage": 1,
+            "Severity": 0,
+            "ErrorType": 0,
+            "ErrorCode": "LP1030",
+            "Description": "TMP Font Asset uses unsupported 'Atlas Population Mode'",
+            "Details": [
+                "TMP Font Asset '{0}' uses Atlas Population Mode '{1}' which is not supported"
+            ],
+            "DescriptionValues": [],
+            "DetailsValues": [
+                "1FTV-VIP-Lilita-One.regular SDF",
+                "Dynamic"
+            ],
+            "LogCount": 1,
+            "FilePath": "",
+            "LinePosition": 0,
+            "ClassName": "",
+            "MemberName": "",
+            "Order": 2
+        },
+        {
+            "LogID": "5fc4d4b9-e9c0-46b4-bd19-d457663134cd",
+            "Timestamp": 1766054080899,
+            "Stage": 1,
+            "Severity": 0,
+            "ErrorType": 0,
+            "ErrorCode": "LP1030",
+            "Description": "TMP Font Asset uses unsupported 'Atlas Population Mode'",
+            "Details": [
+                "TMP Font Asset '{0}' uses Atlas Population Mode '{1}' which is not supported"
+            ],
+            "DescriptionValues": [],
+            "DetailsValues": [
+                "LiberationSans SDF - Fallback",
+                "Dynamic"
+            ],
+            "LogCount": 1,
+            "FilePath": "",
+            "LinePosition": 0,
+            "ClassName": "",
+            "MemberName": "",
+            "Order": 3
+        },
+        {
+            "LogID": "22166ebf-71c0-4658-a50a-1ee980d96b11",
+            "Timestamp": 1766054085208,
+            "Stage": 1,
+            "Severity": 0,
+            "ErrorType": 0,
+            "ErrorCode": "LP1027",
+            "Description": "This DOTween version is not supported",
+            "Details": [
+                "The incorrect DOTween version for this Unity version is in use, please update or downgrade to the recommended version {0} in the package manager. Go to Window → Package Manager."
+            ],
+            "DescriptionValues": [],
+            "DetailsValues": [
+                "1.2.705"
+            ],
+            "LogCount": 1,
+            "FilePath": "",
+            "LinePosition": 0,
+            "ClassName": "",
+            "MemberName": "",
+            "Order": 4
+        },
+        {
+            "LogID": "5aa9542f-9ba8-479e-bb78-cc8b1979b2e4",
+            "Timestamp": 1766054085208,
+            "Stage": 1,
+            "Severity": 0,
+            "ErrorType": 0,
+            "ErrorCode": "LP1015",
+            "Description": "This TMP version is not fully supported",
+            "Details": [
+                "The incorrect Text Mesh Pro for this Unity version is in use, please update or downgrade to the recommended version {0} in the package manager. Go to Window → Package Manager"
+            ],
+            "DescriptionValues": [],
+            "DetailsValues": [
+                "3.0.6, 3.0.7"
+            ],
+            "LogCount": 1,
+            "FilePath": "",
+            "LinePosition": 0,
+            "ClassName": "",
+            "MemberName": "",
+            "Order": 5
+        },
+        {
+            "LogID": "e6a7d7f2-e372-4084-8b5b-e108b51d6091",
+            "Timestamp": 1766054085209,
+            "Stage": 1,
+            "Severity": 0,
+            "ErrorType": 0,
+            "ErrorCode": "LP1032",
+            "Description": "Package(s) is not supported in Luna",
+            "Details": [
+                "Currently package(s) com.unity.timeline are not supported in Luna. We recommend you to remove it and workaround it's functionality."
+            ],
+            "DescriptionValues": [
+                "com.unity.timeline (1.8.9)"
+            ],
+            "DetailsValues": [
+                "com.unity.timeline"
+            ],
+            "LogCount": 1,
+            "FilePath": "G:/tray-master/Packages\\manifest.json",
+            "LinePosition": 0,
+            "ClassName": "",
+            "MemberName": "",
+            "Order": 6
+        },
+        {
+            "LogID": "9b92da1d-10d2-4862-aba2-b073ff9f2215",
+            "Timestamp": 1766054085210,
+            "Stage": 1,
+            "Severity": 0,
+            "ErrorType": 3,
+            "ErrorCode": "LP1002",
+            "Description": "Repeat wrap mode used on a texture with non power-of-two dimensions, this might not be rendered correctly.",
+            "Details": [
+                "Repeat wrap mode used on 'LiberationSans SDF Atlas' texture at 'Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset' with non power-of-two dimensions, this might not be rendered correctly."
+            ],
+            "DescriptionValues": [],
+            "DetailsValues": [
+                "LiberationSans SDF Atlas",
+                "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset"
+            ],
+            "LogCount": 1,
+            "FilePath": "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset",
+            "LinePosition": 0,
+            "ClassName": "",
+            "MemberName": "",
+            "Order": 7
+        }
+    ]
+}

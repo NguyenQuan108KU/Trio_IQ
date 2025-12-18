@@ -1,0 +1,27 @@
+Authorized using stored user info.
+stderr: 'rm' is not recognized as an internal or external command,
+operable program or batch file.
+
+Exporting assets from Unity........
+
+[ Stage1 ] Assets exported from Unity and staged for further processing
+Using G:/tray-master/Assets/TextMesh Pro/Fonts/LiberationSans.ttf file to generate an atlas for LiberationSans[27036] font
+  Using alphabet  §1234567890-=qwertyuiop[]asdfghjkl;'\`zxcvbnm,./±!@#$%^&*()_+QWERTYUIOP{}ASDFGHJKL:"|~ZXCVBNM<>?
+Combined 97 glyphs into bitmap texture at G:/tray-master/LunaTemp/stage1/tmp/fonts/LiberationSans-27036/output_0.png (56kb)
+Found custom rules for texture Assets/Art/Font/1FTV-VIP-Lilita-One.regular SDF.asset
+  {"maxWidth":512,"maxHeight":512,"format":"webp","compression":"none","quality":65,"script":"","ext":"","name":"Assets/Art/Font/1FTV-VIP-Lilita-One.regular SDF.asset","isOverride":true}
+Found custom rules for texture Assets/Art/Font/LilitaOne-Regular SDF.asset
+  {"maxWidth":512,"maxHeight":512,"format":"webp","compression":"none","quality":65,"script":"","ext":"","name":"Assets/Art/Font/LilitaOne-Regular SDF.asset","isOverride":true}
+Found custom rules for texture Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset
+  {"maxWidth":512,"maxHeight":512,"format":"webp","compression":"none","quality":65,"script":"","ext":"","name":"Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset","isOverride":true}
+Found custom rules for texture Assets/Art/Animation/chest/Chest_Win.png
+  {"maxWidth":512,"maxHeight":512,"format":"png32","compression":"crush","quality":65,"script":"","ext":"","name":"Assets/Art/Animation/","isOverride":true}
+Found custom rules for texture Assets/Art/Animation/Text/Text_Win.png
+  {"maxWidth":512,"maxHeight":512,"format":"png32","compression":"crush","quality":65,"script":"","ext":"","name":"Assets/Art/Animation/","isOverride":true}
+Found custom rules for texture Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset
+  {"maxWidth":512,"maxHeight":512,"format":"webp","compression":"none","quality":65,"script":"","ext":"","name":"Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset","isOverride":true}
+Resources:
+{}
+[ Stage2 ] Assets postprocessed and bundled successfully
+[ Stage4 ] Target platform: develop
+[ Stage4 ] Package bundled successfully
