@@ -43,7 +43,6 @@ public class ConveyorBelt : MonoBehaviour
 
     void HandleItemAtLeft()
     {
-        Debug.Log("Removed Count: " + removedCount);
         if (items.Count == 0) return;
 
         Transform first = items[0];

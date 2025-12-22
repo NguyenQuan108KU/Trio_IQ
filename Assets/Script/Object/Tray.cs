@@ -38,6 +38,7 @@ public class Tray : MonoBehaviour
             {
                 MoveToCenter(g.Take(5).ToList());
                 ProgressBrain.instance.AddTrayMatch();
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.match);
                 return;
             }
         }

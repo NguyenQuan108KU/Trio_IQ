@@ -12,7 +12,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip bgm;
     public AudioClip drag;
     public AudioClip drog;
-    public AudioClip lose;
+    public AudioClip match;
     public AudioClip pop;
 
     bool soundOn = true;

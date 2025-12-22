@@ -13,14 +13,19 @@ public class DragItem : MonoBehaviour
     private SpriteRenderer sr;
     private Vector3 startScale;
     private Slot startSlot;
-    private Material mat;
+    
 
+    [Header("Outline")]
+    public float focusOutlineSize = 1f;
+    public float outlineTweenTime = 0.12f;
+    private GameObject outline;
     private void Awake()
     {
         cam = Camera.main;
         sr = GetComponent<SpriteRenderer>();
         startScale = transform.localScale;
-        mat = GetComponent<SpriteRenderer>().material;
+        outline = transform.GetChild(0).gameObject;
+        outline.SetActive(false); // mặc định tắt
     }
 
     private void Update()
@@ -28,21 +33,16 @@ public class DragItem : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             TryPick();
-           
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.drag);
         }
 
         if (Input.GetMouseButton(0) && currentDrag == this)
         {
             Drag();
-           
         }
 
         if (Input.GetMouseButtonUp(0) && currentDrag == this)
         {
             Drop();
-        
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.drog);
         }
     }
 
@@ -51,24 +51,25 @@ public class DragItem : MonoBehaviour
         Vector2 mouseWorld = cam.ScreenToWorldPoint(Input.mousePosition);
 
         Collider2D[] hits = Physics2D.OverlapPointAll(mouseWorld);
-        startParent = transform.parent;
-        startSlot = startParent ? startParent.GetComponent<Slot>() : null;
         foreach (var hit in hits)
         {
             if (hit.gameObject == gameObject)
             {
                 currentDrag = this;
-
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.drag);
                 tween?.Kill();
                 startPos = transform.position;
                 startParent = transform.parent;
 
+                startSlot = startParent ? startParent.GetComponent<Slot>() : null;
+
                 offset = transform.position - (Vector3)mouseWorld;
                 sr.sortingOrder = 10;
+                outline.GetComponent<SpriteRenderer>().sortingOrder = 9;
+                ShowOutline(true);
                 return;
             }
         }
-        
     }
     void Drag()
     {
@@ -80,17 +81,34 @@ public class DragItem : MonoBehaviour
     void Drop()
     {
         sr.sortingOrder = 0;
-        currentDrag = null;
-
-        PlayDropScale(); 
+        outline.GetComponent<SpriteRenderer>().sortingOrder = -1;
+        ShowOutline(false);
+        PlayDropScale();
 
         Slot slot = FindNearestSlot();
 
         if (slot != null && (slot.IsEmpty() || slot.transform == startParent))
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.drog);
+            GameManager.Instance.clickCount++;
+
             Snap(slot);
+        }
         else
+        {
             Return();
+        }
+
+        if (GameManager.Instance.clickCount >= GameManager.Instance.clicksToLog && !GameManager.Instance.isClick)
+        {
+            Debug.Log("Finish");
+            GameManager.Instance.isClick = true;
+            Luna.Unity.Playable.InstallFullGame();
+        }
+
+        currentDrag = null;
     }
+
 
 
     void Snap(Slot slot)
@@ -130,8 +148,6 @@ public class DragItem : MonoBehaviour
                 .SetEase(Ease.OutQuad);
     }
 
-
-
     Slot FindNearestSlot()
     {
         Slot[] slots = FindObjectsOfType<Slot>();
@@ -142,7 +158,7 @@ public class DragItem : MonoBehaviour
         {
             if (s.anchor == null) continue;
 
-            // Skip occupied slots except the one we started from (so returning is allowed)
+            // Skip occupied slots except the one we started from
             if (!s.IsEmpty() && s.transform != startParent) continue;
 
             float d = Vector2.Distance(transform.position, s.anchor.position);
@@ -154,6 +170,7 @@ public class DragItem : MonoBehaviour
         }
         return best;
     }
+
     void PlayDropScale()
     {
         tween?.Kill();
@@ -168,4 +185,10 @@ public class DragItem : MonoBehaviour
                     .SetEase(Ease.OutBack);
             });
     }
+    void ShowOutline(bool show)
+    {
+        if (outline != null)
+            outline.SetActive(show);
+    }
+
 }

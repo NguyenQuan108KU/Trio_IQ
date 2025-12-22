@@ -7,8 +7,6 @@ public class TrayManager : MonoBehaviour
 {
     public float spacing = 1.2f;
     public int visibleCount = 4;
-
-
     public float moveTime = 0.5f;
 
     [Header("Tray Prefabs / Pool")]
@@ -16,7 +14,6 @@ public class TrayManager : MonoBehaviour
 
     private List<Transform> activeTrays = new List<Transform>();
     private Queue<GameObject> trayPool = new Queue<GameObject>();
-    public AnimationCurve curve;
 
     private float trayHeight;
     private float step;
@@ -32,10 +29,7 @@ public class TrayManager : MonoBehaviour
     {
         InitActiveTraysFromScene();
         InitPool();
-
-  
         yield return new WaitForEndOfFrame();
-
         CacheSize();
         AlignInstant();
     }
@@ -172,12 +166,6 @@ public class TrayManager : MonoBehaviour
             ? (visibleCount - activeTrays.Count)
             : 0;
 
-
-        float overshootRatio = 0.2f;   
-        float fallPart = 0.8f;         
-        float bounceUpPart = 0.25f;
-        float settlePart = 0.25f;
-
         for (int i = 0; i < activeTrays.Count; i++)
         {
             int slotIndex = startSlot + i;
@@ -187,38 +175,54 @@ public class TrayManager : MonoBehaviour
             tray.DOKill();
 
             float currentY = tray.localPosition.y;
-            float delta = currentY - targetY;
 
-         
-            if (delta > 0.01f)
+        
+            if (currentY > targetY + 0.01f)
             {
-              
-                float strength = Mathf.Clamp01(delta / step);
-
-                float overshoot = step * overshootRatio * strength;
-                float fallTime = moveTime * fallPart * strength;
-                float bounceUpTime = moveTime * bounceUpPart * strength;
-                float settleTime = moveTime * settlePart * strength;
+                float y = targetY;
 
                 Sequence seq = DOTween.Sequence();
 
+             
                 seq.Append(
-                    tray.DOLocalMoveY(targetY, fallTime).SetEase(Ease.InQuad)
+                    tray.DOLocalMoveY(y, 0.25f)
+                        .SetEase(Ease.InCubic)
                 );
 
+     
                 seq.Append(
-                    tray.DOLocalMoveY(targetY + overshoot, bounceUpTime)
-                        .SetEase(Ease.OutQuad)
-                );
-
-                seq.Append(
-                    tray.DOLocalMoveY(targetY, settleTime)
+                    tray.DOLocalMoveY(y  + 0.4f, 0.15f)
                         .SetEase(Ease.OutCubic)
+                );
+
+                seq.Append(
+                    tray.DOLocalMoveY(y, 0.15f)
+                        .SetEase(Ease.InCubic)
+                );
+
+       
+                seq.Append(
+                    tray.DOLocalMoveY(y + 0.15f, 0.1f)
+                        .SetEase(Ease.OutCubic)
+                );
+
+                seq.Append(
+                    tray.DOLocalMoveY(y, 0.1f)
+                        .SetEase(Ease.InCubic)
+                );
+                seq.Append(
+                    tray.DOLocalMoveY(y + 0.05f, 0.08f)
+                        .SetEase(Ease.OutCubic)
+                );
+                seq.Append(
+                    tray.DOLocalMoveY(y, 0.08f)
+                        .SetEase(Ease.InCubic)
                 );
             }
             else
             {
-                tray.DOLocalMoveY(targetY, moveTime).SetEase(Ease.OutQuad);
+                tray.DOLocalMoveY(targetY, 0.25f)
+                    .SetEase(Ease.OutQuad);
             }
         }
     }

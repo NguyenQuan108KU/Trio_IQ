@@ -2,7 +2,7 @@
     "version": "7.0.0",
     "projectId": "01007caba134ace46b9e4290577324b9",
     "applicationID": 35346,
-    "creativeName": "",
+    "creativeName": "DemoLuna",
     "pgServer": "EU",
     "window": {
         "‐⁏": true
@@ -18425,11 +18425,11 @@
                     },
                     {
                         "name": "material#set",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "sharedMaterial#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "sharedMaterial#set",
@@ -18465,7 +18465,7 @@
                     },
                     {
                         "name": "materials#set",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "bounds#get",
@@ -20969,7 +20969,7 @@
                     },
                     {
                         "name": "havePropertiesChanged#set",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "isUsingLegacyAnimationComponent#get",
@@ -27657,7 +27657,7 @@
                     },
                     {
                         "name": "SetLayoutDirty",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "SetMaterialDirty",
@@ -27665,7 +27665,7 @@
                     },
                     {
                         "name": "SetPivotDirty",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "GetRootCanvasTransform",
@@ -31895,6 +31895,10 @@
                     },
                     {
                         "name": "PlayDropScale",
+                        "excluded": false
+                    },
+                    {
+                        "name": "ShowOutline",
                         "excluded": false
                     }
                 ]
@@ -40297,6 +40301,18 @@
                 "instanceMethods": [
                     {
                         "name": "InstallGame",
+                        "excluded": false
+                    },
+                    {
+                        "name": "EndGame",
+                        "excluded": false
+                    },
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Awake",
                         "excluded": false
                     }
                 ]
