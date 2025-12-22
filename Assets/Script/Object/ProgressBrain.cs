@@ -70,6 +70,7 @@ public class ProgressBrain : MonoBehaviour
         {
             StartCoroutine(ActiveWin());
             Luna.Unity.LifeCycle.GameEnded();
+            GameManager.Instance.finishGame = true;
         }
         ResetIdleTimer();
         UpdateBrainPosition();

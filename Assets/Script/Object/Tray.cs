@@ -13,7 +13,6 @@ public class Tray : MonoBehaviour
     public float itemToDiskTime = 0.1f;
     public float attachDelay = 0.15f;   // item chậm theo disk
     public float followSmooth = 0.25f;  // độ mượt
-
     // Made very small so items become extremely tiny when attached to disk.
     public Vector3 diskItemScale = new Vector3(0.03f, 0.03f, 0.03f);
 
@@ -36,6 +35,12 @@ public class Tray : MonoBehaviour
         {
             if (g.Count() >= 5)
             {
+                var matchedItems = g.Take(5).ToList();
+
+                foreach (var item in matchedItems)
+                {
+                    item.isLocked = true;
+                }
                 MoveToCenter(g.Take(5).ToList());
                 ProgressBrain.instance.AddTrayMatch();
                 AudioManager.Instance.PlaySFX(AudioManager.Instance.match);

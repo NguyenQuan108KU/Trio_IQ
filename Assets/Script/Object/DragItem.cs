@@ -13,6 +13,7 @@ public class DragItem : MonoBehaviour
     private SpriteRenderer sr;
     private Vector3 startScale;
     private Slot startSlot;
+    public bool isLocked = false;
     
 
     [Header("Outline")]
@@ -48,8 +49,8 @@ public class DragItem : MonoBehaviour
 
     void TryPick()
     {
+        if (isLocked || GameManager.Instance.finishGame) return;
         Vector2 mouseWorld = cam.ScreenToWorldPoint(Input.mousePosition);
-
         Collider2D[] hits = Physics2D.OverlapPointAll(mouseWorld);
         foreach (var hit in hits)
         {
@@ -60,9 +61,7 @@ public class DragItem : MonoBehaviour
                 tween?.Kill();
                 startPos = transform.position;
                 startParent = transform.parent;
-
                 startSlot = startParent ? startParent.GetComponent<Slot>() : null;
-
                 offset = transform.position - (Vector3)mouseWorld;
                 sr.sortingOrder = 10;
                 outline.GetComponent<SpriteRenderer>().sortingOrder = 9;
@@ -101,16 +100,11 @@ public class DragItem : MonoBehaviour
 
         if (GameManager.Instance.clickCount >= GameManager.Instance.clicksToLog && !GameManager.Instance.isClick)
         {
-            Debug.Log("Finish");
             GameManager.Instance.isClick = true;
             Luna.Unity.Playable.InstallFullGame();
         }
-
         currentDrag = null;
     }
-
-
-
     void Snap(Slot slot)
     {
         Slot oldSlot = startParent ? startParent.GetComponent<Slot>() : null;
@@ -170,7 +164,6 @@ public class DragItem : MonoBehaviour
         }
         return best;
     }
-
     void PlayDropScale()
     {
         tween?.Kill();

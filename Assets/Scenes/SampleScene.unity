@@ -455,6 +455,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bca13f94d4e40d842b092ad9b75341c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clicksToLog: 20
+  clickCount: 0
+  isClick: 0
+  finishGame: 0
 --- !u!1 &101058793
 GameObject:
   m_ObjectHideFlags: 0
@@ -954,6 +958,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
 --- !u!212 &122576086
@@ -1129,7 +1134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.98039216}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.9411765}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1397,6 +1402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
 --- !u!212 &179353512
@@ -2462,6 +2468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
 --- !u!212 &332018563
@@ -3042,7 +3049,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 259, y: 0}
+  m_AnchoredPosition: {x: 7.5, y: 10.05}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &389512720
@@ -3067,8 +3074,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Normal
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 678ca82c9ea4ac9488485fc7fb935151, type: 2}
-  m_sharedMaterial: {fileID: -2237388932808592719, guid: 678ca82c9ea4ac9488485fc7fb935151, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 97f004a13473e1b4db197ebca2c87308, type: 2}
+  m_sharedMaterial: {fileID: -4516441159803420151, guid: 97f004a13473e1b4db197ebca2c87308, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3092,13 +3099,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 1.3
+  m_fontSizeBase: 1.3
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -3128,7 +3135,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 52.907063, y: 0, z: 93.804276, w: 32.48678}
+  m_margin: {x: 83.87411, y: 14.010229, z: 106.3642, w: 32.48678}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -8827,6 +8834,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
 --- !u!212 &478304239
@@ -9009,7 +9017,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -7.46, y: 9.17}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &485185417
@@ -9034,8 +9042,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Dump
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 678ca82c9ea4ac9488485fc7fb935151, type: 2}
-  m_sharedMaterial: {fileID: -2237388932808592719, guid: 678ca82c9ea4ac9488485fc7fb935151, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 97f004a13473e1b4db197ebca2c87308, type: 2}
+  m_sharedMaterial: {fileID: -4516441159803420151, guid: 97f004a13473e1b4db197ebca2c87308, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9059,13 +9067,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 1.3
+  m_fontSizeBase: 1.3
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -9095,7 +9103,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 52.907063, y: 0, z: 93.804276, w: 32.48678}
+  m_margin: {x: 91.68069, y: 12.116762, z: 93.804276, w: 32.48678}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -9489,6 +9497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
 --- !u!61 &535046205
@@ -14637,6 +14646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
 --- !u!212 &582394769
@@ -15069,6 +15079,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
 --- !u!61 &620827345
@@ -15387,6 +15398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
 --- !u!212 &670881014
@@ -15945,6 +15957,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
 --- !u!212 &735227726
@@ -16119,6 +16132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
 --- !u!212 &737038857
@@ -16653,12 +16667,6 @@ MonoBehaviour:
   visibleCount: 4
   moveTime: 0.5
   listTray: []
-  curve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!82 &780030118
 AudioSource:
   m_ObjectHideFlags: 0
@@ -16881,84 +16889,6 @@ MonoBehaviour:
   - {fileID: 1693105585073347346, guid: 01a54cfd4be2611429baf05afd015ee0, type: 3}
   - {fileID: 1693105585073347346, guid: 01a54cfd4be2611429baf05afd015ee0, type: 3}
   - {fileID: 1693105585073347346, guid: 01a54cfd4be2611429baf05afd015ee0, type: 3}
-  curve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.33024088
-      value: 1.1355168
-      inSlope: -0.30563396
-      outSlope: -0.30563396
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.45014036
-      value: 0.7308301
-      inSlope: -0.07742307
-      outSlope: -0.07742307
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.632177
-      value: 0.8871587
-      inSlope: -0.045635406
-      outSlope: -0.045635406
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.77444315
-      value: 0.758646
-      inSlope: 0.29976463
-      outSlope: 0.29976463
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.88352597
-      value: 0.87207216
-      inSlope: 0.2327414
-      outSlope: 0.2327414
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1.0661759
-      value: 0.7446854
-      inSlope: -0.37176165
-      outSlope: -0.37176165
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1.0855029
-      value: 0.7399662
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1001 &861614774
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17242,8 +17172,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Test your IQ
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 678ca82c9ea4ac9488485fc7fb935151, type: 2}
-  m_sharedMaterial: {fileID: -2237388932808592719, guid: 678ca82c9ea4ac9488485fc7fb935151, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 13fbc1b0dd856a14fa554565f0399b9b, type: 2}
+  m_sharedMaterial: {fileID: -4552084866842656967, guid: 13fbc1b0dd856a14fa554565f0399b9b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -17453,6 +17383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
 --- !u!212 &889626007
@@ -18206,6 +18137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
 --- !u!212 &945329577
@@ -18872,6 +18804,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
 --- !u!212 &1158248596
@@ -19046,6 +18979,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
 --- !u!212 &1161287390
@@ -19438,7 +19372,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 883, y: 0}
+  m_AnchoredPosition: {x: 44.23, y: -1.97}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1203342085
@@ -19463,8 +19397,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Genius
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 678ca82c9ea4ac9488485fc7fb935151, type: 2}
-  m_sharedMaterial: {fileID: -2237388932808592719, guid: 678ca82c9ea4ac9488485fc7fb935151, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 97f004a13473e1b4db197ebca2c87308, type: 2}
+  m_sharedMaterial: {fileID: -4516441159803420151, guid: 97f004a13473e1b4db197ebca2c87308, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -19488,13 +19422,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 1.3
+  m_fontSizeBase: 1.3
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -19524,7 +19458,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 52.907063, y: 0, z: 93.804276, w: 32.48678}
+  m_margin: {x: 52.907063, y: 0, z: 125.06122, w: 42.32041}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -19603,7 +19537,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 632, y: 0}
+  m_AnchoredPosition: {x: 39.1, y: -1.9}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1212689605
@@ -19630,8 +19564,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 678ca82c9ea4ac9488485fc7fb935151, type: 2}
-  m_sharedMaterial: {fileID: -2237388932808592719, guid: 678ca82c9ea4ac9488485fc7fb935151, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 97f004a13473e1b4db197ebca2c87308, type: 2}
+  m_sharedMaterial: {fileID: -4516441159803420151, guid: 97f004a13473e1b4db197ebca2c87308, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -19655,13 +19589,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 1.3
+  m_fontSizeBase: 1.3
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -19691,7 +19625,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 52.907063, y: 0, z: 93.804276, w: 32.48678}
+  m_margin: {x: 52.907063, y: 0, z: 125.06122, w: 42.32041}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -20198,8 +20132,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 7.63, y: 4.94, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.45, y: 0.45, z: 0.45}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 160824752}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -20414,6 +20348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
 --- !u!212 &1296608151
@@ -20885,6 +20820,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
 --- !u!212 &1365566098
@@ -21425,8 +21361,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: DOWNLOAD
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 678ca82c9ea4ac9488485fc7fb935151, type: 2}
-  m_sharedMaterial: {fileID: -2237388932808592719, guid: 678ca82c9ea4ac9488485fc7fb935151, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 13fbc1b0dd856a14fa554565f0399b9b, type: 2}
+  m_sharedMaterial: {fileID: -4552084866842656967, guid: 13fbc1b0dd856a14fa554565f0399b9b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -21620,6 +21556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
 --- !u!212 &1430721627
@@ -21774,6 +21711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
 --- !u!61 &1431895733
@@ -22144,6 +22082,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
 --- !u!212 &1477174914
@@ -22318,6 +22257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
 --- !u!212 &1501507963
@@ -22492,6 +22432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
 --- !u!212 &1506995922
@@ -22702,9 +22643,9 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1544101749}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 90}
-  m_LocalScale: {x: 0.003815695, y: 0.003815695, z: 0.003815695}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 485185416}
   - {fileID: 389512719}
@@ -22714,8 +22655,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -1.738, y: 3.805}
-  m_SizeDelta: {x: 1284, y: 2778}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1170, y: 2532}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1550439716
 GameObject:
@@ -23748,6 +23689,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
 --- !u!212 &1699347801
@@ -24383,6 +24325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
 --- !u!212 &1800140481
@@ -24557,6 +24500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
 --- !u!212 &1801272870
@@ -25171,6 +25115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
 --- !u!212 &1832140249
@@ -25430,7 +25375,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 7.5684576, y: 2.1, z: 0.10753326}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 160824752}
@@ -25670,6 +25615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
 --- !u!212 &1987034850
@@ -26684,6 +26630,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
 --- !u!61 &1617378726204176345
@@ -27263,6 +27210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
 --- !u!1001 &3941789859316138899
@@ -27711,6 +27659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
 --- !u!4 &5540798818545552986
@@ -27741,6 +27690,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
 --- !u!1001 &5633048381081831916

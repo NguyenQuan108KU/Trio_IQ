@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using DG.Tweening;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using DG.Tweening;
+using UnityEngine.UIElements;
 
 public class TrayManager : MonoBehaviour
 {
@@ -12,12 +13,18 @@ public class TrayManager : MonoBehaviour
     [Header("Tray Prefabs / Pool")]
     public List<GameObject> listTray;
 
-    private List<Transform> activeTrays = new List<Transform>();
+    public List<Transform> activeTrays = new List<Transform>();
     private Queue<GameObject> trayPool = new Queue<GameObject>();
 
     private float trayHeight;
     private float step;
     int sorting = 0;
+
+    [Header("Grid Settings")]
+    [SerializeField] int columns = 3;   // số object theo X
+    [SerializeField] int rows = 8;      // số object theo Y
+    [SerializeField] float stepX = 2f;  // khoảng cách ngang
+    [SerializeField] float stepY = 2f;  // khoảng cách dọc
 
     void Start()
     {
@@ -87,7 +94,7 @@ public class TrayManager : MonoBehaviour
         tray.GetComponent<SpriteRenderer>().sortingOrder = sorting--;
 
         float startY = (activeTrays.Count) * step * 0.5f;
-        float spawnY = startY + step;
+        float spawnY = startY + step - 0.5f;
 
         tray.transform.localPosition = new Vector3(0, spawnY, 0);
 
@@ -138,18 +145,23 @@ public class TrayManager : MonoBehaviour
     {
         if (activeTrays.Count == 0) return;
 
-        int totalSlots = Mathf.Max(visibleCount, activeTrays.Count);
-        float startY = (totalSlots - 1) * step * 0.5f;
+        int maxSlots = columns * rows;
+        int count = Mathf.Min(activeTrays.Count, maxSlots);
 
+        // Căn giữa grid
+        float startX = (columns - 1) * stepX * 0.5f;
+        float startY = (rows - 1) * stepY * 0.5f;
 
-        int startSlot = (activeTrays.Count < visibleCount) ? (visibleCount - activeTrays.Count) : 0;
-
-        for (int i = 0; i < activeTrays.Count; i++)
+        for (int i = 0; i < count; i++)
         {
-            int slotIndex = startSlot + i;
-            float targetY = startY - slotIndex * step;
+            int col = i % columns;        // X
+            int row = i / columns;        // Y
+
+            float targetX = -startX + col * stepX;
+            float targetY = startY - row * stepY;
 
             Vector3 pos = activeTrays[i].localPosition;
+            pos.x = targetX;
             pos.y = targetY;
             activeTrays[i].localPosition = pos;
         }
@@ -229,11 +241,8 @@ public class TrayManager : MonoBehaviour
     void InitActiveTraysFromScene()
     {
         activeTrays.Clear();
-
         foreach (Transform child in transform)
             activeTrays.Add(child);
-
-       
         activeTrays = activeTrays.OrderByDescending(t => t.localPosition.y).ToList();
     }
 }

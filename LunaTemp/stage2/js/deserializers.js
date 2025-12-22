@@ -307,8 +307,9 @@ Deserializers["Luna.Unity.DTO.UnityEngine.Components.BoxCollider2D"] = function 
 Deserializers["DragItem"] = function (request, data, root) {
   var i702 = root || request.c( 'DragItem' )
   var i703 = data
-  i702.focusOutlineSize = i703[0]
-  i702.outlineTweenTime = i703[1]
+  i702.isLocked = !!i703[0]
+  i702.focusOutlineSize = i703[1]
+  i702.outlineTweenTime = i703[2]
   return i702
 }
 
@@ -399,7 +400,6 @@ Deserializers["TrayManager"] = function (request, data, root) {
   request.r(i717[i + 0], i717[i + 1], 1, i716, '')
   }
   i714.listTray = i716
-  i714.curve = new pc.AnimationCurve( { keys_flow: i715[4] } )
   return i714
 }
 
@@ -1321,6 +1321,7 @@ Deserializers["GameManager"] = function (request, data, root) {
   i874.clicksToLog = i875[0]
   i874.clickCount = i875[1]
   i874.isClick = !!i875[2]
+  i874.finishGame = !!i875[3]
   return i874
 }
 
@@ -2749,7 +2750,7 @@ Deserializers.productName = "Prj_Demo";
 
 Deserializers.lunaInitializationTime = "12/18/2025 04:11:57";
 
-Deserializers.lunaDaysRunning = "4.0";
+Deserializers.lunaDaysRunning = "4.1";
 
 Deserializers.lunaVersion = "7.0.0";
 
@@ -2805,7 +2806,7 @@ Deserializers.graphicsConstraint = 24;
 
 Deserializers.linearColorSpace = false;
 
-Deserializers.buildID = "0a13cd19-202b-4beb-ac96-9ac86bea5934";
+Deserializers.buildID = "034dd353-6ce1-431c-b144-30d7dfa002b0";
 
 Deserializers.runtimeInitializeOnLoadInfos = [[["UnityEngine","Experimental","Rendering","ScriptableRuntimeReflectionSystemSettings","ScriptingDirtyReflectionSystemInstance"]],[["DG","Tweening","DOTween","RuntimeOnLoad"],["Unity","VisualScripting","RuntimeVSUsageUtility","RuntimeInitializeOnLoadBeforeSceneLoad"]],[["$BurstDirectCallInitializer","Initialize"],["$BurstDirectCallInitializer","Initialize"],["$BurstDirectCallInitializer","Initialize"],["$BurstDirectCallInitializer","Initialize"],["$BurstDirectCallInitializer","Initialize"],["$BurstDirectCallInitializer","Initialize"],["$BurstDirectCallInitializer","Initialize"]],[],[["Spine","Unity","AttachmentTools","AtlasUtilities","Init"]]];
 

@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 
     public int clickCount = 0;
     public bool isClick;
+    public bool finishGame = false;
     private void Awake()
     {
         if(Instance == null)

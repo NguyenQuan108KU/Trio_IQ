@@ -41,7 +41,7 @@ public class EndCart_Win : MonoBehaviour
         button.transform.localScale = Vector3.zero;
 
         button.transform
-            .DOScale(Vector3.one, 0.4f)
+            .DOScale(Vector3.one, 0.8f)
             .SetEase(Ease.OutQuad); // mượt, không bật
     }
 }
