@@ -26,7 +26,7 @@ public class ConveyorBelt : MonoBehaviour
     {
         if (!isStarted)
         {
-            if (Input.GetMouseButtonDown(0)) // PC + Mobile + Playable Ads
+            if (Input.GetMouseButtonDown(0)) 
             {
                 isStarted = true;
                 tutorial.SetActive(false);

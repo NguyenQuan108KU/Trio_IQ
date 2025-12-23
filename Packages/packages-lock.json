@@ -171,7 +171,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.playworks.upp": {
-      "version": "file:../../7.0.0/scripts",
+      "version": "file:G:/7.0.0/scripts",
       "depth": 0,
       "source": "local",
       "dependencies": {}

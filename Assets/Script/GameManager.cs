@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -7,11 +8,13 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     [SerializeField]
     [LunaPlaygroundField("Count Click", 0, "Click")]
-    public int clicksToLog = 20;
+    public int clicksToLog = 15;
 
     public int clickCount = 0;
     public bool isClick;
     public bool finishGame = false;
+    public TextMeshProUGUI textPoint;
+    public int point = 0;
     private void Awake()
     {
         if(Instance == null)

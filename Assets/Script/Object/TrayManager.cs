@@ -30,6 +30,8 @@ public class TrayManager : MonoBehaviour
     {
        
         StartCoroutine(InitializeRoutine());
+        //Debug.Log("Count: " + GetTraysWithMaxSameItem().Count);
+        Debug.Log("Count: " + GetRandomTrayEmptyPos());
     }
 
     System.Collections.IEnumerator InitializeRoutine()
@@ -194,14 +196,10 @@ public class TrayManager : MonoBehaviour
                 float y = targetY;
 
                 Sequence seq = DOTween.Sequence();
-
-             
                 seq.Append(
                     tray.DOLocalMoveY(y, 0.25f)
                         .SetEase(Ease.InCubic)
                 );
-
-     
                 seq.Append(
                     tray.DOLocalMoveY(y  + 0.4f, 0.15f)
                         .SetEase(Ease.OutCubic)
@@ -241,8 +239,59 @@ public class TrayManager : MonoBehaviour
     void InitActiveTraysFromScene()
     {
         activeTrays.Clear();
+        int indexOrder = 0;
         foreach (Transform child in transform)
+        {
+            indexOrder++;
+            child.GetComponent<SpriteRenderer>().sortingOrder = indexOrder;
             activeTrays.Add(child);
+        }
         activeTrays = activeTrays.OrderByDescending(t => t.localPosition.y).ToList();
     }
+    //Lấy danh sách tất cả các tray có số lượng item lớn nhất 
+    public List<Tray> GetTraysWithMaxSameItem()
+    {
+        int max = 0;
+        List<Tray> result = new List<Tray>();
+
+        foreach (Transform trayTf in activeTrays)
+        {
+            Tray tray = trayTf.GetComponent<Tray>();
+            if (tray == null) continue;
+            int count = tray.GetMaxSameItemCount();
+            if (count < 2) continue;
+
+            if (count > max)
+            {
+                max = count;
+                result.Clear();
+                result.Add(tray);
+            }
+            else if (count == max)
+            {
+                result.Add(tray);
+            }
+        }
+        return result;
+    }
+    //Chọn ngẫu nhiên 1 tray
+    public Vector3? GetRandomTrayEmptyPos()
+    {
+        var trays = GetTraysWithMaxSameItem();
+
+        if (trays == null || trays.Count == 0)
+            return null;
+
+        // chỉ lấy tray còn slot trống
+        var validTrays = trays
+            .Where(t => !t.isCompleted && t.GetEmptySlot() != null)
+            .ToList();
+
+        if (validTrays.Count == 0)
+            return null;
+
+        Tray tray = validTrays[Random.Range(0, validTrays.Count)];
+        return tray.GetEmptySlot().transform.position;
+    }
+
 }
