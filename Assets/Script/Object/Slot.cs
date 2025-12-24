@@ -4,19 +4,27 @@ public class Slot : MonoBehaviour
 {
     public Transform anchor;
     public DragItem currentItem;
-
+    public Tray tray;
     private void Awake()
     {
         EnsureCurrentItem();
+        tray = GetComponentInParent<Tray>();
     }
 
-#if UNITY_EDITOR
+
     private void OnValidate()
     {
         // Keep currentItem in sync while editing
         EnsureCurrentItem();
     }
-#endif
+    public bool CanAcceptItem()
+    {
+        if (tray == null) return true;
+        if (tray.isClosed) return false;
+        return true;
+    }
+
+
 
     void EnsureCurrentItem()
     {

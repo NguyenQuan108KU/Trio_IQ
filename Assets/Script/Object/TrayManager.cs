@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 
 public class TrayManager : MonoBehaviour
 {
+    public static TrayManager instance;
     public float spacing = 1.2f;
     public int visibleCount = 4;
     public float moveTime = 0.5f;
@@ -26,12 +27,73 @@ public class TrayManager : MonoBehaviour
     [SerializeField] float stepX = 2f;  // khoảng cách ngang
     [SerializeField] float stepY = 2f;  // khoảng cách dọc
 
+    public float idleTime = 0f;
+    public float hintDelay = 3f;
+    public bool isTutorialShowing = false;
+    bool isInteracting = false;
+
+    [Header("Tutorial State")]
+    public bool isFirstTutorial = true;
+
+    private DragItem cachedItem;
+    private Tray cachedTray;
+    private Slot cachedSlot;
+
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
+    }
     void Start()
     {
-       
-        StartCoroutine(InitializeRoutine());
-        //Debug.Log("Count: " + GetTraysWithMaxSameItem().Count);
-        Debug.Log("Count: " + GetRandomTrayEmptyPos());
+        // initialize once (coroutine will configure and cache the first tutorial target)
+                StartCoroutine(InitializeRoutine());
+    }
+    private void Update()
+    {
+        if(GameManager.Instance.finishGame) return;
+        if (!isInteracting && !isTutorialShowing)
+        {
+            idleTime += Time.deltaTime;
+
+            if (idleTime >= hintDelay)
+            {
+                ShowTutorialHint();
+                isTutorialShowing = true;
+            }
+        }
+    }
+
+    public void OnUserBeginInteract()
+    {
+        isInteracting = true;
+        idleTime = 0f;
+
+        // Turn off the fixed-first-tutorial mode on the player's first interaction
+        if (isFirstTutorial)
+            isFirstTutorial = false;
+
+        if (isTutorialShowing)
+        {
+            isTutorialShowing = false;
+            TutorialManager.instance?.HideHint();
+        }
+    }
+
+
+    public void OnUserEndInteract()
+    {
+        isInteracting = false;
+        idleTime = 0f; //  bắt đầu đếm 3s từ đây
+    }
+
+
+    public void ResetIdle()
+    {
+        idleTime = 0f;
     }
 
     System.Collections.IEnumerator InitializeRoutine()
@@ -41,6 +103,17 @@ public class TrayManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
         CacheSize();
         AlignInstant();
+
+        // Cache a fixed tutorial target for the very first tutorial (if possible)
+        CacheFirstTutorialTarget();
+
+        // If still in first tutorial mode, show the cached tutorial after a small delay
+        if (isFirstTutorial)
+        {
+            // small delay to ensure everything is ready (mimics previous behavior)
+            Invoke(nameof(ShowTutorialHint), 0.2f);
+            isTutorialShowing = true;
+        }
     }
 
     void InitPool()
@@ -70,14 +143,14 @@ public class TrayManager : MonoBehaviour
             SpriteRenderer srPrefab = listTray[0].GetComponent<SpriteRenderer>();
             if (srPrefab != null)
             {
-            
+
                 trayHeight = (srPrefab.sprite != null) ? srPrefab.sprite.bounds.size.y : srPrefab.bounds.size.y;
                 step = trayHeight + spacing;
                 return;
             }
         }
 
-   
+
         trayHeight = 1f;
         step = trayHeight + spacing;
     }
@@ -86,10 +159,9 @@ public class TrayManager : MonoBehaviour
     {
         if (trayPool.Count == 0)
         {
-        
+
             return;
         }
-
         GameObject prefab = trayPool.Dequeue();
 
         GameObject tray = Instantiate(prefab, transform);
@@ -108,30 +180,30 @@ public class TrayManager : MonoBehaviour
 
         int index = activeTrays.IndexOf(completedTray);
 
-    
+
         activeTrays.RemoveAt(index);
 
-    
+
         completedTray.SetParent(null, true);
 
-        float fallTime = moveTime;       
+        float fallTime = moveTime;
         float shrinkTime = 0.35f;
 
         completedTray.DOKill();
 
         Sequence seq = DOTween.Sequence();
 
-      
+
         seq.AppendCallback(() =>
         {
             SpawnTrayAtTop();
             AlignAnimated();
         });
 
-      
+
         seq.AppendInterval(fallTime);
 
-        
+
         seq.Append(
             completedTray.DOScale(0f, shrinkTime)
                 .SetEase(Ease.InBack)
@@ -190,7 +262,7 @@ public class TrayManager : MonoBehaviour
 
             float currentY = tray.localPosition.y;
 
-        
+
             if (currentY > targetY + 0.01f)
             {
                 float y = targetY;
@@ -210,7 +282,7 @@ public class TrayManager : MonoBehaviour
                         .SetEase(Ease.InCubic)
                 );
 
-       
+
                 seq.Append(
                     tray.DOLocalMoveY(y + 0.15f, 0.1f)
                         .SetEase(Ease.OutCubic)
@@ -275,14 +347,10 @@ public class TrayManager : MonoBehaviour
         return result;
     }
     //Chọn ngẫu nhiên 1 tray
-    public Vector3? GetRandomTrayEmptyPos()
+    public (Tray tray, Slot slot)? GetRandomTrayEmptySlot()
     {
         var trays = GetTraysWithMaxSameItem();
 
-        if (trays == null || trays.Count == 0)
-            return null;
-
-        // chỉ lấy tray còn slot trống
         var validTrays = trays
             .Where(t => !t.isCompleted && t.GetEmptySlot() != null)
             .ToList();
@@ -291,7 +359,175 @@ public class TrayManager : MonoBehaviour
             return null;
 
         Tray tray = validTrays[Random.Range(0, validTrays.Count)];
-        return tray.GetEmptySlot().transform.position;
+        Slot slot = tray.GetEmptySlot();
+
+        return (tray, slot);
+    }
+    public (Tray tray, Slot slot, DragItem item)? GetRandomTraySlotAndItem()
+    {
+        var traySlot = GetRandomTrayEmptySlot();
+        if (!traySlot.HasValue)
+            return null;
+
+        Tray tray = traySlot.Value.tray;
+        Slot slot = traySlot.Value.slot;
+
+        DragItem item = tray.GetAnyMatchingItem();
+        if (item == null)
+            return null;
+
+        return (tray, slot, item);
+    }
+    public void ShowTutorialHint()
+    {
+        // If it's the first tutorial session and we have a cached triple, show that fixed hint.
+        if (isFirstTutorial)
+        {
+            // ensure cache exists
+            if (cachedTray == null || cachedSlot == null || cachedItem == null)
+            {
+                CacheFirstTutorialTarget();
+            }
+
+            if (cachedTray != null && cachedSlot != null && cachedItem != null)
+            {
+                Slot fromSlot = cachedItem.GetComponentInParent<Slot>();
+                if (fromSlot != null)
+                {
+                    TutorialManager.instance.ShowHandHint(fromSlot, cachedSlot, cachedItem);
+                    return;
+                }
+            }
+        }
+
+        // ===== 1. Thử nước đi hợp lệ (>=2 item) =====
+        var traySlot = GetRandomTrayEmptySlot();
+        if (traySlot.HasValue)
+        {
+            Tray targetTray = traySlot.Value.tray;
+            Slot emptySlot = traySlot.Value.slot;
+
+            DragItem item = GetItemFromOtherTray(targetTray);
+            if (item != null)
+            {
+                Slot fromSlot = item.GetComponentInParent<Slot>();
+                if (fromSlot != null)
+                {
+                    TutorialManager.instance.ShowHandHint(fromSlot, emptySlot, item);
+                    return; // ✅ xong
+                }
+            }
+        }
+
+        // ===== 2. FALLBACK: tray chỉ có 1 item =====
+        var fallback = GetFallbackTrayAndSlot();
+        if (!fallback.HasValue)
+            return;
+
+        Tray fallbackTray = fallback.Value.tray;
+        Slot fallbackSlot = fallback.Value.slot;
+
+        DragItem fallbackItem = GetAnyItemFromOtherTray(fallbackTray);
+        if (fallbackItem == null)
+            return;
+
+        Slot fromFallbackSlot = fallbackItem.GetComponentInParent<Slot>();
+        if (fromFallbackSlot == null)
+            return;
+
+        TutorialManager.instance.ShowHandHint(fromFallbackSlot, fallbackSlot, fallbackItem);
+    }
+    public (Tray tray, Slot slot)? GetFallbackTrayAndSlot()
+    {
+        foreach (Transform trayTf in activeTrays)
+        {
+            Tray tray = trayTf.GetComponent<Tray>();
+            if (tray == null) continue;
+            if (tray.isCompleted) continue;
+
+            if (tray.GetComponentsInChildren<DragItem>().Length >= 1 &&
+                tray.GetEmptySlot() != null)
+            {
+                return (tray, tray.GetEmptySlot());
+            }
+        }
+        return null;
+    }
+    public DragItem GetAnyItemFromOtherTray(Tray excludeTray)
+    {
+        List<DragItem> items = new List<DragItem>();
+
+        foreach (Transform trayTf in activeTrays)
+        {
+            Tray tray = trayTf.GetComponent<Tray>();
+            if (tray == null) continue;
+            if (tray == excludeTray) continue;
+            if (tray.isCompleted) continue;
+
+            items.AddRange(tray.GetComponentsInChildren<DragItem>());
+        }
+
+        if (items.Count == 0)
+            return null;
+
+        return items[Random.Range(0, items.Count)];
+    }
+
+    public void NotifyUserInteraction()
+    {
+        idleTime = 0f;
+
+        if (isTutorialShowing)
+        {
+            isTutorialShowing = false;
+            TutorialManager.instance.HideHint();
+        }
+    }
+    public DragItem GetItemFromOtherTray(Tray targetTray)
+    {
+        string key = targetTray.GetMainItemKey();
+        if (string.IsNullOrEmpty(key))
+            return null;
+
+        List<DragItem> candidates = new List<DragItem>();
+
+        foreach (Transform trayTf in activeTrays)
+        {
+            Tray tray = trayTf.GetComponent<Tray>();
+            if (tray == null) continue;
+            if (tray == targetTray) continue;
+            if (tray.isCompleted) continue;
+
+            foreach (var item in tray.GetComponentsInChildren<DragItem>())
+            {
+                var sr = item.GetComponent<SpriteRenderer>();
+                string itemKey = sr != null && sr.sprite != null
+                    ? sr.sprite.name
+                    : item.gameObject.name;
+
+                if (itemKey == key)
+                    candidates.Add(item);
+            }
+        }
+
+        if (candidates.Count == 0)
+            return null;
+
+        return candidates[Random.Range(0, candidates.Count)];
+    }
+
+    //Hàm mặc định
+    void CacheFirstTutorialTarget()
+    {
+        if (!isFirstTutorial) return;
+
+        var traySlot = GetRandomTrayEmptySlot();
+        if (!traySlot.HasValue) return;
+
+        cachedTray = traySlot.Value.tray;
+        cachedSlot = traySlot.Value.slot;
+
+        cachedItem = GetItemFromOtherTray(cachedTray);
     }
 
 }

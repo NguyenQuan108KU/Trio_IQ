@@ -33,11 +33,17 @@ public class DragItem : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            if (!CountdownTimer.instance.hasStarted)
+            {
+                CountdownTimer.instance.hasStarted = true;
+                CountdownTimer.instance.StartCountdown();
+            }
             TryPick();
         }
 
         if (Input.GetMouseButton(0) && currentDrag == this)
         {
+            
             Drag();
         }
 
@@ -49,7 +55,14 @@ public class DragItem : MonoBehaviour
 
     void TryPick()
     {
+        if (GameManager.Instance.tutGame.activeSelf)
+        {
+            GameManager.Instance.tutGame.SetActive(false);
+        }
         if (isLocked || GameManager.Instance.finishGame) return;
+        if (isLocked || GameManager.Instance.finishGame) return;
+
+        TrayManager.instance.OnUserBeginInteract(); // ✅ ĐÚNG
         Vector2 mouseWorld = cam.ScreenToWorldPoint(Input.mousePosition);
         Collider2D[] hits = Physics2D.OverlapPointAll(mouseWorld);
         foreach (var hit in hits)
@@ -57,7 +70,7 @@ public class DragItem : MonoBehaviour
             if (hit.gameObject == gameObject)
             {
                 currentDrag = this;
-                AudioManager.Instance.PlaySFX(AudioManager.Instance.drag);
+                //AudioManager.Instance.PlaySFX(AudioManager.Instance.drag);
                 tween?.Kill();
                 startPos = transform.position;
                 startParent = transform.parent;
@@ -79,6 +92,8 @@ public class DragItem : MonoBehaviour
 
     void Drop()
     {
+        TrayManager.instance.OnUserEndInteract();
+        GameManager.Instance.clickCount++;
         sr.sortingOrder = 0;
         outline.GetComponent<SpriteRenderer>().sortingOrder = -1;
         ShowOutline(false);
@@ -86,18 +101,16 @@ public class DragItem : MonoBehaviour
 
         Slot slot = FindNearestSlot();
 
-        if (slot != null && (slot.IsEmpty() || slot.transform == startParent))
+        if (slot != null
+    && slot.CanAcceptItem()
+    && (slot.IsEmpty() || slot.transform == startParent))
         {
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.drog);
-            GameManager.Instance.clickCount++;
-
             Snap(slot);
         }
         else
         {
             Return();
         }
-
         if (GameManager.Instance.clickCount >= GameManager.Instance.clicksToLog && !GameManager.Instance.isClick)
         {
             GameManager.Instance.isClick = true;

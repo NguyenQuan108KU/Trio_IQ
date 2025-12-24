@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public bool finishGame = false;
     public TextMeshProUGUI textPoint;
     public int point = 0;
+    public GameObject tutGame;
     private void Awake()
     {
         if(Instance == null)
@@ -22,7 +23,6 @@ public class GameManager : MonoBehaviour
         else
             Destroy(gameObject);
     }
-   
     public void InstallGame()
     {
         Luna.Unity.Playable.InstallFullGame();

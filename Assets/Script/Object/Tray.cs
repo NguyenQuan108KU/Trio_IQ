@@ -1,7 +1,8 @@
-﻿using UnityEngine;
-using DG.Tweening;
-using System.Linq;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 public class Tray : MonoBehaviour
 {
@@ -19,6 +20,11 @@ public class Tray : MonoBehaviour
     public int maxSlot = 3;
     public bool isCompleted = false;
     public Slot[] slots;
+    public bool isClosed = false;
+    [Header("Match Effect")]
+    public GameObject fireEffectPrefab;
+    public float fireEffectTime = 2f; // thời gian animation lửa
+
     private void Start()
     {
         slots = GetComponentsInChildren<Slot>();
@@ -51,14 +57,57 @@ public class Tray : MonoBehaviour
                 {
                     item.isLocked = true;
                 }
-                MoveToCenter(g.Take(3).ToList());
+                StartCoroutine(
+                PlayFireThenMerge(matchedItems)
+            );
+                //GameObject fireEffecrt = Instantiate(fireEffectPrefab, this.transform);
+                //MoveToCenter(g.Take(3).ToList());
                 //ProgressBrain.instance.AddTrayMatch();
-                //AudioManager.Instance.PlaySFX(AudioManager.Instance.match);
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.match);
                 //CloseBox();
                 return;
             }
         }
     }
+    IEnumerator PlayFireThenMerge(List<DragItem> items)
+    {
+        // 1️⃣ Spawn fire theo TRAY (LOCAL SPACE)
+        GameObject fire = Instantiate(
+            fireEffectPrefab,
+            transform // parent luôn là Tray
+        );
+
+        fire.transform.localPosition = new Vector3(0f, 0.9f, 0f);
+        fire.transform.localRotation = Quaternion.identity;
+        //fire.transform.localScale = Vector3.one;
+
+        // 2️⃣ Animator
+        Animator anim = fire.GetComponent<Animator>();
+
+        if (anim != null)
+        {
+            anim.Play(0, 0, 0f);
+
+            // lấy thời lượng clip
+            AnimatorStateInfo state = anim.GetCurrentAnimatorStateInfo(0);
+            float clipLength = state.length;
+
+            yield return new WaitForSeconds(clipLength);
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
+
+
+        Destroy(fire);
+
+        
+        MoveToCenter(items);
+    }
+
+
+
 
     void MoveToCenter(List<DragItem> items)
     {
@@ -74,6 +123,7 @@ public class Tray : MonoBehaviour
         Vector3 centerPos = center.transform.position;
 
         float smallOffset = 0.15f; // 👈 khoảng cách nhỏ giữa các item
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.finish);
 
         Sequence seq = DOTween.Sequence();
 
@@ -151,6 +201,7 @@ public class Tray : MonoBehaviour
     }
     public void CloseTray()
     {
+        isClosed = true;
         GameObject soldOut = Instantiate(soldOutPrefabs);
 
         Transform t = soldOut.transform;
@@ -209,6 +260,48 @@ public class Tray : MonoBehaviour
         }
         return null;
     }
+    public DragItem GetAnyMatchingItem()
+    {
+        if (isCompleted) return null;
+
+        DragItem[] items = GetComponentsInChildren<DragItem>();
+        if (items.Length == 0) return null;
+
+        var groups = items
+            .GroupBy(i =>
+            {
+                var sr = i.GetComponent<SpriteRenderer>();
+                return sr != null && sr.sprite != null
+                    ? sr.sprite.name
+                    : i.gameObject.name;
+            })
+            .OrderByDescending(g => g.Count())
+            .FirstOrDefault();
+
+        if (groups == null)
+            return null;
+
+        // lấy 1 item bất kỳ trong nhóm đó
+        return groups.First();
+    }
+    public string GetMainItemKey()
+    {
+        DragItem[] items = GetComponentsInChildren<DragItem>();
+        if (items.Length == 0) return null;
+
+        return items
+            .GroupBy(i =>
+            {
+                var sr = i.GetComponent<SpriteRenderer>();
+                return sr != null && sr.sprite != null
+                    ? sr.sprite.name
+                    : i.gameObject.name;
+            })
+            .OrderByDescending(g => g.Count())
+            .First()
+            .Key;
+    }
+
     //public bool HasEmptySlot()
     //{
     //    return GetComponentsInChildren<DragItem>().Length < maxSlot;

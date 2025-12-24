@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
@@ -10,10 +10,16 @@ public class AudioManager : MonoBehaviour
 
     [Header("Clips")]
     public AudioClip bgm;
-    public AudioClip drag;
+    public AudioClip finish;
     public AudioClip drog;
     public AudioClip match;
     public AudioClip pop;
+    public AudioClip lose;
+
+    [Header("Sound")]
+    public AudioClip normalTick;   // tiếng tick bình thường
+    public AudioClip warningTick;  // tiếng 5s cuối
+
 
     bool soundOn = true;
 
@@ -33,7 +39,7 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        PlayBGM();
+        //PlayBGM();
     }
 
     // ===== BGM =====
