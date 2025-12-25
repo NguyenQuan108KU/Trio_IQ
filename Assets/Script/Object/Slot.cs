@@ -23,9 +23,6 @@ public class Slot : MonoBehaviour
         if (tray.isClosed) return false;
         return true;
     }
-
-
-
     void EnsureCurrentItem()
     {
         if (currentItem == null)

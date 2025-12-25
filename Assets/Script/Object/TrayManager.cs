@@ -39,6 +39,9 @@ public class TrayManager : MonoBehaviour
     private Tray cachedTray;
     private Slot cachedSlot;
 
+    [Header("Tutorial Manual Override")]
+    public Tray manualTray = null;
+    public DragItem manualItem = null;
 
     private void Awake()
     {
@@ -380,6 +383,20 @@ public class TrayManager : MonoBehaviour
     }
     public void ShowTutorialHint()
     {
+        if (manualTray != null && manualItem != null)
+        {
+            if (!manualTray.isCompleted)
+            {
+                Slot targetSlot = manualTray.GetEmptySlot();
+                Slot fromSlot = manualItem.GetComponentInParent<Slot>();
+
+                if (targetSlot != null && fromSlot != null)
+                {
+                    TutorialManager.instance.ShowHandHint(fromSlot, targetSlot, manualItem);
+                    return; // ⛔ dừng tại đây, KHÔNG chạy code cũ
+                }
+            }
+        }
         // If it's the first tutorial session and we have a cached triple, show that fixed hint.
         if (isFirstTutorial)
         {

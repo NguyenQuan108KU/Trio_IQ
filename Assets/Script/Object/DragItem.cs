@@ -70,7 +70,7 @@ public class DragItem : MonoBehaviour
             if (hit.gameObject == gameObject)
             {
                 currentDrag = this;
-                //AudioManager.Instance.PlaySFX(AudioManager.Instance.drag);
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.drag);
                 tween?.Kill();
                 startPos = transform.position;
                 startParent = transform.parent;
@@ -111,11 +111,11 @@ public class DragItem : MonoBehaviour
         {
             Return();
         }
-        if (GameManager.Instance.clickCount >= GameManager.Instance.clicksToLog && !GameManager.Instance.isClick)
-        {
-            GameManager.Instance.isClick = true;
-            Luna.Unity.Playable.InstallFullGame();
-        }
+        //if (GameManager.Instance.clickCount >= GameManager.Instance.clicksToLog && !GameManager.Instance.isClick)
+        //{
+        //    GameManager.Instance.isClick = true;
+        //    Luna.Unity.Playable.InstallFullGame();
+        //}
         currentDrag = null;
     }
     void Snap(Slot slot)

@@ -1,37 +1,51 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 using DG.Tweening;
 
 public class EndCart_Lose : MonoBehaviour
 {
-    public TMP_Text titleText;
     public GameObject actionButton;
     public GameObject emoji;
+    public GameObject logo;
+    public GameObject icon;
+    public GameObject praticle;
 
     [Header("Anim")]
-    public float textFadeTime = 0.3f;
-    public float buttonDelay = 0.2f;
     public float buttonScaleTime = 0.35f;
-    [Header("Emoji Anim")]
-    public float emojiDelay = 0.15f;
-    public float emojiFadeTime = 0.25f;
-    public float emojiScaleTime = 0.35f;
 
+    [Header("Item Anim")]
+    public float itemStartScale = 0.4f;
+    public float itemPopScale = 1f;
+    public float itemInTime = 0.1f;
+    public float itemSettleTime = 0.05f;
 
     private Tween buttonPulse;
+    [Header("Item Anim")]
+    public float itemFinalScale = 0.85f;   // 👈 scale cuối
+
 
     void Awake()
     {
-        // initial compact state
-        titleText.transform.localScale = Vector3.one * 0.6f;
-        emoji.transform.localScale = Vector3.one * 0.6f;
+        InitState();
+    }
 
-        titleText.alpha = 1f; // KHÔNG fade
+    void InitState()
+    {
+        SetItemInit(emoji);
+        SetItemInit(logo);
+        SetItemInit(icon);
+
+        if (praticle != null)
+            praticle.SetActive(false);
+
         actionButton.transform.localScale = Vector3.zero;
     }
 
-
+    void SetItemInit(GameObject go)
+    {
+        if (go == null) return;
+        go.transform.localScale = Vector3.one * itemStartScale;
+        go.SetActive(false);
+    }
 
     public void Show()
     {
@@ -40,40 +54,27 @@ public class EndCart_Lose : MonoBehaviour
         DOTween.KillAll();
         buttonPulse?.Kill();
 
-        titleText.transform.localScale = Vector3.one * 0.6f;
-        emoji.transform.localScale = Vector3.one * 0.6f;
-        actionButton.transform.localScale = Vector3.zero;
+        InitState();
 
-        // đợi 1 frame
         DOVirtual.DelayedCall(0.01f, () =>
         {
             Sequence seq = DOTween.Sequence();
 
-            // TEXT POP
-            seq.Append(
-                titleText.transform
-                    .DOScale(1.05f, 0.22f)
-                    .SetEase(Ease.OutQuad)
-            );
-            seq.Append(
-                titleText.transform
-                    .DOScale(1f, 0.1f)
-            );
+            // ===== ITEMS + PARTICLE (CÙNG LÚC) =====
+            seq.AppendCallback(() =>
+            {
+                if (emoji) emoji.SetActive(true);
+                if (logo) logo.SetActive(true);
+                if (icon) icon.SetActive(true);
+                if (praticle) praticle.SetActive(true);
+            });
 
-            // EMOJI POP
-            seq.AppendInterval(0.08f);
-            //seq.Append(
-            //    emoji.transform
-            //        .DOScale(1f, 0.15f)
-            //        .SetEase(Ease.OutBack)
-            //);
-            seq.Append(
-                emoji.transform
-                    .DOScale(1f, 0.12f)
-            );
-          
-            // BUTTON
-            seq.AppendInterval(0.15f);
+            JoinItemAnim(seq, emoji);
+            JoinItemAnim(seq, logo);
+            JoinItemAnim(seq, icon);
+
+            // ===== BUTTON SAU =====
+            seq.AppendInterval(itemInTime + itemSettleTime + 0.1f);
             seq.Append(
                 actionButton.transform
                     .DOScale(1f, buttonScaleTime)
@@ -84,36 +85,57 @@ public class EndCart_Lose : MonoBehaviour
         });
     }
 
+    void JoinItemAnim(Sequence mainSeq, GameObject go)
+    {
+        if (go == null) return;
+
+        Sequence itemSeq = DOTween.Sequence();
+
+        itemSeq.Append(
+            go.transform
+                .DOScale(itemPopScale, itemInTime)   
+                .SetEase(Ease.OutBack)
+        );
+
+        itemSeq.Append(
+            go.transform
+                .DOScale(itemFinalScale, itemSettleTime) 
+                .SetEase(Ease.OutQuad)
+        );
+
+        mainSeq.Join(itemSeq);
+    }
 
 
     void StartButtonPulse()
     {
         buttonPulse?.Kill();
-
         buttonPulse = actionButton.transform
-            .DOScale(1.5f, 0.7f)     // TO hơn
+            .DOScale(1.15f, 0.6f)
             .SetEase(Ease.InOutQuad)
             .SetLoops(-1, LoopType.Yoyo);
     }
-
 
     public void Hide()
     {
         buttonPulse?.Kill();
 
         Sequence seq = DOTween.Sequence();
-        seq.Append(titleText.DOFade(0f, 0.2f));
         seq.Join(actionButton.transform.DOScale(0f, 0.2f));
 
-        if (emoji != null)
-        {
-            var img = emoji.GetComponent<Image>();
-            seq.Join(emoji.transform.DOScale(0f, 0.2f));
-            if (img != null)
-                seq.Join(img.DOFade(0f, 0.2f));
-        }
+        HideItem(seq, emoji);
+        HideItem(seq, logo);
+        HideItem(seq, icon);
+
+        if (praticle != null)
+            praticle.SetActive(false);
 
         seq.OnComplete(() => gameObject.SetActive(false));
     }
 
+    void HideItem(Sequence seq, GameObject go)
+    {
+        if (go == null) return;
+        seq.Join(go.transform.DOScale(0f, 0.2f));
+    }
 }

@@ -123,7 +123,7 @@ public class Tray : MonoBehaviour
         Vector3 centerPos = center.transform.position;
 
         float smallOffset = 0.15f; // 👈 khoảng cách nhỏ giữa các item
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.finish);
+        //.Instance.PlaySFX(AudioManager.Instance.finish);
 
         Sequence seq = DOTween.Sequence();
 
@@ -225,12 +225,13 @@ public class Tray : MonoBehaviour
             seq.Append(sr.DOFade(1f, 0.25f));
 
         seq.Join(t.DOScale(1f, 0.25f).SetEase(Ease.OutBack));
-
+        
         // Rơi + nảy
         seq.Join(
             t.DOLocalMove(endLocalPos, 0.45f)
              .SetEase(Ease.OutBounce)
         );
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.closeBox);
     }
     //Lấy số lượng item cùng loại
     public int GetMaxSameItemCount()

@@ -15,6 +15,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip match;
     public AudioClip pop;
     public AudioClip lose;
+    public AudioClip drag;
+    public AudioClip closeBox;
 
     [Header("Sound")]
     public AudioClip normalTick;   // tiếng tick bình thường

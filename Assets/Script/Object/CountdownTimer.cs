@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEngine.UI;
 
 public class CountdownTimer : MonoBehaviour
 {
@@ -23,6 +24,15 @@ public class CountdownTimer : MonoBehaviour
     public GameObject timeUpPanel;
     public bool hasStarted = false;
 
+    [Header("Background Blink")]
+    public float bgMinAlpha = 0.25f;
+    public float bgMaxAlpha = 1f;
+    public float bgBlinkSpeed = 4f;
+
+    private Coroutine bgBlinkCo;
+    private Image bgImage;
+    private Color bgOriginalColor;
+
 
     private void Awake()
     {
@@ -40,11 +50,24 @@ public class CountdownTimer : MonoBehaviour
     {
         originalScale = timerText.transform.localScale;
         originalColor = timerText.color;
+
+        // cache background image and hide it initially
+        if (backgroundWarning != null)
+        {
+            bgImage = backgroundWarning.GetComponent<Image>();
+            if (bgImage != null)
+                bgOriginalColor = bgImage.color;
+            backgroundWarning.SetActive(false);
+        }
+
         //StartCountdown();
     }
 
     public void StartCountdown()
     {
+        // stop any previous blink
+        StopBackgroundBlink();
+
         if (countdownCo != null)
             StopCoroutine(countdownCo);
 
@@ -55,18 +78,38 @@ public class CountdownTimer : MonoBehaviour
     {
         int timeLeft = startSeconds;
 
+        // ensure hidden at start
+        if (backgroundWarning != null)
+            backgroundWarning.SetActive(false);
+
         while (timeLeft > 0)
         {
             UpdateText(timeLeft);
 
-            // 🔊 phát âm thanh
+            // 🔊 play warning behavior when in warning period
             if (timeLeft <= warningTime)
             {
                 AudioManager.Instance.PlaySFX(AudioManager.Instance.warningTick);
 
                 timerText.color = warningColor;
-                backgroundWarning.SetActive(true);
+
+                if (backgroundWarning != null && bgBlinkCo == null)
+                {
+                    backgroundWarning.SetActive(true);
+                    // ensure original color cached
+                    if (bgImage != null)
+                        bgOriginalColor = bgImage.color;
+                    bgBlinkCo = StartCoroutine(BackgroundBlink());
+                }
             }
+            else
+            {
+                // restore normal state if not in warning
+                timerText.color = originalColor;
+                if (bgBlinkCo != null)
+                    StopBackgroundBlink();
+            }
+
             yield return new WaitForSeconds(1f);
             timeLeft--;
         }
@@ -83,6 +126,41 @@ public class CountdownTimer : MonoBehaviour
         int minutes = totalSeconds / 60;
         int seconds = totalSeconds % 60;
         timerText.text = $"{minutes:00}:{seconds:00}";
+    }
+
+    IEnumerator BackgroundBlink()
+    {
+        if (bgImage == null)
+            yield break;
+
+        bool visible = false;
+
+        while (true)
+        {
+            visible = !visible;
+
+            Color c = bgOriginalColor;
+            c.a = visible ? bgMaxAlpha : bgMinAlpha;
+            bgImage.color = c;
+
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
+
+    void StopBackgroundBlink()
+    {
+        if (bgBlinkCo != null)
+        {
+            StopCoroutine(bgBlinkCo);
+            bgBlinkCo = null;
+        }
+
+        if (bgImage != null)
+            bgImage.color = bgOriginalColor;
+
+        if (backgroundWarning != null)
+            backgroundWarning.SetActive(false);
     }
 
     //IEnumerator PulseText()
@@ -111,6 +189,9 @@ public class CountdownTimer : MonoBehaviour
 
     void OnTimeUp()
     {
+        // stop blink when time up
+        StopBackgroundBlink();
+
         timerText.text = "00:00";
 
         if (timeUpPanel != null)
@@ -118,7 +199,6 @@ public class CountdownTimer : MonoBehaviour
             AudioManager.Instance.PlaySFX(AudioManager.Instance.lose);
             timeUpPanel.GetComponent<EndCart_Lose>()?.Show();
             GameManager.Instance.finishGame = true;
-            GameManager.Instance.InstallGame();
             GameManager.Instance.EndGame();
         }
     }
