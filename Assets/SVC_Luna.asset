@@ -524,7 +524,7 @@ MonoBehaviour:
     - UNDERLAY_ON
   _includedShaderVariants: []
   _excludedShaderVariants: []
-  version: 1026
+  version: 1046
   _shaderParsedShaders:
   - ParsedSubShaders:
     - Index: 0

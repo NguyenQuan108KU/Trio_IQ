@@ -1,23 +1,19 @@
-report@config:load 24.93
 Authorized using stored user info.
-report@account:authorize 4.91
 stderr: 'rm' is not recognized as an internal or external command,
 operable program or batch file.
 
 Exporting assets from Unity......
 
 [ Stage1 ] Assets exported from Unity and staged for further processing
-report@unity:export 3032.13
-report@config:load 13.23
 Using G:/tray-master/Assets/TextMesh Pro/Fonts/LiberationSans.ttf file to generate an atlas for LiberationSans[30014] font
   Using alphabet  §1234567890-=qwertyuiop[]asdfghjkl;'\`zxcvbnm,./±!@#$%^&*()_+QWERTYUIOP{}ASDFGHJKL:"|~ZXCVBNM<>?
 Combined 97 glyphs into bitmap texture at G:/tray-master/LunaTemp/stage1/tmp/fonts/LiberationSans-30014/output_0.png (56kb)
-Found custom rules for texture Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset
-  {"maxWidth":512,"maxHeight":512,"format":"webp","compression":"none","quality":65,"script":"","ext":"","name":"Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset","isOverride":true}
 Found custom rules for texture Assets/Fonts/HVD Fonts  MikadoBlack SDF.asset
   {"maxWidth":512,"maxHeight":512,"format":"webp","compression":"none","quality":65,"script":"","ext":"","name":"Assets/Fonts/HVD Fonts  MikadoBlack SDF.asset","isOverride":true}
 Found custom rules for texture Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset
   {"maxWidth":512,"maxHeight":512,"format":"webp","compression":"none","quality":65,"script":"","ext":"","name":"Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset","isOverride":true}
+Found custom rules for texture Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset
+  {"maxWidth":512,"maxHeight":512,"format":"webp","compression":"none","quality":65,"script":"","ext":"","name":"Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset","isOverride":true}
 Found custom rules for texture Assets/Art/Animation/Fire/Fire 2_00037.png
   {"maxWidth":512,"maxHeight":512,"format":"png32","compression":"crush","quality":65,"script":"","ext":"","name":"Assets/Art/Animation/","isOverride":true}
 Found custom rules for texture Assets/Art/Animation/Fire/Fire 2_00038.png
@@ -68,18 +64,11 @@ Found custom rules for texture Assets/Art/Animation/Fire/Fire 2_00068 1.png
   {"maxWidth":512,"maxHeight":512,"format":"png32","compression":"crush","quality":65,"script":"","ext":"","name":"Assets/Art/Animation/","isOverride":true}
 Resources:
 {}
-report@assets:stage2 8795.93
-report@assets:stage3 174.15
 [ Stage2 ] Assets postprocessed and bundled successfully
-report@config:unity 0.11
-report@config:load 21.32
-report@config:unity 0.08
-report@code:compose 90.34
 Authorized using stored user info.
-report@account:authorize 1.97
 MSBuild version 18.0.5+e22287bf1 for .NET Framework
 
-Build started 12/26/2025 6:06:33 PM.
+Build started 12/26/2025 6:37:17 PM.
 
 
 
@@ -103,6 +92,7 @@ CoreClean:
   Deleting file "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Newtonsoft.Json.dll".
 
   Deleting file "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Retyped.Core.dll".
+
   Deleting file "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Retyped.dom.dll".
 
   Deleting file "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Retyped.es5.dll".
@@ -176,22 +166,21 @@ G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\TrayManage
   CompilerServer: server - server processed compilation - Scripts
 
 _CopyFilesMarkedCopyLocal:
+  Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\Bridge.Newtonsoft.Json.1.16.0\lib\net40\Newtonsoft.Json.dll" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Newtonsoft.Json.dll".
+
+  Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\Bridge.WebGL.1.22.0\lib\net40\Bridge.WebGL.dll" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Bridge.WebGL.dll".
+  Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\Bridge.Html5.17.9.0\lib\net40\Bridge.Html5.dll" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Bridge.Html5.dll".
   Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\Bridge.Core.17.9.42-luna\lib\net40\Bridge.dll" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Bridge.dll".
+  Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\DOTween.1.2.705\lib\net40\DOTween.dll" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\DOTween.dll".
 
   Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\com.unity.ide.rider\3.0.0\JetBrains.dll" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\JetBrains.dll".
 
-  Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\Bridge.Html5.17.9.0\lib\net40\Bridge.Html5.dll" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Bridge.Html5.dll".
-  Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\Bridge.Newtonsoft.Json.1.16.0\lib\net40\Newtonsoft.Json.dll" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Newtonsoft.Json.dll".
-  Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\Bridge.WebGL.1.22.0\lib\net40\Bridge.WebGL.dll" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Bridge.WebGL.dll".
-  Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\DOTween.1.2.705\lib\net40\DOTween.dll" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\DOTween.dll".
-
   Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\Retyped.Core.1.6.6733\lib\net40\Retyped.Core.dll" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Retyped.Core.dll".
-  Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\Retyped.dom.2.8.6733\lib\net40\Retyped.dom.dll" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Retyped.dom.dll".
 
+  Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\Retyped.dom.2.8.6733\lib\net40\Retyped.dom.dll" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Retyped.dom.dll".
   Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\Retyped.es5.2.8.6733\lib\net40\Retyped.es5.dll" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Retyped.es5.dll".
 
   Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\Retyped.scripthost.2.8.6733\lib\net40\Retyped.scripthost.dll" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Retyped.scripthost.dll".
-
   Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\com.unity.textmeshpro\3.0.6\TextMeshPro.dll" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\TextMeshPro.dll".
 
   Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\Vendor\UnityEngine.dll" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\UnityEngine.dll".
@@ -204,9 +193,10 @@ _CopyFilesMarkedCopyLocal:
 
   Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\Bridge.Html5.17.9.0\lib\net40\Bridge.Html5.xml" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Bridge.Html5.xml".
 
+  Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\Bridge.Newtonsoft.Json.1.16.0\lib\net40\Newtonsoft.Json.xml" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Newtonsoft.Json.xml".
+
   Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\Bridge.WebGL.1.22.0\lib\net40\Bridge.WebGL.xml" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Bridge.WebGL.xml".
 
-  Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\Bridge.Newtonsoft.Json.1.16.0\lib\net40\Newtonsoft.Json.xml" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Newtonsoft.Json.xml".
   Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\Retyped.Core.1.6.6733\lib\net40\Retyped.Core.xml" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Retyped.Core.xml".
 
   Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\Retyped.dom.2.8.6733\lib\net40\Retyped.dom.xml" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Retyped.dom.xml".
@@ -244,28 +234,22 @@ Build succeeded.
 
 "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj" (Rebuild target) (1) ->
 (CoreCompile target) -> 
-
   G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\CountdownTimer.cs(19,23): warning CS0169: The field 'CountdownTimer.pulseCo' is never used [G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
   G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\TrayManager.cs(36,10): warning CS0414: The field 'TrayManager.isInteracting' is assigned but its value is never used [G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+
 
     2 Warning(s)
     0 Error(s)
 
 
-Time Elapsed 00:00:05.64
+Time Elapsed 00:00:05.82
 
 Source code compiled successfully!
 ﻿
 [ error ] $﻿
 Diagnostics gathered successfully
-report@code:build 10051.27
-diagnostics file upload failed
-report@diagnostics:verify 0.32
-report@diagnostics:upload 24683.35
-report@code:stage 7334.15
 [ Stage3 ] Code compiled and bundled successfully.
-report@code:bundle 42184.24
-report@package:stage 735.90
-[ Stage4 ] Target platform: develop
+[ Stage4 ] Target platform: playground
 [ Stage4 ] Package bundled successfully
-report@assets:stats 0.14
+navigateto:https://assets-lunalabs-io.s3-accelerate.amazonaws.com/uploads%2Fdirect%2F974ca7967bc378e04142b0d123f8c9fa%2FGrill_Sort_Demo01_build.zip
+[ Stage4 ] Package uploaded successfully

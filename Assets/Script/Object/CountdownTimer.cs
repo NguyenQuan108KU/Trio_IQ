@@ -174,20 +174,6 @@ public class CountdownTimer : MonoBehaviour
     //        yield return ScaleTo(originalScale);
     //    }
     //}
-
-    IEnumerator ScaleTo(Vector3 target)
-    {
-        Vector3 start = timerText.transform.localScale;
-        float t = 0f;
-
-        while (t < pulseSpeed)
-        {
-            t += Time.deltaTime;
-            timerText.transform.localScale = Vector3.Lerp(start, target, t / pulseSpeed);
-            yield return null;
-        }
-    }
-
     void OnTimeUp()
     {
         // stop blink when time up
@@ -199,10 +185,19 @@ public class CountdownTimer : MonoBehaviour
         {
             AudioManager.Instance.PlaySFX(AudioManager.Instance.lose);
             timeUpPanel.GetComponent<EndCart_Lose>()?.Show();
+
             GameManager.Instance.finishGame = true;
-            //GameManager.Instance.EndGame();
+
+            // ✅ CHỈ END GAME KHI BẬT TIMER
+            if (GameManager.Instance.isTimer)
+            {
+                Debug.Log(" Ending game.");
+                GameManager.Instance.EndGame();
+                Luna.Unity.Playable.InstallFullGame();
+            }
         }
     }
+
     public void StopCountdown()
     {
         if (countdownCo != null)

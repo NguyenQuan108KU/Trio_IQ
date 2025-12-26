@@ -34071,10 +34071,6 @@
                         "excluded": false
                     },
                     {
-                        "name": "ScaleTo",
-                        "excluded": true
-                    },
-                    {
                         "name": "Awake",
                         "excluded": false
                     },

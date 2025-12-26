@@ -96,8 +96,8 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("TIME UP");
 
-        Luna.Unity.LifeCycle.GameEnded();
-        Luna.Unity.Playable.InstallFullGame();
+        //Luna.Unity.LifeCycle.GameEnded();
+        //Luna.Unity.Playable.InstallFullGame();
     }
 
 
@@ -131,7 +131,6 @@ public class GameManager : MonoBehaviour
     }
 
     // ============== CODE CŨ CỦA BẠN ==============
-
     public void InstallGame()
     {
         Luna.Unity.Playable.InstallFullGame();
