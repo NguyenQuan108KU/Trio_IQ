@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class TrayManager : MonoBehaviour
     public float spacing = 1.2f;
     public int visibleCount = 4;
     public float moveTime = 0.5f;
+    public GameObject win;
 
     [Header("Tray Prefabs / Pool")]
     public List<GameObject> listTray;
@@ -26,6 +28,7 @@ public class TrayManager : MonoBehaviour
     [SerializeField] int rows = 8;      // số object theo Y
     [SerializeField] float stepX = 2f;  // khoảng cách ngang
     [SerializeField] float stepY = 2f;  // khoảng cách dọc
+    bool isGameEnded = false;
 
     public float idleTime = 0f;
     public float hintDelay = 3f;
@@ -52,23 +55,65 @@ public class TrayManager : MonoBehaviour
     }
     void Start()
     {
-        // initialize once (coroutine will configure and cache the first tutorial target)
-                StartCoroutine(InitializeRoutine());
+        StartCoroutine(InitializeRoutine());
     }
+
+
     private void Update()
     {
-        if(GameManager.Instance.finishGame) return;
-        if (!isInteracting && !isTutorialShowing)
-        {
-            idleTime += Time.deltaTime;
+        if (isGameEnded) return;
 
-            if (idleTime >= hintDelay)
+        int notClosedCount = 0;
+        Tray lastOpenTray = null;
+
+        for (int i = 0; i < activeTrays.Count; i++)
+        {
+            Tray tray = activeTrays[i].GetComponent<Tray>();
+            if (tray == null) continue;
+
+            if (!tray.isClosed)
             {
-                ShowTutorialHint();
-                isTutorialShowing = true;
+                notClosedCount++;
+                lastOpenTray = tray;
+
+                if (notClosedCount > 1)
+                    return; // còn >= 2 tray mở
             }
         }
+
+        // ✅ chỉ còn 1 tray → đóng + win
+        if (notClosedCount == 1 && lastOpenTray != null)
+        {
+            isGameEnded = true;           // 🔒 chặn Update NGAY
+            lastOpenTray.CloseTray();     // animation đóng khay
+            StartCoroutine(WaitCloseTrayThenWin());
+        }
     }
+
+
+
+    IEnumerator EndGameDelay()
+    {
+        yield return new WaitForSeconds(0.5f);
+        GameManager.Instance.EndGame();
+    }
+
+    IEnumerator WaitCloseTrayThenWin()
+    {
+        yield return new WaitForSeconds(0.55f); // ⏳ thời gian CloseTray
+
+        if (CountdownTimer.instance != null)
+        {
+            CountdownTimer.instance.ActiveEndCartWin();
+            CountdownTimer.instance.StopCountdown();
+        }
+
+        GameManager.Instance.finishGame = true;
+
+        yield return new WaitForSeconds(0.5f); // ⏳ cho UI hiện
+        //GameManager.Instance.EndGame();
+    }
+
 
     public void OnUserBeginInteract()
     {

@@ -93,7 +93,6 @@ public class DragItem : MonoBehaviour
     void Drop()
     {
         TrayManager.instance.OnUserEndInteract();
-        GameManager.Instance.clickCount++;
         sr.sortingOrder = 0;
         outline.GetComponent<SpriteRenderer>().sortingOrder = -1;
         ShowOutline(false);
@@ -111,11 +110,6 @@ public class DragItem : MonoBehaviour
         {
             Return();
         }
-        //if (GameManager.Instance.clickCount >= GameManager.Instance.clicksToLog && !GameManager.Instance.isClick)
-        //{
-        //    GameManager.Instance.isClick = true;
-        //    Luna.Unity.Playable.InstallFullGame();
-        //}
         currentDrag = null;
     }
     void Snap(Slot slot)

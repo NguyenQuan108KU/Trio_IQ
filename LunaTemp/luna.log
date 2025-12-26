@@ -1,13 +1,17 @@
+report@config:load 24.93
 Authorized using stored user info.
+report@account:authorize 4.91
 stderr: 'rm' is not recognized as an internal or external command,
 operable program or batch file.
 
-Exporting assets from Unity.......
+Exporting assets from Unity......
 
 [ Stage1 ] Assets exported from Unity and staged for further processing
-Using G:/tray-master/Assets/TextMesh Pro/Fonts/LiberationSans.ttf file to generate an atlas for LiberationSans[32636] font
+report@unity:export 3032.13
+report@config:load 13.23
+Using G:/tray-master/Assets/TextMesh Pro/Fonts/LiberationSans.ttf file to generate an atlas for LiberationSans[30014] font
   Using alphabet  §1234567890-=qwertyuiop[]asdfghjkl;'\`zxcvbnm,./±!@#$%^&*()_+QWERTYUIOP{}ASDFGHJKL:"|~ZXCVBNM<>?
-Combined 97 glyphs into bitmap texture at G:/tray-master/LunaTemp/stage1/tmp/fonts/LiberationSans-32636/output_0.png (56kb)
+Combined 97 glyphs into bitmap texture at G:/tray-master/LunaTemp/stage1/tmp/fonts/LiberationSans-30014/output_0.png (56kb)
 Found custom rules for texture Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset
   {"maxWidth":512,"maxHeight":512,"format":"webp","compression":"none","quality":65,"script":"","ext":"","name":"Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset","isOverride":true}
 Found custom rules for texture Assets/Fonts/HVD Fonts  MikadoBlack SDF.asset
@@ -44,9 +48,9 @@ Found custom rules for texture Assets/Art/Animation/Fire/Fire 2_00050.png
   {"maxWidth":512,"maxHeight":512,"format":"png32","compression":"crush","quality":65,"script":"","ext":"","name":"Assets/Art/Animation/","isOverride":true}
 Found custom rules for texture Assets/Art/Animation/Fire/Fire 2_00051.png
   {"maxWidth":512,"maxHeight":512,"format":"png32","compression":"crush","quality":65,"script":"","ext":"","name":"Assets/Art/Animation/","isOverride":true}
-Found custom rules for texture Assets/Art/Animation/Fire/Fire 2_00054.png
-  {"maxWidth":512,"maxHeight":512,"format":"png32","compression":"crush","quality":65,"script":"","ext":"","name":"Assets/Art/Animation/","isOverride":true}
 Found custom rules for texture Assets/Art/Animation/Fire/Fire 2_00053.png
+  {"maxWidth":512,"maxHeight":512,"format":"png32","compression":"crush","quality":65,"script":"","ext":"","name":"Assets/Art/Animation/","isOverride":true}
+Found custom rules for texture Assets/Art/Animation/Fire/Fire 2_00054.png
   {"maxWidth":512,"maxHeight":512,"format":"png32","compression":"crush","quality":65,"script":"","ext":"","name":"Assets/Art/Animation/","isOverride":true}
 Found custom rules for texture Assets/Art/Animation/Fire/Fire 2_00056.png
   {"maxWidth":512,"maxHeight":512,"format":"png32","compression":"crush","quality":65,"script":"","ext":"","name":"Assets/Art/Animation/","isOverride":true}
@@ -64,11 +68,18 @@ Found custom rules for texture Assets/Art/Animation/Fire/Fire 2_00068 1.png
   {"maxWidth":512,"maxHeight":512,"format":"png32","compression":"crush","quality":65,"script":"","ext":"","name":"Assets/Art/Animation/","isOverride":true}
 Resources:
 {}
+report@assets:stage2 8795.93
+report@assets:stage3 174.15
 [ Stage2 ] Assets postprocessed and bundled successfully
+report@config:unity 0.11
+report@config:load 21.32
+report@config:unity 0.08
+report@code:compose 90.34
 Authorized using stored user info.
+report@account:authorize 1.97
 MSBuild version 18.0.5+e22287bf1 for .NET Framework
 
-Build started 12/25/2025 5:51:18 PM.
+Build started 12/26/2025 6:06:33 PM.
 
 
 
@@ -136,7 +147,8 @@ GenerateTargetFrameworkMonikerAttribute:
 Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
 
 CoreCompile:
-  C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Current\Bin\Roslyn\csc.exe /noconfig /nowarn:CS0626,1701,1702 /fullpaths /nostdlib+ /errorreport:prompt /warn:4 /define:UNITY_LUNA;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_2022;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2022_1_OR_NEWER;UNITY_2022_2_OR_NEWER;UNITY_2022_3_OR_NEWER;UNITY_2022_3;UNITY_2022_3_62 /highentropyva+ /reference:G:\6.4.0\pipeline\templates\LunaCompiler\packages\Bridge.Core.17.9.42-luna\lib\net40\Bridge.dll /reference:G:\6.4.0\pipeline\templates\LunaCompiler\packages\Bridge.Html5.17.9.0\lib\net40\Bridge.Html5.dll /reference:G:\6.4.0\pipeline\templates\LunaCompiler\packages\Bridge.WebGL.1.22.0\lib\net40\Bridge.WebGL.dll /reference:G:\6.4.0\pipeline\templates\LunaCompiler\packages\DOTween.1.2.705\lib\net40\DOTween.dll /reference:G:\6.4.0\pipeline\templates\LunaCompiler\packages\com.unity.ide.rider\3.0.0\JetBrains.dll /reference:G:\6.4.0\pipeline\templates\LunaCompiler\packages\Bridge.Newtonsoft.Json.1.16.0\lib\net40\Newtonsoft.Json.dll /reference:G:\6.4.0\pipeline\templates\LunaCompiler\packages\Retyped.Core.1.6.6733\lib\net40\Retyped.Core.dll /reference:G:\6.4.0\pipeline\templates\LunaCompiler\packages\Retyped.dom.2.8.6733\lib\net40\Retyped.dom.dll /reference:G:\6.4.0\pipeline\templates\LunaCompiler\packages\Retyped.es5.2.8.6733\lib\net40\Retyped.es5.dll /reference:G:\6.4.0\pipeline\templates\LunaCompiler\packages\Retyped.scripthost.2.8.6733\lib\net40\Retyped.scripthost.dll /reference:G:\6.4.0\pipeline\templates\LunaCompiler\packages\com.unity.textmeshpro\3.0.6\TextMeshPro.dll /reference:G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\Vendor\UnityEngine.dll /reference:G:\6.4.0\pipeline\templates\LunaCompiler\packages\com.unity.ui\1.2.1\UnityEngine.UI.dll /reference:G:\6.4.0\pipeline\templates\LunaCompiler\packages\com.unity.urp\7.6\UnityEngine.UniversalRenderPipeline.dll /debug+ /debug:full /optimize- /out:obj\Debug\UnityScriptsCompiler.dll /subsystemversion:6.00 /target:library /warnaserror- /utf8output /langversion:8 G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleAudio.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleEPOOutline.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModulePhysics.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModulePhysics2D.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleSprite.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleUI.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleUnityVersion.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleUtils.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\ConveyorBelt.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\DropDrag.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\FoodSlot.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\GameManager.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Grill.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\LineAligner.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\AudioManager.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\Button.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\CameraAutoSize.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\CheckSize.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\CountdownTimer.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\Disk.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\DiskTransform.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\DragItem.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\EndCart_Lose.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\EndCart_Win.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\HandHint.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\ProgressBrain.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\RotateLoop.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\ScalePop.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\Slot.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\Tray.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\TrayManager.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\Tutorial.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\TutorialManager.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\UIButtonPulse.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\SlotAligner.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Utils.cs Properties/AssemblyInfo.cs Sources/OtherDummyScript.cs "obj\Debug\.NETFramework,Version=v4.7.AssemblyAttributes.cs"
+  C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Current\Bin\Roslyn\csc.exe /noconfig /nowarn:CS0626,1701,1702 /fullpaths /nostdlib+ /errorreport:prompt /warn:4 /define:UNITY_LUNA;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_2022;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2022_1_OR_NEWER;UNITY_2022_2_OR_NEWER;UNITY_2022_3_OR_NEWER;UNITY_2022_3;UNITY_2022_3_62 /highentropyva+ /reference:G:\6.4.0\pipeline\templates\LunaCompiler\packages\Bridge.Core.17.9.42-luna\lib\net40\Bridge.dll /reference:G:\6.4.0\pipeline\templates\LunaCompiler\packages\Bridge.Html5.17.9.0\lib\net40\Bridge.Html5.dll /reference:G:\6.4.0\pipeline\templates\LunaCompiler\packages\Bridge.WebGL.1.22.0\lib\net40\Bridge.WebGL.dll /reference:G:\6.4.0\pipeline\templates\LunaCompiler\packages\DOTween.1.2.705\lib\net40\DOTween.dll /reference:G:\6.4.0\pipeline\templates\LunaCompiler\packages\com.unity.ide.rider\3.0.0\JetBrains.dll /reference:G:\6.4.0\pipeline\templates\LunaCompiler\packages\Bridge.Newtonsoft.Json.1.16.0\lib\net40\Newtonsoft.Json.dll /reference:G:\6.4.0\pipeline\templates\LunaCompiler\packages\Retyped.Core.1.6.6733\lib\net40\Retyped.Core.dll /reference:G:\6.4.0\pipeline\templates\LunaCompiler\packages\Retyped.dom.2.8.6733\lib\net40\Retyped.dom.dll /reference:G:\6.4.0\pipeline\templates\LunaCompiler\packages\Retyped.es5.2.8.6733\lib\net40\Retyped.es5.dll /reference:G:\6.4.0\pipeline\templates\LunaCompiler\packages\Retyped.scripthost.2.8.6733\lib\net40\Retyped.scripthost.dll /reference:G:\6.4.0\pipeline\templates\LunaCompiler\packages\com.unity.textmeshpro\3.0.6\TextMeshPro.dll /reference:G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\Vendor\UnityEngine.dll /reference:G:\6.4.0\pipeline\templates\LunaCompiler\packages\com.unity.ui\1.2.1\UnityEngine.UI.dll /reference:G:\6.4.0\pipeline\templates\LunaCompiler\packages\com.unity.urp\7.6\UnityEngine.UniversalRenderPipeline.dll /debug+ /debug:full /optimize- /out:obj\Debug\UnityScriptsCompiler.dll /subsystemversion:6.00 /target:library /warnaserror- /utf8output /langversion:8 G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleAudio.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleEPOOutline.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModulePhysics.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModulePhysics2D.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleSprite.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleUI.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleUnityVersion.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleUtils.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\ConveyorBelt.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\DropDrag.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\FoodSlot.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\GameManager.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Grill.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\LineAligner.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\AudioManager.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\Button.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\CameraAutoSize.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\CheckSize.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\CountdownTimer.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\Disk.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\DiskTransform.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\DragItem.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\EndCart_Lose.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\EndCart_Win.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\HandHint.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\ProgressBrain.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\RotateLoop.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\ScalePop.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\Slot.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\Tray.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\TrayManager.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\Tutorial.cs G:\tray-master\LunaTemp\stage3\processed-scripts\
+Assets\Script\Object\TutorialManager.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\UIButtonPulse.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\SlotAligner.cs G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Utils.cs Properties/AssemblyInfo.cs Sources/OtherDummyScript.cs "obj\Debug\.NETFramework,Version=v4.7.AssemblyAttributes.cs"
 
   Compilation request Scripts, PathToTool=C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Current\Bin\Roslyn\csc.exe
 
@@ -159,31 +171,30 @@ CoreCompile:
 
 G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\CountdownTimer.cs(19,23): warning CS0169: The field 'CountdownTimer.pulseCo' is never used [G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
 
-G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\GameManager.cs(32,10): warning CS0169: The field 'GameManager.lastIsTimer' is never used [G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\TrayManager.cs(36,10): warning CS0414: The field 'TrayManager.isInteracting' is assigned but its value is never used [G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
 
   CompilerServer: server - server processed compilation - Scripts
 
 _CopyFilesMarkedCopyLocal:
   Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\Bridge.Core.17.9.42-luna\lib\net40\Bridge.dll" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Bridge.dll".
-  Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\Bridge.Newtonsoft.Json.1.16.0\lib\net40\Newtonsoft.Json.dll" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Newtonsoft.Json.dll".
 
-  Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\Bridge.WebGL.1.22.0\lib\net40\Bridge.WebGL.dll" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Bridge.WebGL.dll".
-  Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\DOTween.1.2.705\lib\net40\DOTween.dll" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\DOTween.dll".
   Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\com.unity.ide.rider\3.0.0\JetBrains.dll" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\JetBrains.dll".
 
   Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\Bridge.Html5.17.9.0\lib\net40\Bridge.Html5.dll" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Bridge.Html5.dll".
+  Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\Bridge.Newtonsoft.Json.1.16.0\lib\net40\Newtonsoft.Json.dll" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Newtonsoft.Json.dll".
+  Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\Bridge.WebGL.1.22.0\lib\net40\Bridge.WebGL.dll" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Bridge.WebGL.dll".
+  Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\DOTween.1.2.705\lib\net40\DOTween.dll" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\DOTween.dll".
 
   Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\Retyped.Core.1.6.6733\lib\net40\Retyped.Core.dll" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Retyped.Core.dll".
-
   Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\Retyped.dom.2.8.6733\lib\net40\Retyped.dom.dll" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Retyped.dom.dll".
 
   Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\Retyped.es5.2.8.6733\lib\net40\Retyped.es5.dll" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Retyped.es5.dll".
 
   Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\Retyped.scripthost.2.8.6733\lib\net40\Retyped.scripthost.dll" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Retyped.scripthost.dll".
 
-  Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\Vendor\UnityEngine.dll" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\UnityEngine.dll".
-
   Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\com.unity.textmeshpro\3.0.6\TextMeshPro.dll" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\TextMeshPro.dll".
+
+  Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\Vendor\UnityEngine.dll" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\UnityEngine.dll".
 
   Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\com.unity.ui\1.2.1\UnityEngine.UI.dll" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\UnityEngine.UI.dll".
 
@@ -194,8 +205,8 @@ _CopyFilesMarkedCopyLocal:
   Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\Bridge.Html5.17.9.0\lib\net40\Bridge.Html5.xml" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Bridge.Html5.xml".
 
   Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\Bridge.WebGL.1.22.0\lib\net40\Bridge.WebGL.xml" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Bridge.WebGL.xml".
-  Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\Bridge.Newtonsoft.Json.1.16.0\lib\net40\Newtonsoft.Json.xml" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Newtonsoft.Json.xml".
 
+  Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\Bridge.Newtonsoft.Json.1.16.0\lib\net40\Newtonsoft.Json.xml" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Newtonsoft.Json.xml".
   Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\Retyped.Core.1.6.6733\lib\net40\Retyped.Core.xml" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Retyped.Core.xml".
 
   Copying file from "G:\6.4.0\pipeline\templates\LunaCompiler\packages\Retyped.dom.2.8.6733\lib\net40\Retyped.dom.xml" to "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\bin\Debug\Retyped.dom.xml".
@@ -233,21 +244,28 @@ Build succeeded.
 
 "G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj" (Rebuild target) (1) ->
 (CoreCompile target) -> 
-  G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\CountdownTimer.cs(19,23): warning CS0169: The field 'CountdownTimer.pulseCo' is never used [G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
-  G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\GameManager.cs(32,10): warning CS0169: The field 'GameManager.lastIsTimer' is never used [G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
 
+  G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\CountdownTimer.cs(19,23): warning CS0169: The field 'CountdownTimer.pulseCo' is never used [G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
+  G:\tray-master\LunaTemp\stage3\processed-scripts\Assets\Script\Object\TrayManager.cs(36,10): warning CS0414: The field 'TrayManager.isInteracting' is assigned but its value is never used [G:\6.4.0\pipeline\templates\LunaCompiler\Scripts\Scripts.csproj]
 
     2 Warning(s)
     0 Error(s)
 
 
-Time Elapsed 00:00:05.73
+Time Elapsed 00:00:05.64
 
 Source code compiled successfully!
 ﻿
 [ error ] $﻿
 Diagnostics gathered successfully
+report@code:build 10051.27
+diagnostics file upload failed
+report@diagnostics:verify 0.32
+report@diagnostics:upload 24683.35
+report@code:stage 7334.15
 [ Stage3 ] Code compiled and bundled successfully.
-[ Stage4 ] Target platform: playground
+report@code:bundle 42184.24
+report@package:stage 735.90
+[ Stage4 ] Target platform: develop
 [ Stage4 ] Package bundled successfully
-[ Stage4 ] Package uploaded successfully
+report@assets:stats 0.14

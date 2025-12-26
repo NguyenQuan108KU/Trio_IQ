@@ -11,45 +11,42 @@ public class HandHint : MonoBehaviour
     {
         seq?.Kill();
         SetPreviewSprite(item);
-        Vector3 fromWorld = fromSlot.transform.position;
-        Vector3 toWorld = toSlot.transform.position;
 
-        // reset về fromSlot
+        // parent vào slot nguồn
         transform.SetParent(fromSlot.transform, false);
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.identity;
         transform.localScale = Vector3.one;
         gameObject.SetActive(true);
 
+        // TÍNH localPosition của slot đích trong hệ fromSlot
+        Vector3 toLocal =
+            fromSlot.transform.InverseTransformPoint(toSlot.transform.position);
+
         seq = DOTween.Sequence();
 
-        // bay tới slot đích
         seq.Append(
-            transform.DOMove(toWorld, 1.1f)
+            transform.DOLocalMove(toLocal, 1.1f)
                      .SetEase(Ease.InOutQuad)
         );
 
-        // tới nơi → biến mất ngay
         seq.AppendCallback(() =>
         {
             gameObject.SetActive(false);
         });
 
-        // chờ chút
         seq.AppendInterval(0.2f);
 
-        // reset về slot đầu → hiện lại
         seq.AppendCallback(() =>
         {
-            transform.SetParent(fromSlot.transform, false);
             transform.localPosition = Vector3.zero;
             gameObject.SetActive(true);
         });
 
         seq.AppendInterval(0.15f);
-
         seq.SetLoops(-1);
     }
+
     void SetPreviewSprite(DragItem item)
     {
         if (previewRenderer == null) return;

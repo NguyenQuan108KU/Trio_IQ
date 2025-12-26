@@ -105,10 +105,6 @@ public class Tray : MonoBehaviour
         
         MoveToCenter(items);
     }
-
-
-
-
     void MoveToCenter(List<DragItem> items)
     {
         // đảm bảo thứ tự trái – giữa – phải
@@ -146,22 +142,15 @@ public class Tray : MonoBehaviour
             foreach (var item in items)
                 item.transform.SetParent(null, true);
 
-            SpawnDisk(items, centerPos);
+            FlyToTargetAndDisappear(items, centerPos);
         });
+
     }
-    void SpawnDisk(List<DragItem> items, Vector3 centerPos)
+    void FlyToTargetAndDisappear(List<DragItem> items, Vector3 centerPos)
     {
-        GameObject diskObj = Instantiate(
-            diskPrefab,
-            DiskTransform.instance.transform.position,
-            Quaternion.identity
-        );
-
-        Disk disk = diskObj.GetComponent<Disk>();
-
-        float jumpPower = 0.5f;     
-        int jumpCount = 1;           
-        float flyTime = 0.4f;       
+        float flyTime = 0.4f;
+        Transform targetParent = GameManager.Instance.target.transform;
+        Transform targettext = GameManager.Instance.text_target.transform;
 
         foreach (var item in items)
         {
@@ -170,31 +159,39 @@ public class Tray : MonoBehaviour
             Vector3 startScale = item.transform.lossyScale;
             Vector3 targetScale = startScale * 0.35f;
 
-            Vector3 offset = item.transform.position - centerPos;
-            Vector3 targetPos = disk.transform.position + offset * 0.6f;
+            Vector3 targetPos = GameManager.Instance.target.transform.position;
 
             Sequence seq = DOTween.Sequence();
+
             seq.Append(
-                item.transform.DOJump(
-                    targetPos,
-                    jumpPower,
-                    jumpCount,
-                    flyTime
-                ).SetEase(Ease.InOutSine)   
+                item.transform.DOMove(targetPos, flyTime)
+                    .SetEase(Ease.OutCubic)
             );
+
             seq.Insert(
                 flyTime * 0.2f,
                 item.transform.DOScale(targetScale, flyTime * 0.8f)
                     .SetEase(Ease.InQuad)
             );
 
-            seq.AppendInterval(attachDelay);
-
             seq.AppendCallback(() =>
             {
-                item.transform.SetParent(disk.transform, true);
-                item.transform.localScale = Vector3.one * 0.35f;
-                disk.AddItem(item.transform);
+                // 💥 Nhún cha của target
+                if (targetParent != null)
+                {
+                    targetParent.DOKill();
+                    targetParent.DOPunchScale(
+                        Vector3.one * 0.15f,  0.2f, 6, 0.6f                 
+                    );
+                }
+                if (targettext != null)
+                {
+                    targettext.DOKill();
+                    targettext.DOPunchScale(
+                        Vector3.one * 0.15f, 0.2f, 6, 0.6f
+                    );
+                }
+                Destroy(item.gameObject);
                 CloseTray();
             });
         }
@@ -209,30 +206,54 @@ public class Tray : MonoBehaviour
 
         SpriteRenderer sr = soldOut.GetComponent<SpriteRenderer>();
 
-        Vector3 startLocalPos = new Vector3(0f, 0.4f, 0f);  // cao hơn
-        Vector3 endLocalPos = new Vector3(0f, 0.1f, 0f);
+        Vector3 startLocalPos = new Vector3(0f, 1f, 0f);  
+        Vector3 hitPos = new Vector3(0f, 0.1f, 0f);
+        Vector3 bouncePos = new Vector3(0f, 0.13f, 0f);
 
         t.localPosition = startLocalPos;
-        t.localScale = Vector3.one * 0.75f;
+        t.localScale = Vector3.one * 0.8f;
 
         if (sr != null)
             sr.color = new Color(1f, 1f, 1f, 0f);
 
         Sequence seq = DOTween.Sequence();
 
-        // Fade + scale in
+        // 1️⃣ Xuất hiện (đứng yên)
         if (sr != null)
-            seq.Append(sr.DOFade(1f, 0.25f));
+            seq.Append(sr.DOFade(1f, 0.18f));
 
-        seq.Join(t.DOScale(1f, 0.25f).SetEase(Ease.OutBack));
-        
-        // Rơi + nảy
         seq.Join(
-            t.DOLocalMove(endLocalPos, 0.45f)
-             .SetEase(Ease.OutBounce)
+            t.DOScale(1f, 0.1f)
+             .SetEase(Ease.OutQuad)
         );
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.closeBox);
+
+        // 2️⃣ Rơi xuống (sau khi đã hiện)
+        seq.Append(
+            t.DOLocalMove(hitPos, 0.25f)
+             .SetEase(Ease.InQuad)
+        );
+        seq.AppendCallback(() =>
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.closeBox);
+        });
+        // 3️⃣ Nảy rất nhẹ
+        seq.Append(
+            t.DOLocalMove(bouncePos, 0.08f)
+             .SetEase(Ease.OutQuad)
+        );
+
+        // 4️⃣ Ổn định vị trí
+        seq.Append(
+            t.DOLocalMove(hitPos, 0.06f)
+             .SetEase(Ease.InQuad)
+        );
+        seq.OnComplete(() =>
+        {
+            if (sr != null)
+                sr.sortingOrder = -5;
+        });
     }
+
     //Lấy số lượng item cùng loại
     public int GetMaxSameItemCount()
     {

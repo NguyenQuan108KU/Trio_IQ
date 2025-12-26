@@ -1,7 +1,7 @@
 {
     "version": "6.4.0",
     "projectId": "01007caba134ace46b9e4290577324b9",
-    "applicationID": 35346,
+    "applicationID": 35714,
     "creativeName": "Grill_Sort_Demo01",
     "pgServer": "EU",
     "window": {
@@ -8153,10 +8153,6 @@
                 "excluded": true
             },
             {
-                "name": "DG.Tweening.Core.Extensions",
-                "excluded": true
-            },
-            {
                 "name": "DG.Tweening.DOCurve.CubicBezier",
                 "excluded": true
             },
@@ -8166,10 +8162,6 @@
             },
             {
                 "name": "DG.Tweening.Plugins.Core.PathCore.ControlPoint",
-                "excluded": true
-            },
-            {
-                "name": "DG.Tweening.Plugins.Core.SpecialPluginsUtils",
                 "excluded": true
             },
             {
@@ -8226,10 +8218,6 @@
             },
             {
                 "name": "DG.Tweening.Plugins.Vector2Plugin",
-                "excluded": true
-            },
-            {
-                "name": "DG.Tweening.Plugins.Vector3ArrayPlugin",
                 "excluded": true
             },
             {
@@ -16938,7 +16926,7 @@
                     },
                     {
                         "name": "InverseTransformPoint",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "TransformPoint$1",
@@ -18038,7 +18026,7 @@
                     },
                     {
                         "name": "anchoredPosition#set",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "anchoredPosition3D#get",
@@ -22100,15 +22088,15 @@
                 "instanceMethods": [
                     {
                         "name": "getDefaultValue",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "ctor",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Reset",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "getHashCode",
@@ -22120,7 +22108,7 @@
                     },
                     {
                         "name": "$clone",
-                        "excluded": true
+                        "excluded": false
                     }
                 ]
             },
@@ -22230,7 +22218,7 @@
                     },
                     {
                         "name": "DOStartupSpecials",
-                        "excluded": true
+                        "excluded": false
                     }
                 ]
             },
@@ -28380,7 +28368,7 @@
                     },
                     {
                         "name": "Punch",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Shake",
@@ -28396,7 +28384,7 @@
                     },
                     {
                         "name": "ToArray",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Sequence$1",
@@ -30221,10 +30209,6 @@
                         "excluded": false
                     },
                     {
-                        "name": "SpawnDisk",
-                        "excluded": false
-                    },
-                    {
                         "name": "Start",
                         "excluded": false
                     },
@@ -30251,6 +30235,10 @@
                     {
                         "name": "GetAnyMatchingItem",
                         "excluded": true
+                    },
+                    {
+                        "name": "FlyToTargetAndDisappear",
+                        "excluded": false
                     }
                 ]
             },
@@ -30352,6 +30340,14 @@
                     },
                     {
                         "name": "CacheFirstTutorialTarget",
+                        "excluded": false
+                    },
+                    {
+                        "name": "EndGameDelay",
+                        "excluded": true
+                    },
+                    {
+                        "name": "WaitCloseTrayThenWin",
                         "excluded": false
                     }
                 ]
@@ -31298,7 +31294,7 @@
                     },
                     {
                         "name": "DOPunchScale",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "DOPunchRotation",
@@ -33950,15 +33946,23 @@
                     },
                     {
                         "name": "StartTimer",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "TimerRoutine",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "StopTimer",
                         "excluded": true
+                    },
+                    {
+                        "name": "Update",
+                        "excluded": false
+                    },
+                    {
+                        "name": "OnGlobalClick",
+                        "excluded": false
                     }
                 ]
             },
@@ -34029,12 +34033,12 @@
                         "excluded": false
                     },
                     {
-                        "name": "Tick\",this)}this.c$-=t;if(this.c$<=0){pc.Application.getApplication().events.off(\"update",
-                        "excluded": false
-                    },
-                    {
                         "name": "Stop",
                         "excluded": true
+                    },
+                    {
+                        "name": "Tick\",this)}this.c$-=t;if(this.c$<=0){pc.Application.getApplication().events.off(\"update",
+                        "excluded": false
                     }
                 ]
             },
@@ -34080,6 +34084,14 @@
                     },
                     {
                         "name": "StopBackgroundBlink",
+                        "excluded": false
+                    },
+                    {
+                        "name": "StopCountdown",
+                        "excluded": false
+                    },
+                    {
+                        "name": "ActiveEndCartWin",
                         "excluded": false
                     }
                 ]
@@ -34392,6 +34404,84 @@
                     },
                     {
                         "name": "Update",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "DG.Tweening.Core.Extensions",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "SetSpecialStartupMode",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Blendable",
+                        "excluded": true
+                    },
+                    {
+                        "name": "NoFrom",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "DG.Tweening.Plugins.Core.SpecialPluginsUtils",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "SetLookAt",
+                        "excluded": true
+                    },
+                    {
+                        "name": "SetPunch",
+                        "excluded": false
+                    },
+                    {
+                        "name": "SetShake",
+                        "excluded": true
+                    },
+                    {
+                        "name": "SetCameraShakePosition",
+                        "excluded": true
+                    }
+                ]
+            },
+            {
+                "className": "DG.Tweening.Plugins.Vector3ArrayPlugin",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "Reset",
+                        "excluded": false
+                    },
+                    {
+                        "name": "SetFrom$1",
+                        "excluded": true
+                    },
+                    {
+                        "name": "SetFrom",
+                        "excluded": true
+                    },
+                    {
+                        "name": "ConvertToStartValue",
+                        "excluded": false
+                    },
+                    {
+                        "name": "SetRelativeEndValue",
+                        "excluded": true
+                    },
+                    {
+                        "name": "SetChangeValue",
+                        "excluded": false
+                    },
+                    {
+                        "name": "GetSpeedBasedDuration",
+                        "excluded": true
+                    },
+                    {
+                        "name": "EvaluateAndApply",
                         "excluded": false
                     }
                 ]

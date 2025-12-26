@@ -7,7 +7,7 @@ public class CountdownTimer : MonoBehaviour
 {
     public static CountdownTimer instance;
     public TMP_Text timerText;
-    public int startSeconds = 30;
+    public int startSeconds = 60;
 
     [Header("Warning Effect")]
     public int warningTime = 5;
@@ -32,6 +32,7 @@ public class CountdownTimer : MonoBehaviour
     private Coroutine bgBlinkCo;
     private Image bgImage;
     private Color bgOriginalColor;
+    public GameObject wwin;
 
 
     private void Awake()
@@ -86,7 +87,7 @@ public class CountdownTimer : MonoBehaviour
         {
             UpdateText(timeLeft);
 
-            // 🔊 play warning behavior when in warning period
+            //play warning behavior when in warning period
             if (timeLeft <= warningTime)
             {
                 AudioManager.Instance.PlaySFX(AudioManager.Instance.warningTick);
@@ -199,9 +200,22 @@ public class CountdownTimer : MonoBehaviour
             AudioManager.Instance.PlaySFX(AudioManager.Instance.lose);
             timeUpPanel.GetComponent<EndCart_Lose>()?.Show();
             GameManager.Instance.finishGame = true;
-            GameManager.Instance.EndGame();
+            //GameManager.Instance.EndGame();
         }
     }
+    public void StopCountdown()
+    {
+        if (countdownCo != null)
+        {
+            StopCoroutine(countdownCo);
+            countdownCo = null;
+        }
 
+        StopBackgroundBlink();
+    }
+    public void ActiveEndCartWin()
+    {
+        wwin.GetComponent<EndCart_Lose>()?.Show();
+    }
 
 }

@@ -6,7 +6,7 @@ public class EndCart_Lose : MonoBehaviour
     public GameObject actionButton;
     public GameObject emoji;
     public GameObject logo;
-    public GameObject icon;
+    //public GameObject icon;
     public GameObject praticle;
 
     [Header("Anim")]
@@ -15,12 +15,17 @@ public class EndCart_Lose : MonoBehaviour
     [Header("Item Anim")]
     public float itemStartScale = 0.4f;
     public float itemPopScale = 1f;
-    public float itemInTime = 0.1f;
+    public float itemInTime = 0.25f;
     public float itemSettleTime = 0.05f;
 
     private Tween buttonPulse;
     [Header("Item Anim")]
     public float itemFinalScale = 0.85f;   // 👈 scale cuối
+
+    [Header("Item Final Scale")]
+    public float emojiFinalScale = 0.45f;
+    public float otherItemFinalScale = 0.85f;
+
 
 
     void Awake()
@@ -32,7 +37,7 @@ public class EndCart_Lose : MonoBehaviour
     {
         SetItemInit(emoji);
         SetItemInit(logo);
-        SetItemInit(icon);
+        //SetItemInit(icon);
 
         if (praticle != null)
             praticle.SetActive(false);
@@ -65,13 +70,14 @@ public class EndCart_Lose : MonoBehaviour
             {
                 if (emoji) emoji.SetActive(true);
                 if (logo) logo.SetActive(true);
-                if (icon) icon.SetActive(true);
+                //if (icon) icon.SetActive(true);
                 if (praticle) praticle.SetActive(true);
             });
 
-            JoinItemAnim(seq, emoji);
-            JoinItemAnim(seq, logo);
-            JoinItemAnim(seq, icon);
+            JoinItemAnim(seq, emoji, emojiFinalScale);
+            JoinItemAnim(seq, logo, otherItemFinalScale);
+            //JoinItemAnim(seq, icon, otherItemFinalScale);
+
 
             // ===== BUTTON SAU =====
             seq.AppendInterval(itemInTime + itemSettleTime + 0.1f);
@@ -85,26 +91,18 @@ public class EndCart_Lose : MonoBehaviour
         });
     }
 
-    void JoinItemAnim(Sequence mainSeq, GameObject go)
+    void JoinItemAnim(Sequence mainSeq, GameObject go, float finalScale)
     {
         if (go == null) return;
 
-        Sequence itemSeq = DOTween.Sequence();
-
-        itemSeq.Append(
+        mainSeq.Join(
             go.transform
-                .DOScale(itemPopScale, itemInTime)   
-                .SetEase(Ease.OutBack)
+                .DOScale(finalScale, itemInTime)
+                .SetEase(Ease.OutCubic)
         );
-
-        itemSeq.Append(
-            go.transform
-                .DOScale(itemFinalScale, itemSettleTime) 
-                .SetEase(Ease.OutQuad)
-        );
-
-        mainSeq.Join(itemSeq);
     }
+
+
 
 
     void StartButtonPulse()
@@ -125,7 +123,7 @@ public class EndCart_Lose : MonoBehaviour
 
         HideItem(seq, emoji);
         HideItem(seq, logo);
-        HideItem(seq, icon);
+        //HideItem(seq, icon);
 
         if (praticle != null)
             praticle.SetActive(false);

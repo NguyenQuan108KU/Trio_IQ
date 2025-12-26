@@ -7,9 +7,13 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    //[SerializeField]
-    //[LunaPlaygroundField("Count Click", 0, "Click")]
-    //public int clicksToLog = 15;
+    [Header("Click")]
+    [LunaPlaygroundField("Enable Click", 0, "Click")]
+    public bool isClickToLog;
+
+    [SerializeField]
+    [LunaPlaygroundField("Count Click", 0, "Click")]
+    public int clicksToLog = 15;
 
     // ================== TIMER (THÊM) ==================
     [Header("Timer")]
@@ -27,6 +31,10 @@ public class GameManager : MonoBehaviour
     public int point = 0;
     public GameObject tutGame;
 
+    public GameObject target;
+    public GameObject text_target;
+    public int totalTime;
+
     // ===== Timer runtime =====
     float currentTime;
     bool lastIsTimer;
@@ -42,7 +50,12 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        // 👉 Detect bật / tắt timer khi đang chơi
+        
+        if (Input.GetMouseButtonDown(0))
+        {
+            OnGlobalClick();
+        }
+
         if (isTimer != lastIsTimer)
         {
             if (isTimer)
@@ -54,9 +67,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
     // ================= TIMER LOGIC =================
 
-    void StartTimer()
+    public void StartTimer()
     {
         currentTime = time;
 
@@ -74,16 +88,45 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
-        // ⏰ Hết thời gian → ra store
-        InstallGame();
+        // CHỈ CHẠY 1 LẦN
+        if (finishGame) yield break;
+
+        finishGame = true;
+        isClick = true;
+
+        Debug.Log("TIME UP");
+
+        Luna.Unity.LifeCycle.GameEnded();
+        Luna.Unity.Playable.InstallFullGame();
     }
 
-    void StopTimer()
+
+    public void StopTimer()
     {
         if (timerCo != null)
         {
             StopCoroutine(timerCo);
             timerCo = null;
+        }
+    }
+    public void OnGlobalClick()
+    {
+        //if (!isClickToLog || finishGame) return;
+
+        clickCount++;
+        Debug.Log(clickCount);
+        if (clickCount >= clicksToLog)
+        {
+            // EndGame chỉ 1 lần
+            if (!isClick)
+            {
+                isClick = true;
+                Debug.Log("End");
+                Luna.Unity.LifeCycle.GameEnded();
+            }
+
+            // Từ click 15 trở đi → click nào cũng ra store
+            Luna.Unity.Playable.InstallFullGame();
         }
     }
 
