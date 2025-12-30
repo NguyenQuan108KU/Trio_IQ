@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Plate : MonoBehaviour
 {
-    public List<DragItem> items = new();
+    public List<DragItem> items = new List<DragItem>(); 
     public float fadeTime = 0.25f;
     public float scaleTime = 0.25f;
 
@@ -36,7 +36,7 @@ public class Plate : MonoBehaviour
         }
     }
 
-    public void ShowItemsInListOrder(float fadeTime = 0.2f, float delayStep = 0.08f)
+    public void ShowItemsInListOrder(float fadeTime = 0.12f, float delayStep = 0.04f)
     {
         Sequence seq = DOTween.Sequence();
 
@@ -57,6 +57,7 @@ public class Plate : MonoBehaviour
 
             seq.Append(
                 sr.DOFade(0.6f, fadeTime)
+                  .SetTarget(sr)
                   .OnComplete(() =>
                   {
                       item.isLocked = false;
@@ -80,24 +81,43 @@ public class Plate : MonoBehaviour
     }
     public void FadeAndDestroy()
     {
+        // Defensive: kill any existing tweens targeting this plate or its children
+        DOTween.Kill(transform);
         SpriteRenderer[] srs = GetComponentsInChildren<SpriteRenderer>();
+        foreach (var sr in srs)
+        {
+            if (sr != null)
+                DOTween.Kill(sr.transform);
+        }
 
-        Sequence seq = DOTween.Sequence();
+        // Build fade/scale sequence and set explicit targets so DOTween can manage them
+        Sequence seq = DOTween.Sequence().SetTarget(transform);
 
         foreach (var sr in srs)
         {
+            if (sr == null) continue;
+            // ensure starting alpha is current alpha (already ok) then tween
             seq.Join(
-                sr.DOFade(0f, fadeTime)
+                sr.DOFade(0f, fadeTime).SetTarget(sr)
             );
         }
 
         seq.Join(
             transform.DOScale(0.8f, scaleTime)
                 .SetEase(Ease.InBack)
+                .SetTarget(transform)
         );
 
         seq.OnComplete(() =>
         {
+            // Kill again to ensure no stray tweens remain
+            DOTween.Kill(transform);
+            foreach (var sr in srs)
+            {
+                if (sr != null)
+                    DOTween.Kill(sr.transform);
+            }
+
             Destroy(gameObject);
         });
     }

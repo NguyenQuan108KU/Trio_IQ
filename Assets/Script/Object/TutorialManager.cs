@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -6,6 +7,7 @@ public class TutorialManager : MonoBehaviour
 
     public GameObject handPrefab;
     private GameObject currentHand;
+    Transform pulsingTarget;
 
     private void Awake()
     {
@@ -42,4 +44,35 @@ public class TutorialManager : MonoBehaviour
             currentHand = null;
         }
     }
+
+    public void ShowPulseHint(Transform target)
+    {
+        StopPulseHint();
+
+        pulsingTarget = target;
+        target.DOKill();
+
+        target
+            .DOLocalRotate(
+                new Vector3(0, 0, 8f),   // góc lắc
+                0.18f
+            )
+            .SetLoops(-1, LoopType.Yoyo)
+            .SetEase(Ease.InOutSine);
+    }
+
+
+
+
+    public void StopPulseHint()
+    {
+        if (pulsingTarget != null)
+        {
+            pulsingTarget.DOKill();
+            pulsingTarget.localRotation = Quaternion.identity;
+            pulsingTarget.localScale = Vector3.one;
+            pulsingTarget = null;
+        }
+    }
+
 }

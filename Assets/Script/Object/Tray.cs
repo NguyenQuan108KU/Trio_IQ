@@ -2,9 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditorInternal.VersionControl;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class Tray : MonoBehaviour
 {
@@ -27,13 +25,18 @@ public class Tray : MonoBehaviour
     public GameObject fireEffectPrefab;
     public float fireEffectTime = 2f; // thời gian animation lửa
     public bool isInTutorialArea = false;
-
+    bool hasHandledEmpty = false;
     public Plate diskItem;
 
-    public List<Plate> disks = new();
+    public List<Plate> disks = new List<Plate>();
 
     // disk đang dùng
     private int currentDiskIndex = 0;
+
+    // NEW: flag while we are animating filling from disk
+    public bool isRefilling = false;
+    private int refillingCounter = 0;
+
     private void Start()
     {
         slots = GetComponentsInChildren<Slot>();
@@ -66,10 +69,19 @@ public class Tray : MonoBehaviour
 
     public void CheckMatch()
     {
-   
-        DragItem[] items = GetComponentsInChildren<DragItem>();
+        //  CHỈ LẤY ITEM TRÊN SLOT
+        List<DragItem> items = new List<DragItem>();
 
-        // group by sprite name when possible, fallback to GameObject name
+        foreach (Slot slot in slots)
+        {
+            if (!slot.IsEmpty() && slot.currentItem != null)
+            {
+                items.Add(slot.currentItem);
+            }
+        }
+
+        if (items.Count < 3) return;
+
         var groups = items.GroupBy(i =>
         {
             var sr = i.GetComponent<SpriteRenderer>();
@@ -84,25 +96,49 @@ public class Tray : MonoBehaviour
             {
                 isCompleted = true;
                 GameManager.Instance.point += 1;
-                //GameManager.Instance.textPoint.text = GameManager.Instance.point.ToString();
+
                 var matchedItems = g.Take(3).ToList();
 
                 foreach (var item in matchedItems)
                 {
                     item.isLocked = true;
                 }
-                StartCoroutine(
-                PlayFireThenMerge(matchedItems)
-            );
-                //GameObject fireEffecrt = Instantiate(fireEffectPrefab, this.transform);
-                //MoveToCenter(g.Take(3).ToList());
+
+                StartCoroutine(PlayFireThenMerge(matchedItems));
+
                 ProgressBrain.instance.AddTrayMatch();
                 AudioManager.Instance.PlaySFX(AudioManager.Instance.match);
-                //CloseBox();
                 return;
             }
         }
     }
+    public void NotifySlotChanged()
+    {
+        // còn item → reset cờ
+        if (HasAnyItemInSlot())
+        {
+            hasHandledEmpty = false;
+            return;
+        }
+
+        // tray trống thật sự
+        if (!hasHandledEmpty)
+        {
+            hasHandledEmpty = true;
+            TryHandleAfterMatch();
+        }
+    }
+    public bool HasAnyItemInSlot()
+    {
+        foreach (Slot slot in GetComponentsInChildren<Slot>())
+        {
+            if (!slot.IsEmpty())
+                return true;
+        }
+        return false;
+    }
+
+
     IEnumerator PlayFireThenMerge(List<DragItem> items)
     {
         // 1️⃣ Spawn fire theo TRAY (LOCAL SPACE)
@@ -136,22 +172,45 @@ public class Tray : MonoBehaviour
 
         Destroy(fire);
 
-        
+        // Clear the slot references that held matched items so refill logic can detect empty slots.
+        // Important: do this before MoveToCenter/SpawnDisk so RefillFromDisk sees these slots as empty.
+        foreach (var it in items)
+        {
+            if (it == null) continue;
+            Transform parent = it.transform.parent;
+            if (parent == null) continue;
+            Slot s = parent.GetComponent<Slot>();
+            if (s != null)
+            {
+                s.ClearItem(); // mark the slot empty
+            }
+        }
+
         MoveToCenter(items);
     }
     void MoveToCenter(List<DragItem> items)
     {
+        if (items == null || items.Count == 0) return;
+
         // 🔥 ÉP TẤT CẢ ITEM CHUNG 1 PARENT (TRAY)
-        foreach (var item in items)
-            item.transform.SetParent(transform, true);
+        foreach (var it in items)
+        {
+            if (it == null || it.transform == null) continue;
+            it.transform.SetParent(transform, true);
+        }
 
-        items = items.OrderBy(i => i.transform.position.x).ToList();
+        items = items.Where(i => i != null && i.transform != null).OrderBy(i => i.transform.position.x).ToList();
 
+        if (items.Count < 1) return;
         for (int i = 0; i < items.Count; i++)
-            items[i].GetComponent<SpriteRenderer>().sortingOrder = i + 1;
+        {
+            var sr = items[i].GetComponent<SpriteRenderer>();
+            if (sr != null) sr.sortingOrder = i + 3;
+        }
 
-        DragItem center = items[1];
-
+        // safe: ensure we have an index 1
+        int centerIndex = Mathf.Clamp(1, 0, items.Count - 1);
+        DragItem center = items[centerIndex];
         Vector3 centerLocalPos = center.transform.localPosition;
 
         float smallOffset = 0.3f;
@@ -160,15 +219,18 @@ public class Tray : MonoBehaviour
         for (int i = 0; i < items.Count; i++)
         {
             var item = items[i];
+            if (item == null || item.transform == null) continue;
+
             item.transform.DOKill();
 
-            float offsetX = (i - 1) * smallOffset;
-            Vector3 targetLocalPos =
-                centerLocalPos + new Vector3(offsetX, 0, 0);
+            float offsetX = (i - centerIndex) * smallOffset;
+            Vector3 targetLocalPos = centerLocalPos + new Vector3(offsetX, 0, 0);
 
+            // protect the tween by setting its target and skipping if transform destroyed
             seq.Join(
                 item.transform.DOLocalMove(targetLocalPos, moveTime)
                     .SetEase(Ease.OutBack)
+                    .SetTarget(item.transform)
             );
         }
 
@@ -182,6 +244,15 @@ public class Tray : MonoBehaviour
 
     void SpawnDisk(List<DragItem> items)
     {
+        // Guard input
+        if (items == null) return;
+
+        if (DiskTransform.instance == null)
+        {
+            Debug.LogWarning("DiskTransform.instance is null");
+            return;
+        }
+
         GameObject diskObj = Instantiate(
             diskPrefab,
             DiskTransform.instance.transform.position,
@@ -196,15 +267,25 @@ public class Tray : MonoBehaviour
 
         // 🔥 TÍNH TÂM THẾ GIỚI CỦA NHÓM
         Vector3 groupCenter = Vector3.zero;
+        int validCount = 0;
         foreach (var item in items)
+        {
+            if (item == null || item.transform == null) continue;
             groupCenter += item.transform.position;
-        groupCenter /= items.Count;
+            validCount++;
+        }
+        if (validCount == 0) return;
+        groupCenter /= validCount;
 
         Sequence groupSeq = DOTween.Sequence();
 
-        for (int i = 0; i < items.Count; i++)
+        // capture items snapshot to avoid mutation/closure issues
+        var itemsSnapshot = items.Where(i => i != null && i.transform != null).ToList();
+
+        for (int i = 0; i < itemsSnapshot.Count; i++)
         {
-            var item = items[i];
+            var item = itemsSnapshot[i];
+            if (item == null || item.transform == null) continue;
             item.transform.DOKill();
 
             // 🔥 offset GIỮ NGUYÊN HÌNH DẠNG
@@ -225,11 +306,13 @@ public class Tray : MonoBehaviour
                     jumpCount,
                     flyTime
                 ).SetEase(Ease.InOutSine)
+                 .SetTarget(item.transform)
             );
 
             groupSeq.Join(
                 item.transform.DOScale(worldScale * 0.35f, flyTime)
                     .SetEase(Ease.InQuad)
+                    .SetTarget(item.transform)
             );
         }
 
@@ -237,13 +320,16 @@ public class Tray : MonoBehaviour
 
         groupSeq.OnComplete(() =>
         {
-            foreach (var item in items)
+            // when complete, attach surviving items
+            foreach (var item in itemsSnapshot)
             {
+                if (item == null || item.transform == null) continue;
+
                 item.transform.SetParent(disk.transform, true);
                 item.transform.localScale = Vector3.one * 0.35f;
                 disk.AddItem(item.transform);
             }
-
+            // Immediately attempt refill from the CURRENT supply disk
             TryHandleAfterMatch();
         });
     }
@@ -273,17 +359,19 @@ public class Tray : MonoBehaviour
 
         // 1️⃣ Xuất hiện (đứng yên)
         if (sr != null)
-            seq.Append(sr.DOFade(1f, 0.18f));
+            seq.Append(sr.DOFade(1f, 0.18f).SetTarget(sr));
 
         seq.Join(
             t.DOScale(1f, 0.1f)
              .SetEase(Ease.OutQuad)
+             .SetTarget(t)
         );
 
         // 2️⃣ Rơi xuống (sau khi đã hiện)
         seq.Append(
             t.DOLocalMove(hitPos, 0.25f)
              .SetEase(Ease.InQuad)
+             .SetTarget(t)
         );
         //seq.AppendCallback(() =>
         //{
@@ -293,17 +381,19 @@ public class Tray : MonoBehaviour
         seq.Append(
             t.DOLocalMove(bouncePos, 0.08f)
              .SetEase(Ease.OutQuad)
+             .SetTarget(t)
         );
 
         // 4️⃣ Ổn định vị trí
         seq.Append(
             t.DOLocalMove(hitPos, 0.06f)
              .SetEase(Ease.InQuad)
+             .SetTarget(t)
         );
         seq.OnComplete(() =>
         {
             AudioManager.Instance.PlaySFX(AudioManager.Instance.closeBox);
-            
+
         });
     }
     //Lấy số lượng item cùng loại
@@ -378,51 +468,64 @@ public class Tray : MonoBehaviour
 
     public void RefillFromDisk(Plate diskItem)
     {
-        if (diskItem == null || diskItem.IsEmpty()) return;
+        if (diskItem == null || diskItem.IsEmpty())
+            return;
 
-        // 🔥 1. SORT ITEM TRÊN DISK (TRÁI → PHẢI)
-        var orderedItems = diskItem.items
+        // 1️⃣ Sort disk items theo X (trái → phải)
+        var diskItems = diskItem.items
             .OrderBy(i => i.transform.position.x)
             .ToList();
 
-        float moveTime = 0.38f;
-        float delayStep = 0.08f;
-        float scaleTime = 0.32f;
+        // 2️⃣ Sort slots theo X (trái → phải)
+        var orderedSlots = slots
+            .Where(s => s != null && s.anchor != null)
+            .OrderBy(s => s.anchor.position.x)
+            .ToList();
 
-        int index = 0;
+        float moveTime = 0.22f;   // ↓ từ 0.38
+        float scaleTime = 0.18f;   // ↓ từ 0.32
+        float delayStep = 0.04f;   // ↓ từ 0.08
+
         bool diskWillBeEmpty = false;
+        int animIndex = 0;
 
-        foreach (Slot slot in slots) // giữ nguyên thứ tự slot
+        // NEW: mark we're refilling so Slot.CanAcceptItem blocks incoming drags
+        isRefilling = true;
+        refillingCounter = 0;
+
+        // 3️⃣ Map theo vị trí X
+        foreach (DragItem item in diskItems)
         {
-            // ❗ slot trống = currentItem == null
-            if (slot.currentItem == null) continue;
-            if (index >= orderedItems.Count) break;
+            if (item == null || item.transform == null)
+                continue;
 
-            DragItem item = orderedItems[index];
-            index++;
+            // tìm slot trống có X gần nhất
+            Slot slot = FindBestSlotByX(orderedSlots, item.transform.position.x);
+            if (slot == null)
+                continue;
+
+            // prepare one animation -> increment counter
+            refillingCounter++;
 
             diskItem.RemoveItem(item);
             diskWillBeEmpty = diskItem.IsEmpty();
+
             item.transform.DOKill();
 
-
-            Vector3 startLocalScale = item.transform.localScale;
-
-            // set parent sớm – giữ world
+            Vector3 startScale = item.transform.localScale;
             item.transform.SetParent(slot.transform, true);
-            item.transform.localScale = startLocalScale;
-
-            int completed = 0;
+            item.transform.localScale = startScale;
 
             SpriteRenderer sr = item.GetComponent<SpriteRenderer>();
             if (sr != null)
             {
                 Color c = sr.color;
-                c.a = 1f; // 255
+                c.a = 1f;
                 sr.color = c;
             }
 
-            float delay = (index - 1) * delayStep;
+            float delay = animIndex * delayStep;
+            animIndex++;
 
             Sequence seq = DOTween.Sequence();
             seq.AppendInterval(delay);
@@ -432,15 +535,33 @@ public class Tray : MonoBehaviour
                     slot.anchor.localPosition,
                     moveTime
                 ).SetEase(Ease.OutCubic)
+                 .SetTarget(item.transform)
             );
 
             seq.Join(
                 item.transform.DOScale(Vector3.one, scaleTime)
                     .SetEase(Ease.OutBack, 0.8f)
+                    .SetTarget(item.transform)
             );
 
             seq.OnComplete(() =>
             {
+                if (item == null || item.transform == null)
+                {
+                    // decrement counter even if item destroyed
+                    refillingCounter--;
+                    if (refillingCounter <= 0)
+                    {
+                        // finished all item animations
+                        isRefilling = false;
+                        currentDiskIndex++;
+                        Plate nextDisk = CurrentDisk;
+                        if (nextDisk != null)
+                            nextDisk.ShowItemsInListOrder();
+                    }
+                    return;
+                }
+
                 item.transform.localPosition = Vector3.zero;
                 slot.SetItem(item);
                 item.startScale = Vector3.one; // hoặc item.transform.localScale
@@ -448,20 +569,58 @@ public class Tray : MonoBehaviour
                 {
                     diskItem.FadeAndDestroy();
                 }
+
+                // animation finished for this item
+                refillingCounter--;
+                if (refillingCounter <= 0)
+                {
+                    // finished all item animations
+                    isRefilling = false;
+                    currentDiskIndex++;
+                    Plate nextDisk = CurrentDisk;
+                    if (nextDisk != null)
+                        nextDisk.ShowItemsInListOrder();
+                }
             });
         }
-        currentDiskIndex++;
-        Plate nextDisk = CurrentDisk;
-        if (nextDisk != null)
+
+        // If no animations were started, ensure state updates and advance disk index
+        if (refillingCounter == 0)
         {
-            nextDisk.ShowItemsInListOrder();
+            isRefilling = false;
+            currentDiskIndex++;
+            Plate nextDisk = CurrentDisk;
+            if (nextDisk != null)
+                nextDisk.ShowItemsInListOrder();
         }
     }
+
+    Slot FindBestSlotByX(List<Slot> orderedSlots, float itemX)
+    {
+        Slot best = null;
+        float bestDist = float.MaxValue;
+
+        foreach (Slot s in orderedSlots)
+        {
+            if (s.currentItem != null) continue;
+
+            float dx = Mathf.Abs(s.anchor.position.x - itemX);
+            if (dx < bestDist)
+            {
+                bestDist = dx;
+                best = s;
+            }
+        }
+
+        return best;
+    }
+
     public Plate CurrentDisk
     {
         get
         {
-            if (currentDiskIndex > disks.Count)
+            // Guard against out-of-range index and null list
+            if (disks == null || currentDiskIndex < 0 || currentDiskIndex >= disks.Count)
                 return null;
             return disks[currentDiskIndex];
         }
@@ -471,7 +630,7 @@ public class Tray : MonoBehaviour
     public void TryHandleAfterMatch()
     {
         Plate disk = CurrentDisk;
-  
+        Debug.Log(", Disk: " + (disk != null ? disk.name : "null"));
         if (disk != null)
         {
             RefillFromDisk(disk);
@@ -481,6 +640,38 @@ public class Tray : MonoBehaviour
             CloseTray(); // ✅ hết disk thật sự
         }
     }
+    public void NotifySlotChangedTray()
+    {
+        // còn item → reset cờ
+        if (HasAnyItemInSlot())
+        {
+            hasHandledEmpty = false;
+            return;
+        }
+
+        // tray trống thật sự
+        if (!hasHandledEmpty)
+        {
+            hasHandledEmpty = true;
+            FillTray();
+        }
+    }
+    public void FillTray()
+    {
+        Plate disk = CurrentDisk;
+        if (disk != null)
+        {
+            RefillFromDisk(disk);
+        }
+       
+    }
+    // Called by DragItem after an item leaves a tray (keeps behavior explicit)
+    public void CheckAfterItemRemoved()
+    {
+        // reuse existing behavior
+        NotifySlotChangedTray();
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("TutorialArea"))
