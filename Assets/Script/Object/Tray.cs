@@ -1,8 +1,8 @@
-﻿using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEngine;
+using DG.Tweening;
 using System.Linq;
-using UnityEngine;
+using System.Collections.Generic;
+using TMPro;
 
 public class Tray : MonoBehaviour
 {
@@ -11,31 +11,20 @@ public class Tray : MonoBehaviour
     public GameObject diskPrefab;
     public Transform diskTransform;
     public float shrinkTime = 0.1f;
-    public float itemToDiskTime = 2f;
+    public float itemToDiskTime = 0.1f;
     public float attachDelay = 0.15f;   // item chậm theo disk
     public float followSmooth = 0.25f;  // độ mượt
-    public Vector3 diskItemScale = new Vector3(0.03f, 0.03f, 0.03f);
-    public GameObject soldOutPrefabs;
-    public GameObject[] listItem;
-    public int maxSlot = 3;
     public bool isCompleted = false;
     public Slot[] slots;
-    public bool isClosed = false;
-    [Header("Match Effect")]
-    public GameObject fireEffectPrefab;
-    public float fireEffectTime = 2f; // thời gian animation lửa
-
     private void Start()
     {
         slots = GetComponentsInChildren<Slot>();
     }
-
+    public Vector3 diskItemScale = new Vector3(0.03f, 0.03f, 0.03f);
     public void CheckMatch()
     {
-       
         DragItem[] items = GetComponentsInChildren<DragItem>();
 
-        // group by sprite name when possible, fallback to GameObject name
         var groups = items.GroupBy(i =>
         {
             var sr = i.GetComponent<SpriteRenderer>();
@@ -46,265 +35,284 @@ public class Tray : MonoBehaviour
 
         foreach (var g in groups)
         {
-            if (g.Count() >= 3)
+            if (g.Count() < 5) continue;
+
+            var matchedItems = g.Take(5).ToList();
+            ItemType type = matchedItems[0].itemType;
+
+            PackTarget targetPack =
+                PackManager.instance.GetPackInScene(type);
+
+            if (targetPack != null)
             {
-                isCompleted = true;
-                GameManager.Instance.point += 1;
-                GameManager.Instance.textPoint.text = GameManager.Instance.point.ToString();
-                var matchedItems = g.Take(3).ToList();
-
-                foreach (var item in matchedItems)
-                {
-                    item.isLocked = true;
-                }
-                StartCoroutine(
-                PlayFireThenMerge(matchedItems)
-            );
-                //GameObject fireEffecrt = Instantiate(fireEffectPrefab, this.transform);
-                //MoveToCenter(g.Take(3).ToList());
-                //ProgressBrain.instance.AddTrayMatch();
-                AudioManager.Instance.PlaySFX(AudioManager.Instance.match);
-                //CloseBox();
-                return;
+                GameManager.instance.AddPoint(1);
+                MoveToPackLikeDisk(matchedItems, targetPack);
             }
+            return;
         }
     }
-    IEnumerator PlayFireThenMerge(List<DragItem> items)
+
+    bool IsValidForTween(DragItem item)
     {
-        // 1️⃣ Spawn fire theo TRAY (LOCAL SPACE)
-        GameObject fire = Instantiate(
-            fireEffectPrefab,
-            transform // parent luôn là Tray
-        );
-
-        fire.transform.localPosition = new Vector3(0f, 0.9f, 0f);
-        fire.transform.localRotation = Quaternion.identity;
-        //fire.transform.localScale = Vector3.one;
-
-        // 2️⃣ Animator
-        Animator anim = fire.GetComponent<Animator>();
-
-        if (anim != null)
-        {
-            anim.Play(0, 0, 0f);
-
-            // lấy thời lượng clip
-            AnimatorStateInfo state = anim.GetCurrentAnimatorStateInfo(0);
-            float clipLength = state.length;
-
-            yield return new WaitForSeconds(clipLength);
-        }
-        else
-        {
-            yield return new WaitForSeconds(0.5f);
-        }
-
-
-        Destroy(fire);
-
-        
-        MoveToCenter(items);
+        return item != null && item.gameObject != null && item.transform != null;
     }
-    void MoveToCenter(List<DragItem> items)
+
+    void MoveToPackLikeDisk(List<DragItem> items, PackTarget pack)
     {
-        // đảm bảo thứ tự trái – giữa – phải
-        items = items.OrderBy(i => i.transform.position.x).ToList();
+        if (items == null || items.Count < 5) return;
+        if (pack == null || pack.attachPoint == null) return;
+
+        Transform packAttach = pack.attachPoint;
 
         for (int i = 0; i < items.Count; i++)
         {
-            items[i].GetComponent<SpriteRenderer>().sortingOrder = i;
+            var sr = items[i].GetComponent<SpriteRenderer>();
+            if (sr != null) sr.sortingOrder = i;
         }
 
-        DragItem center = items[1];
+        DragItem center = items[2];
+        if (center == null) return;
+
+        Vector3 centerPos = center.transform.position;
+        float startX = -(items.Count - 1) * spacing * 0.5f;
+
+        Sequence gatherSeq = DOTween.Sequence()
+            .SetLink(gameObject);
+
+   
+        for (int i = 0; i < items.Count; i++)
+        {
+            DragItem item = items[i];
+            if (item == null) continue;
+
+            Vector3 targetPos =
+                centerPos + new Vector3(startX + i * spacing, 0, 0);
+            gatherSeq.Join(
+                item.transform.DOMove(targetPos, moveTime)
+                    .SetEase(Ease.OutBack)
+                    .SetLink(item.gameObject)
+            );
+        }
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.match);
+        gatherSeq.OnComplete(() =>
+        {
+            int finishedCount = 0;
+            int total = items.Count;
+
+            for (int i = 0; i < items.Count; i++)
+            {
+                DragItem item = items[i];
+                if (item == null) continue;
+                item.transform.DOKill();
+                Vector3 offset = item.transform.position - centerPos;
+                Vector3 targetPos = packAttach.position + offset * 0.3f;
+                Sequence seq = DOTween.Sequence()
+                    .SetLink(item.gameObject);
+                seq.Join(
+                    item.transform.DOJump(
+                        targetPos,
+                        1f,
+                        1,
+                        itemToDiskTime
+                    ).SetEase(Ease.InOutQuad)
+                );
+                seq.Join(
+                    item.transform.DOScale(
+                        diskItemScale,
+                        itemToDiskTime
+                    )
+                );
+                seq.OnComplete(() =>
+                {
+                    if (item != null)
+                    {
+                        item.transform.DOKill();
+                        Destroy(item.gameObject);
+                    }
+
+                    finishedCount++;
+                    if (finishedCount == total)
+                    {
+                        isCompleted = true;
+                        DOVirtual.DelayedCall(0.05f, () =>
+                        {
+                            if (this == null) return;
+                            Disappear();
+                            pack.AddItems(total);
+                        }).SetLink(gameObject);
+                    }
+                });
+            }
+        });
+    }
+
+
+
+    void MoveToCenter(List<DragItem> items)
+    {
+        if (items == null || items.Count < 3) return;
+
+        DragItem center = items[2];
+        if (!IsValidForTween(center)) return;
+
         Vector3 centerPos = center.transform.position;
 
-        float smallOffset = 0.15f; // 👈 khoảng cách nhỏ giữa các item
-        //.Instance.PlaySFX(AudioManager.Instance.finish);
+        float startX = -(items.Count - 1) * spacing * 0.5f;
 
         Sequence seq = DOTween.Sequence();
 
         for (int i = 0; i < items.Count; i++)
         {
-            var item = items[i];
-            item.transform.DOKill();
+            var itm = items[i];
+            if (!IsValidForTween(itm)) continue;
 
-            // offset nhỏ quanh tâm
-            float offsetX = (i - 1) * smallOffset; // -offset, 0, +offset
-            Vector3 targetPos = centerPos + new Vector3(offsetX, 0, 0);
+            var sr = itm.GetComponent<SpriteRenderer>();
+            if (sr != null) sr.sortingOrder = i;
 
-            seq.Join(
-                item.transform.DOMove(targetPos, moveTime)
-                    .SetEase(Ease.OutBack)
-            );
+            Vector3 target =
+                centerPos + new Vector3(startX + i * spacing, 0, 0);
+
+            // capture the target position and create a move tween that uses the item's transform directly.
+            // We SetLink immediately to the item's GameObject to avoid DOTween trying to operate on a destroyed transform.
+            var moveTween = itm.transform.DOMove(target, moveTime)
+                .SetEase(Ease.OutBack)
+                .SetLink(itm.gameObject);
+
+            seq.Join(moveTween);
         }
+
+
         seq.OnComplete(() =>
         {
+
             foreach (var item in items)
+            {
+                if (item == null) continue;
                 item.transform.SetParent(null, true);
 
-            FlyToTargetAndDisappear(items, centerPos);
+            }
+
+            SpawnDisk(items, centerPos);
         });
 
     }
-    void FlyToTargetAndDisappear(List<DragItem> items, Vector3 centerPos)
+    void SpawnDisk(List<DragItem> items, Vector3 centerPos)
     {
-        float flyTime = 0.4f;
-        Transform targetParent = GameManager.Instance.target.transform;
-        Transform targettext = GameManager.Instance.text_target.transform;
+        // safe access to DiskTransform singleton; fallback to centerPos if not available
+        Vector3 spawnPos = DiskTransform.instance != null && DiskTransform.instance.transform != null
+            ? DiskTransform.instance.transform.position
+            : centerPos;
+
+        GameObject diskObj = Instantiate(
+            diskPrefab,
+            spawnPos,
+            Quaternion.identity
+        );
+
+        Disk disk = diskObj != null ? diskObj.GetComponent<Disk>() : null;
+
+        float spacingRatio = 0.6f;
+        float jumpPower = 1.0f;          // độ cao nhảy
+        int jumpCount = 1;               // 1 lần nhảy (bay lên rồi rơi)
+        Vector3 targetScale = new Vector3(0.35f, 0.35f, 0.35f);
+
+        // master sequence that waits for all item-to-disk sequences
+        Sequence master = DOTween.Sequence();
 
         foreach (var item in items)
         {
-            item.transform.DOKill();
+            if (!IsValidForTween(item)) continue;
 
-            Vector3 startScale = item.transform.lossyScale;
-            Vector3 targetScale = startScale * 0.35f;
+            var it = item;
 
-            Vector3 targetPos = GameManager.Instance.target.transform.position;
+            it.transform.DOKill();
+
+            // capture start and target positions immediately
+            Vector3 startPos = it.transform.position;
+            Vector3 offset = startPos - centerPos;
+            Vector3 compressedOffset = offset * spacingRatio;
+
+            Vector3 diskPos = (diskObj != null && diskObj.transform != null) ? diskObj.transform.position : spawnPos;
+            Vector3 targetPos = diskPos + compressedOffset;
 
             Sequence seq = DOTween.Sequence();
 
-            seq.Append(
-                item.transform.DOMove(targetPos, flyTime)
-                    .SetEase(Ease.OutCubic)
-            );
+            var jumpTween = it.transform.DOJump(
+                    targetPos,
+                    jumpPower,
+                    jumpCount,
+                    itemToDiskTime
+                ).SetEase(Ease.InOutQuad);
 
-            seq.Insert(
-                flyTime * 0.2f,
-                item.transform.DOScale(targetScale, flyTime * 0.8f)
-                    .SetEase(Ease.InQuad)
-            );
+            var scaleTween = it.transform.DOScale(targetScale, itemToDiskTime)
+                    .SetEase(Ease.OutQuad);
+
+            // Link both tweens / sequence to the item so they get killed if item is destroyed.
+            jumpTween.SetLink(it.gameObject);
+            scaleTween.SetLink(it.gameObject);
+            seq.SetLink(it.gameObject);
+
+            seq.Join(jumpTween);
+            seq.Join(scaleTween);
+
+            seq.AppendInterval(attachDelay);
 
             seq.AppendCallback(() =>
             {
-                // 💥 Nhún cha của target
-                if (targetParent != null)
+                if (it == null) return;
+                if (disk != null && disk.transform != null)
                 {
-                    targetParent.DOKill();
-                    targetParent.DOPunchScale(
-                        Vector3.one * 0.15f,  0.2f, 6, 0.6f                 
-                    );
+                    it.transform.SetParent(disk.transform, true);
                 }
-                if (targettext != null)
+                it.transform.localScale = targetScale;
+                if (disk != null)
                 {
-                    targettext.DOKill();
-                    targettext.DOPunchScale(
-                        Vector3.one * 0.15f, 0.2f, 6, 0.6f
-                    );
+                    disk.AddItem(it.transform);
                 }
-                Destroy(item.gameObject);
-                CloseTray();
             });
+
+            // join child into master
+            master.Join(seq);
         }
+
+        // disappear only after all item sequences complete
+        master.OnComplete(() =>
+        {
+            Disappear();
+        });
     }
-    public void CloseTray()
+    public void Disappear()
     {
-        isClosed = true;
-        GameObject soldOut = Instantiate(soldOutPrefabs);
+        DOTween.Kill(transform);
 
-        Transform t = soldOut.transform;
-        t.SetParent(this.transform, false);
+        Sequence seq = DOTween.Sequence()
+            .SetLink(gameObject);
 
-        SpriteRenderer sr = soldOut.GetComponent<SpriteRenderer>();
-
-        Vector3 startLocalPos = new Vector3(0f, 1f, 0f);  
-        Vector3 hitPos = new Vector3(0f, 0.1f, 0f);
-        Vector3 bouncePos = new Vector3(0f, 0.13f, 0f);
-
-        t.localPosition = startLocalPos;
-        t.localScale = Vector3.one * 0.8f;
-
-        if (sr != null)
-            sr.color = new Color(1f, 1f, 1f, 0f);
-
-        Sequence seq = DOTween.Sequence();
-
-        // 1️⃣ Xuất hiện (đứng yên)
-        if (sr != null)
-            seq.Append(sr.DOFade(1f, 0.18f));
-
-        seq.Join(
-            t.DOScale(1f, 0.1f)
-             .SetEase(Ease.OutQuad)
-        );
-
-        // 2️⃣ Rơi xuống (sau khi đã hiện)
-        seq.Append(
-            t.DOLocalMove(hitPos, 0.25f)
-             .SetEase(Ease.InQuad)
-        );
         seq.AppendCallback(() =>
         {
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.closeBox);
+            TrayManager manager = GetComponentInParent<TrayManager>();
+            if (manager != null)
+                manager.CompleteTray(transform);
         });
-        // 3️⃣ Nảy rất nhẹ
-        seq.Append(
-            t.DOLocalMove(bouncePos, 0.08f)
-             .SetEase(Ease.OutQuad)
-        );
-
-        // 4️⃣ Ổn định vị trí
-        seq.Append(
-            t.DOLocalMove(hitPos, 0.06f)
-             .SetEase(Ease.InQuad)
-        );
         seq.OnComplete(() =>
         {
-            if (sr != null)
-                sr.sortingOrder = -5;
+            if (GameManager.instance.finishGame && !GameManager.instance.isCheckLose)
+                GameManager.instance.ECWin.SetActive(true);
+
+            DOTween.Kill(transform);
+            Destroy(gameObject);
         });
     }
 
-    //Lấy số lượng item cùng loại
-    public int GetMaxSameItemCount()
-    {
-        if (isCompleted) return 0;
-        DragItem[] items = GetComponentsInChildren<DragItem>();
-        if (items.Length == 0) return 0;
 
-        return items
-            .GroupBy(i =>
-            {
-                var sr = i.GetComponent<SpriteRenderer>();
-                return sr != null && sr.sprite != null
-                    ? sr.sprite.name
-                    : i.gameObject.name;
-            })
-            .Max(g => g.Count());
-    }
     public Slot GetEmptySlot()
     {
-        if (isCompleted) return null;
-
         foreach (Slot slot in slots)
         {
             if (slot.IsEmpty())
                 return slot;
         }
         return null;
-    }
-    public DragItem GetAnyMatchingItem()
-    {
-        if (isCompleted) return null;
-
-        DragItem[] items = GetComponentsInChildren<DragItem>();
-        if (items.Length == 0) return null;
-
-        var groups = items
-            .GroupBy(i =>
-            {
-                var sr = i.GetComponent<SpriteRenderer>();
-                return sr != null && sr.sprite != null
-                    ? sr.sprite.name
-                    : i.gameObject.name;
-            })
-            .OrderByDescending(g => g.Count())
-            .FirstOrDefault();
-
-        if (groups == null)
-            return null;
-
-        // lấy 1 item bất kỳ trong nhóm đó
-        return groups.First();
     }
     public string GetMainItemKey()
     {
@@ -323,25 +331,4 @@ public class Tray : MonoBehaviour
             .First()
             .Key;
     }
-
-    //public bool HasEmptySlot()
-    //{
-    //    return GetComponentsInChildren<DragItem>().Length < maxSlot;
-    //}
-
-    //public void Disappear()
-    //{
-    //    transform.DOKill();
-
-    //    TrayManager manager = GetComponentInParent<TrayManager>();
-    //    Sequence seq = DOTween.Sequence();
-    //    seq.Append(
-    //        transform.DOScale(Vector3.zero, 0.18f)
-    //            .SetEase(Ease.InOutCubic)
-    //    );
-    //    seq.OnComplete(() =>
-    //    {
-    //        Destroy(gameObject);
-    //    });
-    //}
 }

@@ -4,31 +4,24 @@ public class Slot : MonoBehaviour
 {
     public Transform anchor;
     public DragItem currentItem;
-    public Tray tray;
+
     private void Awake()
     {
         EnsureCurrentItem();
-        tray = GetComponentInParent<Tray>();
     }
 
-
+#if UNITY_EDITOR
     private void OnValidate()
     {
         // Keep currentItem in sync while editing
         EnsureCurrentItem();
     }
-    public bool CanAcceptItem()
-    {
-        if (tray == null) return true;
-        if (tray.isClosed) return false;
-        return true;
-    }
+#endif
+
     void EnsureCurrentItem()
     {
         if (currentItem == null)
         {
-            // If a DragItem is already parented under this Slot (e.g. scene setup),
-            // adopt it so IsEmpty() returns the correct value.
             currentItem = GetComponentInChildren<DragItem>();
             if (currentItem != null)
             {
@@ -39,7 +32,10 @@ public class Slot : MonoBehaviour
 
     public bool IsEmpty()
     {
-        return currentItem == null;
+        if (currentItem == null)
+            return true;
+        else
+            return false;
     }
 
     public void SetItem(DragItem item)

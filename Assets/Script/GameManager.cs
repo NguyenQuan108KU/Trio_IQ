@@ -5,12 +5,16 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
+    public static GameManager instance;
+    [Header("Point")]
+    public TextMeshProUGUI pointText;
+    public int point;
+    public GameObject ECWin;
+    public bool startTimer;
 
     [Header("Click")]
     [LunaPlaygroundField("Enable Click", 0, "Click")]
     public bool isClickToLog;
-
     [SerializeField]
     [LunaPlaygroundField("Count Click", 0, "Click")]
     public int clicksToLog = 15;
@@ -20,122 +24,74 @@ public class GameManager : MonoBehaviour
     [LunaPlaygroundField("Enable Timer", 0, "Timer")]
     public bool isTimer;
 
-    [LunaPlaygroundField("Timer Seconds", 0, "Timer")]
-    public int time = 30;
-    // ==================================================
-
+    [LunaPlaygroundField("Audio", 0, "Audio")]
+    public bool audio;
     public int clickCount = 0;
     public bool isClick;
     public bool finishGame = false;
-    public TextMeshProUGUI textPoint;
-    public int point = 0;
-    public GameObject tutGame;
-
-    public GameObject target;
-    public GameObject text_target;
-    public int totalTime;
-
-    // ===== Timer runtime =====
-    float currentTime;
-    bool lastIsTimer;
-    Coroutine timerCo;
+    public bool startGame = false;
+    public bool isCheckWin;
+    public bool isCheckLose;
 
     private void Awake()
     {
-        if (Instance == null)
-            Instance = this;
+        if (instance == null)
+        {
+            instance = this;
+        }
         else
+        {
             Destroy(gameObject);
-    }
+        }
 
-    void Update()
+    }
+    private void Update()
     {
-        
         if (Input.GetMouseButtonDown(0))
         {
             OnGlobalClick();
         }
-
-        if (isTimer != lastIsTimer)
-        {
-            if (isTimer)
-                StartTimer();
-            else
-                StopTimer();
-
-            lastIsTimer = isTimer;
-        }
+        //if(startTimer)
+        //    CountdownTimer.instance.showPA();
     }
-
-
-    // ================= TIMER LOGIC =================
-
-    public void StartTimer()
+    public void AddPoint(int p)
     {
-        currentTime = time;
-
-        if (timerCo != null)
-            StopCoroutine(timerCo);
-
-        timerCo = StartCoroutine(TimerRoutine());
-    }
-
-    IEnumerator TimerRoutine()
-    {
-        while (currentTime > 0)
+        point += p;
+        pointText.text = point.ToString();
+        if(point == 5)
         {
-            currentTime -= Time.deltaTime;
-            yield return null;
-        }
-
-        // CHỈ CHẠY 1 LẦN
-        if (finishGame) yield break;
-
-        finishGame = true;
-        isClick = true;
-
-        Debug.Log("TIME UP");
-
-        //Luna.Unity.LifeCycle.GameEnded();
-        //Luna.Unity.Playable.InstallFullGame();
-    }
-
-
-    public void StopTimer()
-    {
-        if (timerCo != null)
-        {
-            StopCoroutine(timerCo);
-            timerCo = null;
+            isCheckWin = true;
+            CountdownTimer.instance.StopCountdown();
+            GameManager.instance.finishGame = true;
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.win);
+            AudioManager.Instance.StopBGM();
         }
     }
     public void OnGlobalClick()
     {
-        //if (!isClickToLog || finishGame) return;
+        if (!isClickToLog || finishGame) return;
 
         clickCount++;
-        Debug.Log(clickCount);
+        Debug.Log("Click Count: " + clickCount);
         if (clickCount >= clicksToLog)
         {
-            // EndGame chỉ 1 lần
             if (!isClick)
             {
                 isClick = true;
-                Debug.Log("End");
+                Debug.Log("Installing Luna Playground for Unity due to excessive clicks...");
                 Luna.Unity.LifeCycle.GameEnded();
             }
-
-            // Từ click 15 trở đi → click nào cũng ra store
+            Debug.Log("Installing.");
             Luna.Unity.Playable.InstallFullGame();
         }
     }
 
-    // ============== CODE CŨ CỦA BẠN ==============
+
+
     public void InstallGame()
     {
         Luna.Unity.Playable.InstallFullGame();
     }
-
     public void EndGame()
     {
         Luna.Unity.LifeCycle.GameEnded();

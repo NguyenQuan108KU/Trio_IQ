@@ -1,6 +1,12 @@
 ﻿using UnityEngine;
 using DG.Tweening;
-
+public enum ItemType
+{
+    Yellow,
+    Red,
+    Blue,
+    Green
+}
 public class DragItem : MonoBehaviour
 {
     private static DragItem currentDrag;
@@ -13,13 +19,15 @@ public class DragItem : MonoBehaviour
     private SpriteRenderer sr;
     private Vector3 startScale;
     private Slot startSlot;
-    public bool isLocked = false;
-    
+    private Material mat;
 
     [Header("Outline")]
     public float focusOutlineSize = 1f;
     public float outlineTweenTime = 0.12f;
     private GameObject outline;
+    public ItemType itemType;
+
+
     private void Awake()
     {
         cam = Camera.main;
@@ -33,48 +41,48 @@ public class DragItem : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (!CountdownTimer.instance.hasStarted)
-            {
-                CountdownTimer.instance.hasStarted = true;
-                CountdownTimer.instance.StartCountdown();
-            }
             TryPick();
         }
 
         if (Input.GetMouseButton(0) && currentDrag == this)
         {
-            
             Drag();
         }
 
         if (Input.GetMouseButtonUp(0) && currentDrag == this)
         {
             Drop();
+            TrayManager.instance.OnUserEndInteract();
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.drog);
         }
+
     }
 
     void TryPick()
     {
-        if (GameManager.Instance.tutGame.activeSelf)
+        if (!GameManager.instance.startTimer)
         {
-            GameManager.Instance.tutGame.SetActive(false);
+            //CountdownTimer.instance.StartCountdown();
+            GameManager.instance.startTimer = true;
         }
-        if (isLocked || GameManager.Instance.finishGame) return;
-        if (isLocked || GameManager.Instance.finishGame) return;
-
-        TrayManager.instance.OnUserBeginInteract(); // ✅ ĐÚNG
+        //if (GameManager.instance.finishGame) return;
+        //if(!GameManager.instance.startGame) return;
+        TrayManager.instance.OnUserBeginInteract();
         Vector2 mouseWorld = cam.ScreenToWorldPoint(Input.mousePosition);
+
         Collider2D[] hits = Physics2D.OverlapPointAll(mouseWorld);
         foreach (var hit in hits)
         {
             if (hit.gameObject == gameObject)
             {
                 currentDrag = this;
-                AudioManager.Instance.PlaySFX(AudioManager.Instance.drag);
+
                 tween?.Kill();
                 startPos = transform.position;
                 startParent = transform.parent;
+
                 startSlot = startParent ? startParent.GetComponent<Slot>() : null;
+
                 offset = transform.position - (Vector3)mouseWorld;
                 sr.sortingOrder = 10;
                 outline.GetComponent<SpriteRenderer>().sortingOrder = 9;
@@ -89,28 +97,20 @@ public class DragItem : MonoBehaviour
         mouseWorld.z = 0;
         transform.position = mouseWorld + offset;
     }
-
     void Drop()
     {
-        TrayManager.instance.OnUserEndInteract();
-        sr.sortingOrder = 0;
+        sr.sortingOrder = 1;
         outline.GetComponent<SpriteRenderer>().sortingOrder = -1;
+        currentDrag = null;
         ShowOutline(false);
         PlayDropScale();
 
         Slot slot = FindNearestSlot();
 
-        if (slot != null
-    && slot.CanAcceptItem()
-    && (slot.IsEmpty() || slot.transform == startParent))
-        {
+        if (slot != null && (slot.IsEmpty() || slot.transform == startParent))
             Snap(slot);
-        }
         else
-        {
             Return();
-        }
-        currentDrag = null;
     }
     void Snap(Slot slot)
     {
@@ -134,7 +134,6 @@ public class DragItem : MonoBehaviour
                         tray.CheckMatch();
                 });
     }
-
     void Return()
     {
         if (startSlot == null || startSlot.anchor == null)
@@ -148,7 +147,6 @@ public class DragItem : MonoBehaviour
                 )
                 .SetEase(Ease.OutQuad);
     }
-
     Slot FindNearestSlot()
     {
         Slot[] slots = FindObjectsOfType<Slot>();

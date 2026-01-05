@@ -1,552 +1,171 @@
-﻿using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UIElements;
+using DG.Tweening;
+using System.Collections;
 
 public class TrayManager : MonoBehaviour
 {
     public static TrayManager instance;
     public float spacing = 1.2f;
     public int visibleCount = 4;
+
+
     public float moveTime = 0.5f;
-    public GameObject win;
 
     [Header("Tray Prefabs / Pool")]
     public List<GameObject> listTray;
 
-    public List<Transform> activeTrays = new List<Transform>();
+    private List<Transform> activeTrays = new List<Transform>();
     private Queue<GameObject> trayPool = new Queue<GameObject>();
+    public AnimationCurve curve;
 
     private float trayHeight;
-    private float step;
+    [SerializeField] private float step = 1.5335f;
     int sorting = 0;
+    public bool canCountIdle = false;
 
-    [Header("Grid Settings")]
-    [SerializeField] int columns = 3;   // số object theo X
-    [SerializeField] int rows = 8;      // số object theo Y
-    [SerializeField] float stepX = 2f;  // khoảng cách ngang
-    [SerializeField] float stepY = 2f;  // khoảng cách dọc
-    bool isGameEnded = false;
 
-    public float idleTime = 0f;
-    public float hintDelay = 3f;
-    public bool isTutorialShowing = false;
-    bool isInteracting = false;
+    [Header("Spawn Settings")] 
+    public float spawnHeightMultiplier = 1f;
 
-    [Header("Tutorial State")]
+    [Header("Tutorial")]
     public bool isFirstTutorial = true;
+    public float tutorialDelay = 4f;
 
-    private DragItem cachedItem;
-    private Tray cachedTray;
-    private Slot cachedSlot;
+    public float idleTimer;
+    public bool tutorialEnabled;
 
-    [Header("Tutorial Manual Override")]
-    public Tray manualTray = null;
-    public DragItem manualItem = null;
+    // manual first tutorial
+    public Tray manualTray;
+    public DragItem manualItem;
+    public bool justEndedInteract;
 
     private void Awake()
     {
         if (instance == null)
             instance = this;
         else
-            Destroy(gameObject);
+            Destroy(instance);
     }
+
     void Start()
     {
+       
         StartCoroutine(InitializeRoutine());
+        
     }
-
-
-    private void Update()
+    void Update()
     {
-        if (isGameEnded) return;
-
-        int notClosedCount = 0;
-        Tray lastOpenTray = null;
-
-        for (int i = 0; i < activeTrays.Count; i++)
+        if (Input.GetMouseButton(0))
         {
-            Tray tray = activeTrays[i].GetComponent<Tray>();
-            if (tray == null) continue;
+            idleTimer = 0f;
+        }
+        if (!canCountIdle) return;
+        if (!tutorialEnabled) return;
+        if (TutorialManager.instance.IsShowing) return;
 
-            if (!tray.isClosed)
-            {
-                notClosedCount++;
-                lastOpenTray = tray;
+        idleTimer += Time.deltaTime;
 
-                if (notClosedCount > 1)
-                    return; // còn >= 2 tray mở
-            }
+        if (idleTimer < tutorialDelay) return;
+
+        if (ShowTutorial())
+        {
+            idleTimer = 0f;
         }
 
-        // ✅ chỉ còn 1 tray → đóng + win
-        if (notClosedCount == 1 && lastOpenTray != null)
-        {
-            isGameEnded = true;           // 🔒 chặn Update NGAY
-            lastOpenTray.CloseTray();     // animation đóng khay
-            StartCoroutine(WaitCloseTrayThenWin());
-        }
     }
 
-
-
-    IEnumerator EndGameDelay()
+    public bool ShowTutorial()
     {
-        yield return new WaitForSeconds(0.5f);
-        GameManager.Instance.EndGame();
-    }
-
-    IEnumerator WaitCloseTrayThenWin()
-    {
-        yield return new WaitForSeconds(0.55f); // ⏳ thời gian CloseTray
-
-        if (CountdownTimer.instance != null)
-        {
-            CountdownTimer.instance.ActiveEndCartWin();
-            CountdownTimer.instance.StopCountdown();
-        }
-
-        GameManager.Instance.finishGame = true;
-
-        yield return new WaitForSeconds(0.5f); // ⏳ cho UI hiện
-        //GameManager.Instance.EndGame();
-    }
-
-
-    public void OnUserBeginInteract()
-    {
-        isInteracting = true;
-        idleTime = 0f;
-
-        // Turn off the fixed-first-tutorial mode on the player's first interaction
-        if (isFirstTutorial)
-            isFirstTutorial = false;
-
-        if (isTutorialShowing)
-        {
-            isTutorialShowing = false;
-            TutorialManager.instance?.HideHint();
-        }
-    }
-
-
-    public void OnUserEndInteract()
-    {
-        isInteracting = false;
-        idleTime = 0f; //  bắt đầu đếm 3s từ đây
-    }
-
-
-    public void ResetIdle()
-    {
-        idleTime = 0f;
-    }
-
-    System.Collections.IEnumerator InitializeRoutine()
-    {
-        InitActiveTraysFromScene();
-        InitPool();
-        yield return new WaitForEndOfFrame();
-        CacheSize();
-        AlignInstant();
-
-        // Cache a fixed tutorial target for the very first tutorial (if possible)
-        CacheFirstTutorialTarget();
-
-        // If still in first tutorial mode, show the cached tutorial after a small delay
-        if (isFirstTutorial)
-        {
-            // small delay to ensure everything is ready (mimics previous behavior)
-            Invoke(nameof(ShowTutorialHint), 0.2f);
-            isTutorialShowing = true;
-        }
-    }
-
-    void InitPool()
-    {
-        if (listTray == null) return;
-
-        foreach (var tray in listTray)
-            trayPool.Enqueue(tray);
-    }
-
-    void CacheSize()
-    {
-
-        if (activeTrays.Count > 0)
-        {
-            SpriteRenderer sr = activeTrays[0].GetComponent<SpriteRenderer>();
-            if (sr != null)
-            {
-                trayHeight = sr.bounds.size.y;
-                step = trayHeight + spacing;
-                return;
-            }
-        }
-
-        if (listTray != null && listTray.Count > 0)
-        {
-            SpriteRenderer srPrefab = listTray[0].GetComponent<SpriteRenderer>();
-            if (srPrefab != null)
-            {
-
-                trayHeight = (srPrefab.sprite != null) ? srPrefab.sprite.bounds.size.y : srPrefab.bounds.size.y;
-                step = trayHeight + spacing;
-                return;
-            }
-        }
-
-
-        trayHeight = 1f;
-        step = trayHeight + spacing;
-    }
-
-    void SpawnTrayAtTop()
-    {
-        if (trayPool.Count == 0)
-        {
-
-            return;
-        }
-        GameObject prefab = trayPool.Dequeue();
-
-        GameObject tray = Instantiate(prefab, transform);
-        tray.GetComponent<SpriteRenderer>().sortingOrder = sorting--;
-
-        float startY = (activeTrays.Count) * step * 0.5f;
-        float spawnY = startY + step - 0.5f;
-
-        tray.transform.localPosition = new Vector3(0, spawnY, 0);
-
-        activeTrays.Insert(0, tray.transform);
-    }
-    public void CompleteTray(Transform completedTray)
-    {
-        if (!activeTrays.Contains(completedTray)) return;
-
-        int index = activeTrays.IndexOf(completedTray);
-
-
-        activeTrays.RemoveAt(index);
-
-
-        completedTray.SetParent(null, true);
-
-        float fallTime = moveTime;
-        float shrinkTime = 0.35f;
-
-        completedTray.DOKill();
-
-        Sequence seq = DOTween.Sequence();
-
-
-        seq.AppendCallback(() =>
-        {
-            SpawnTrayAtTop();
-            AlignAnimated();
-        });
-
-
-        seq.AppendInterval(fallTime);
-
-
-        seq.Append(
-            completedTray.DOScale(0f, shrinkTime)
-                .SetEase(Ease.InBack)
-        );
-
-
-        seq.OnComplete(() =>
-        {
-            Destroy(completedTray.gameObject);
-        });
-    }
-    void AlignInstant()
-    {
-        if (activeTrays.Count == 0) return;
-
-        int maxSlots = columns * rows;
-        int count = Mathf.Min(activeTrays.Count, maxSlots);
-
-        // Căn giữa grid
-        float startX = (columns - 1) * stepX * 0.5f;
-        float startY = (rows - 1) * stepY * 0.5f;
-
-        for (int i = 0; i < count; i++)
-        {
-            int col = i % columns;        // X
-            int row = i / columns;        // Y
-
-            float targetX = -startX + col * stepX;
-            float targetY = startY - row * stepY;
-
-            Vector3 pos = activeTrays[i].localPosition;
-            pos.x = targetX;
-            pos.y = targetY;
-            activeTrays[i].localPosition = pos;
-        }
-    }
-
-    public void AlignAnimated()
-    {
-        if (activeTrays.Count == 0) return;
-
-        int totalSlots = Mathf.Max(visibleCount, activeTrays.Count);
-        float startY = (totalSlots - 1) * step * 0.5f;
-
-        int startSlot = (activeTrays.Count < visibleCount)
-            ? (visibleCount - activeTrays.Count)
-            : 0;
-
-        for (int i = 0; i < activeTrays.Count; i++)
-        {
-            int slotIndex = startSlot + i;
-            float targetY = startY - slotIndex * step;
-
-            Transform tray = activeTrays[i];
-            tray.DOKill();
-
-            float currentY = tray.localPosition.y;
-
-
-            if (currentY > targetY + 0.01f)
-            {
-                float y = targetY;
-
-                Sequence seq = DOTween.Sequence();
-                seq.Append(
-                    tray.DOLocalMoveY(y, 0.25f)
-                        .SetEase(Ease.InCubic)
-                );
-                seq.Append(
-                    tray.DOLocalMoveY(y  + 0.4f, 0.15f)
-                        .SetEase(Ease.OutCubic)
-                );
-
-                seq.Append(
-                    tray.DOLocalMoveY(y, 0.15f)
-                        .SetEase(Ease.InCubic)
-                );
-
-
-                seq.Append(
-                    tray.DOLocalMoveY(y + 0.15f, 0.1f)
-                        .SetEase(Ease.OutCubic)
-                );
-
-                seq.Append(
-                    tray.DOLocalMoveY(y, 0.1f)
-                        .SetEase(Ease.InCubic)
-                );
-                seq.Append(
-                    tray.DOLocalMoveY(y + 0.05f, 0.08f)
-                        .SetEase(Ease.OutCubic)
-                );
-                seq.Append(
-                    tray.DOLocalMoveY(y, 0.08f)
-                        .SetEase(Ease.InCubic)
-                );
-            }
-            else
-            {
-                tray.DOLocalMoveY(targetY, 0.25f)
-                    .SetEase(Ease.OutQuad);
-            }
-        }
-    }
-    void InitActiveTraysFromScene()
-    {
-        activeTrays.Clear();
-        int indexOrder = 0;
-        foreach (Transform child in transform)
-        {
-            indexOrder++;
-            child.GetComponent<SpriteRenderer>().sortingOrder = indexOrder;
-            activeTrays.Add(child);
-        }
-        activeTrays = activeTrays.OrderByDescending(t => t.localPosition.y).ToList();
-    }
-    //Lấy danh sách tất cả các tray có số lượng item lớn nhất 
-    public List<Tray> GetTraysWithMaxSameItem()
-    {
-        int max = 0;
-        List<Tray> result = new List<Tray>();
-
-        foreach (Transform trayTf in activeTrays)
-        {
-            Tray tray = trayTf.GetComponent<Tray>();
-            if (tray == null) continue;
-            int count = tray.GetMaxSameItemCount();
-            if (count < 2) continue;
-
-            if (count > max)
-            {
-                max = count;
-                result.Clear();
-                result.Add(tray);
-            }
-            else if (count == max)
-            {
-                result.Add(tray);
-            }
-        }
-        return result;
-    }
-    //Chọn ngẫu nhiên 1 tray
-    public (Tray tray, Slot slot)? GetRandomTrayEmptySlot()
-    {
-        var trays = GetTraysWithMaxSameItem();
-
-        var validTrays = trays
-            .Where(t => !t.isCompleted && t.GetEmptySlot() != null)
-            .ToList();
-
-        if (validTrays.Count == 0)
-            return null;
-
-        Tray tray = validTrays[Random.Range(0, validTrays.Count)];
-        Slot slot = tray.GetEmptySlot();
-
-        return (tray, slot);
-    }
-    public (Tray tray, Slot slot, DragItem item)? GetRandomTraySlotAndItem()
-    {
-        var traySlot = GetRandomTrayEmptySlot();
-        if (!traySlot.HasValue)
-            return null;
-
-        Tray tray = traySlot.Value.tray;
-        Slot slot = traySlot.Value.slot;
-
-        DragItem item = tray.GetAnyMatchingItem();
-        if (item == null)
-            return null;
-
-        return (tray, slot, item);
-    }
-    public void ShowTutorialHint()
-    {
-        if (manualTray != null && manualItem != null)
+        if (GameManager.instance.finishGame) return false;
+        if (isFirstTutorial && manualTray != null && manualItem != null)
         {
             if (!manualTray.isCompleted)
             {
-                Slot targetSlot = manualTray.GetEmptySlot();
+                Slot toSlot = manualTray.GetEmptySlot();
                 Slot fromSlot = manualItem.GetComponentInParent<Slot>();
 
-                if (targetSlot != null && fromSlot != null)
-                {
-                    TutorialManager.instance.ShowHandHint(fromSlot, targetSlot, manualItem);
-                    return; // ⛔ dừng tại đây, KHÔNG chạy code cũ
-                }
-            }
-        }
-        // If it's the first tutorial session and we have a cached triple, show that fixed hint.
-        if (isFirstTutorial)
-        {
-            // ensure cache exists
-            if (cachedTray == null || cachedSlot == null || cachedItem == null)
-            {
-                CacheFirstTutorialTarget();
-            }
+                if (toSlot == null || fromSlot == null)
+                    return false;
 
-            if (cachedTray != null && cachedSlot != null && cachedItem != null)
-            {
-                Slot fromSlot = cachedItem.GetComponentInParent<Slot>();
-                if (fromSlot != null)
-                {
-                    TutorialManager.instance.ShowHandHint(fromSlot, cachedSlot, cachedItem);
-                    return;
-                }
+                if (!fromSlot.gameObject.activeInHierarchy ||
+                    !toSlot.gameObject.activeInHierarchy)
+                    return false;
+
+                TutorialManager.instance.ShowHandHint(fromSlot, toSlot, manualItem);
+                isFirstTutorial = false;
+                return true;
             }
         }
 
-        // ===== 1. Thử nước đi hợp lệ (>=2 item) =====
-        var traySlot = GetRandomTrayEmptySlot();
-        if (traySlot.HasValue)
-        {
-            Tray targetTray = traySlot.Value.tray;
-            Slot emptySlot = traySlot.Value.slot;
+        var data = GetRandomValidMove();
+        if (!data.HasValue) return false;
 
-            DragItem item = GetItemFromOtherTray(targetTray);
-            if (item != null)
-            {
-                Slot fromSlot = item.GetComponentInParent<Slot>();
-                if (fromSlot != null)
-                {
-                    TutorialManager.instance.ShowHandHint(fromSlot, emptySlot, item);
-                    return; // ✅ xong
-                }
-            }
-        }
+        if (!data.Value.fromSlot.gameObject.activeInHierarchy ||
+            !data.Value.toSlot.gameObject.activeInHierarchy)
+            return false;
 
-        // ===== 2. FALLBACK: tray chỉ có 1 item =====
-        var fallback = GetFallbackTrayAndSlot();
-        if (!fallback.HasValue)
-            return;
-
-        Tray fallbackTray = fallback.Value.tray;
-        Slot fallbackSlot = fallback.Value.slot;
-
-        DragItem fallbackItem = GetAnyItemFromOtherTray(fallbackTray);
-        if (fallbackItem == null)
-            return;
-
-        Slot fromFallbackSlot = fallbackItem.GetComponentInParent<Slot>();
-        if (fromFallbackSlot == null)
-            return;
-
-        TutorialManager.instance.ShowHandHint(fromFallbackSlot, fallbackSlot, fallbackItem);
+        TutorialManager.instance.ShowHandHint(
+            data.Value.fromSlot,
+            data.Value.toSlot,
+            data.Value.item
+        );
+        return true;
     }
-    public (Tray tray, Slot slot)? GetFallbackTrayAndSlot()
+
+    public void OnUserBeginInteract()
     {
-        foreach (Transform trayTf in activeTrays)
-        {
-            Tray tray = trayTf.GetComponent<Tray>();
-            if (tray == null) continue;
-            if (tray.isCompleted) continue;
+        canCountIdle = false;
+        idleTimer = 0f;
 
-            if (tray.GetComponentsInChildren<DragItem>().Length >= 1 &&
-                tray.GetEmptySlot() != null)
-            {
-                return (tray, tray.GetEmptySlot());
-            }
-        }
-        return null;
+        if (TutorialManager.instance.IsShowing)
+            TutorialManager.instance.HideHint();
     }
-    public DragItem GetAnyItemFromOtherTray(Tray excludeTray)
+
+    public void OnUserEndInteract()
     {
-        List<DragItem> items = new List<DragItem>();
-
-        foreach (Transform trayTf in activeTrays)
-        {
-            Tray tray = trayTf.GetComponent<Tray>();
-            if (tray == null) continue;
-            if (tray == excludeTray) continue;
-            if (tray.isCompleted) continue;
-
-            items.AddRange(tray.GetComponentsInChildren<DragItem>());
-        }
-
-        if (items.Count == 0)
-            return null;
-
-        return items[Random.Range(0, items.Count)];
+        idleTimer = 0f;
+        canCountIdle = true; // ⬅️ CHỈ TỪ LÚC NHẢ CHUỘT MỚI ĐẾM
+        justEndedInteract = true;
     }
 
+    (DragItem item, Slot fromSlot, Slot toSlot)? GetRandomValidMove()
+    {
+        List<Tray> trays = new List<Tray>();
+
+        foreach (Transform tf in activeTrays)
+        {
+            if (tf == null) continue;
+            Tray tray = tf.GetComponent<Tray>();
+            if (tray == null || tray.isCompleted) continue;
+            if (tray.GetEmptySlot() == null) continue;
+
+            trays.Add(tray);
+        }
+
+        if (trays.Count == 0) return null;
+
+        Tray targetTray = trays[Random.Range(0, trays.Count)];
+        Slot toSlot = targetTray.GetEmptySlot();
+
+        DragItem item = GetItemFromOtherTray(targetTray);
+        if (item == null) return null;
+
+        Slot fromSlot = item.GetComponentInParent<Slot>();
+        if (fromSlot == null) return null;
+
+        return (item, fromSlot, toSlot);
+    }
     public void NotifyUserInteraction()
     {
-        idleTime = 0f;
-
-        if (isTutorialShowing)
-        {
-            isTutorialShowing = false;
+        if (TutorialManager.instance.IsShowing)
             TutorialManager.instance.HideHint();
-        }
     }
     public DragItem GetItemFromOtherTray(Tray targetTray)
     {
+        if (targetTray == null) return null;
+
         string key = targetTray.GetMainItemKey();
         if (string.IsNullOrEmpty(key))
             return null;
@@ -555,6 +174,7 @@ public class TrayManager : MonoBehaviour
 
         foreach (Transform trayTf in activeTrays)
         {
+            if (trayTf == null) continue;
             Tray tray = trayTf.GetComponent<Tray>();
             if (tray == null) continue;
             if (tray == targetTray) continue;
@@ -562,6 +182,7 @@ public class TrayManager : MonoBehaviour
 
             foreach (var item in tray.GetComponentsInChildren<DragItem>())
             {
+                if (item == null) continue;
                 var sr = item.GetComponent<SpriteRenderer>();
                 string itemKey = sr != null && sr.sprite != null
                     ? sr.sprite.name
@@ -578,18 +199,226 @@ public class TrayManager : MonoBehaviour
         return candidates[Random.Range(0, candidates.Count)];
     }
 
-    //Hàm mặc định
-    void CacheFirstTutorialTarget()
+    private static bool IsAlive(Transform t) => t != null && t.gameObject != null;
+
+    System.Collections.IEnumerator InitializeRoutine()
     {
-        if (!isFirstTutorial) return;
+        InitActiveTraysFromScene();
+        InitPool();
+        yield return new WaitForEndOfFrame();
+        //CacheSize();
+        AlignInstant();
+        yield return new WaitForSeconds(2.0f);
+        ShowTutorial();
+    }
+    void InitPool()
+    {
+        if (listTray == null) return;
 
-        var traySlot = GetRandomTrayEmptySlot();
-        if (!traySlot.HasValue) return;
-
-        cachedTray = traySlot.Value.tray;
-        cachedSlot = traySlot.Value.slot;
-
-        cachedItem = GetItemFromOtherTray(cachedTray);
+        foreach (var tray in listTray)
+            if (tray != null)
+                trayPool.Enqueue(tray);
     }
 
+    void CacheSize()
+    {
+
+        if (activeTrays.Count > 0)
+        {
+            SpriteRenderer sr = activeTrays[0] != null ? activeTrays[0].GetComponent<SpriteRenderer>() : null;
+            if (sr != null)
+            {
+                trayHeight = sr.bounds.size.y;
+                step = trayHeight + spacing;
+                return;
+            }
+        }
+
+        if (listTray != null && listTray.Count > 0)
+        {
+            SpriteRenderer srPrefab = listTray[0] != null ? listTray[0].GetComponent<SpriteRenderer>() : null;
+            if (srPrefab != null)
+            {
+            
+                trayHeight = (srPrefab.sprite != null) ? srPrefab.sprite.bounds.size.y : srPrefab.bounds.size.y;
+                step = trayHeight + spacing;
+                return;
+            }
+        }
+
+   
+        trayHeight = 1f;
+        step = trayHeight + spacing;
+    }
+    void SpawnTrayAtTop()
+    {
+        if (trayPool.Count == 0)
+        {
+        
+            return;
+        }
+
+        GameObject prefab = trayPool.Dequeue();
+        if (prefab == null) return;
+
+        GameObject tray = Instantiate(prefab, transform);
+        var sr = tray.GetComponent<SpriteRenderer>();
+        if (sr != null) sr.sortingOrder = sorting--;
+
+        float startY = (activeTrays.Count) * step * 0.5f;
+        float spawnY = startY + step * spawnHeightMultiplier;
+
+        tray.transform.localPosition = new Vector3(0, spawnY, 0);
+
+        activeTrays.Insert(0, tray.transform);
+    }
+    public void CompleteTray(Transform completedTray)
+    {
+        if (!IsAlive(completedTray)) return;
+        if (!activeTrays.Contains(completedTray)) return;
+
+        activeTrays.Remove(completedTray);
+        completedTray.SetParent(null, true);
+
+        Vector3 dropPos = completedTray.position;
+
+        try { completedTray.DOKill(); } catch { }
+
+        Sequence seq = DOTween.Sequence();
+
+        // spawn + align giữ nguyên
+        seq.AppendCallback(() =>
+        {
+            SpawnTrayAtTop();
+            AlignAnimated();
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.wood);
+        });
+
+        seq.Append(completedTray.DOMove(dropPos, 0.25f))
+           .Append(completedTray.DOMoveY(dropPos.y + 0.4f, 0.15f).SetEase(Ease.OutCubic))
+           .Append(completedTray.DOMoveY(dropPos.y, 0.15f).SetEase(Ease.InCubic))
+           .Append(completedTray.DOMoveY(dropPos.y + 0.15f, 0.1f).SetEase(Ease.OutCubic))
+           .Append(completedTray.DOMoveY(dropPos.y, 0.1f).SetEase(Ease.InCubic))
+           .Append(completedTray.DOMoveY(dropPos.y + 0.05f, 0.08f).SetEase(Ease.OutCubic))
+           .Append(completedTray.DOMoveY(dropPos.y, 0.08f).SetEase(Ease.InCubic));
+
+        // thu nhỏ biến mất
+        seq.Append(
+            completedTray.DOScale(0f, 0.2f)
+                .SetEase(Ease.InBack)
+        );
+
+        seq.OnComplete(() =>
+        {
+            if (IsAlive(completedTray))
+                Destroy(completedTray.gameObject);
+        });
+    }
+
+    void AlignInstant()
+    {
+        // Clean up null entries first
+        activeTrays = activeTrays.Where(t => IsAlive(t)).ToList();
+
+        if (activeTrays.Count == 0) return;
+
+        int totalSlots = Mathf.Max(visibleCount, activeTrays.Count);
+        float startY = (totalSlots - 1) * step * 0.5f;
+
+
+        int startSlot = (activeTrays.Count < visibleCount) ? (visibleCount - activeTrays.Count) : 0;
+
+        for (int i = 0; i < activeTrays.Count; i++)
+        {
+            if (!IsAlive(activeTrays[i])) continue;
+
+            int slotIndex = startSlot + i;
+            float targetY = startY - slotIndex * step;
+
+            Vector3 pos = activeTrays[i].localPosition;
+            pos.y = targetY;
+            activeTrays[i].localPosition = pos;
+        }
+    }
+
+    public void AlignAnimated()
+    {
+        // Clean up null entries first
+        activeTrays = activeTrays.Where(t => IsAlive(t)).ToList();
+
+        if (activeTrays.Count == 0) return;
+
+        int totalSlots = Mathf.Max(visibleCount, activeTrays.Count);
+        float startY = (totalSlots - 1) * step * 0.5f;
+
+        int startSlot = (activeTrays.Count < visibleCount)
+            ? (visibleCount - activeTrays.Count)
+            : 0;
+
+
+        float overshootRatio = 0.2f;   
+        float fallPart = 0.8f;         
+        float bounceUpPart = 0.25f;
+        float settlePart = 0.25f;
+
+        for (int i = 0; i < activeTrays.Count; i++)
+        {
+            Transform tray = activeTrays[i];
+            if (!IsAlive(tray)) continue;
+
+            int slotIndex = startSlot + i;
+            float targetY = startY - slotIndex * step;
+
+            tray.DOKill();
+
+            float currentY = tray.localPosition.y;
+            float delta = currentY - targetY;
+
+         
+            if (delta > 0.01f)
+            {
+              
+                float strength = Mathf.Clamp01(delta / step);
+
+                float overshoot = step * overshootRatio * strength;
+                float fallTime = moveTime * fallPart * strength;
+                float bounceUpTime = moveTime * bounceUpPart * strength;
+                float settleTime = moveTime * settlePart * strength;
+
+                Sequence seq = DOTween.Sequence();
+
+                seq.Append(
+                    tray.DOLocalMoveY(targetY, fallTime).SetEase(Ease.InQuad)
+                );
+
+                seq.Append(
+                    tray.DOLocalMoveY(targetY + overshoot, bounceUpTime)
+                        .SetEase(Ease.OutQuad)
+                );
+
+                seq.Append(
+                    tray.DOLocalMoveY(targetY, settleTime)
+                        .SetEase(Ease.OutCubic)
+                );
+            }
+            else
+            {
+                tray.DOLocalMoveY(targetY, moveTime).SetEase(Ease.OutQuad);
+            }
+        }
+    }
+    void InitActiveTraysFromScene()
+    {
+        activeTrays.Clear();
+
+        foreach (Transform child in transform)
+            if (child != null)
+                activeTrays.Add(child);
+
+       
+        activeTrays = activeTrays
+            .Where(t => IsAlive(t))
+            .OrderByDescending(t => t.localPosition.y)
+            .ToList();
+    }
 }

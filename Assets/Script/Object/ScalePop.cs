@@ -24,7 +24,7 @@ public class ScalePopLoop : MonoBehaviour
         _tween = transform
             .DOScale(maxScale, duration)
             .SetEase(ease)
-            .SetLoops(-1, LoopType.Yoyo); //lặp vô hạn
+            .SetLoops(-1, LoopType.Yoyo);
     }
 
     void OnDisable()

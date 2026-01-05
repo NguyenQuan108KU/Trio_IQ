@@ -26,10 +26,9 @@ public class ConveyorBelt : MonoBehaviour
     {
         if (!isStarted)
         {
-            if (Input.GetMouseButtonDown(0)) 
+            if (Input.GetMouseButtonDown(0) && GameManager.instance.startGame)
             {
                 isStarted = true;
-                tutorial.SetActive(false);
             }
             return;
         }

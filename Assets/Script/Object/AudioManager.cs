@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
@@ -10,18 +10,14 @@ public class AudioManager : MonoBehaviour
 
     [Header("Clips")]
     public AudioClip bgm;
-    public AudioClip finish;
-    public AudioClip drog;
-    public AudioClip match;
-    public AudioClip pop;
-    public AudioClip lose;
     public AudioClip drag;
-    public AudioClip closeBox;
-
-    [Header("Sound")]
-    public AudioClip normalTick;   // tiếng tick bình thường
-    public AudioClip warningTick;  // tiếng 5s cuối
-
+    public AudioClip drog;
+    public AudioClip lose;
+    public AudioClip pop;
+    public AudioClip wood;
+    public AudioClip win;
+    public AudioClip warningTick;
+    public AudioClip match;
 
     bool soundOn = true;
 
@@ -41,10 +37,10 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        //PlayBGM();
+        if(GameManager.instance.audio)
+            PlayBGM();
     }
 
-    // ===== BGM =====
     public void PlayBGM()
     {
         if (!soundOn) return;
@@ -54,7 +50,6 @@ public class AudioManager : MonoBehaviour
         bgmSource.Play();
     }
 
-    // ===== SFX =====
     public void PlaySFX(AudioClip clip)
     {
         if (!soundOn || clip == null) return;
@@ -68,4 +63,10 @@ public class AudioManager : MonoBehaviour
         if (soundOn) bgmSource.Play();
         else bgmSource.Stop();
     }
+    public void StopBGM()
+    {
+        if (bgmSource == null) return;
+        bgmSource.Stop();
+    }
+
 }

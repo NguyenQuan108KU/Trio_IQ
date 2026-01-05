@@ -7,7 +7,7 @@ public class CountdownTimer : MonoBehaviour
 {
     public static CountdownTimer instance;
     public TMP_Text timerText;
-    public int startSeconds = 60;
+    public int startSeconds = 30;
 
     [Header("Warning Effect")]
     public int warningTime = 5;
@@ -32,8 +32,10 @@ public class CountdownTimer : MonoBehaviour
     private Coroutine bgBlinkCo;
     private Image bgImage;
     private Color bgOriginalColor;
-    public GameObject wwin;
 
+    public GameObject ECLose;
+    public float timerPA;
+    public bool isShowPA;
 
     private void Awake()
     {
@@ -61,7 +63,7 @@ public class CountdownTimer : MonoBehaviour
             backgroundWarning.SetActive(false);
         }
 
-        //StartCountdown();
+        
     }
 
     public void StartCountdown()
@@ -79,7 +81,6 @@ public class CountdownTimer : MonoBehaviour
     {
         int timeLeft = startSeconds;
 
-        // ensure hidden at start
         if (backgroundWarning != null)
             backgroundWarning.SetActive(false);
 
@@ -87,7 +88,6 @@ public class CountdownTimer : MonoBehaviour
         {
             UpdateText(timeLeft);
 
-            //play warning behavior when in warning period
             if (timeLeft <= warningTime)
             {
                 AudioManager.Instance.PlaySFX(AudioManager.Instance.warningTick);
@@ -163,54 +163,65 @@ public class CountdownTimer : MonoBehaviour
         if (backgroundWarning != null)
             backgroundWarning.SetActive(false);
     }
-
-    //IEnumerator PulseText()
-    //{
-    //    while (true)
-    //    {
-    //        // to lên
-    //        yield return ScaleTo(originalScale * pulseScale);
-    //        // nhỏ lại
-    //        yield return ScaleTo(originalScale);
-    //    }
-    //}
-    void OnTimeUp()
+    IEnumerator ScaleTo(Vector3 target)
     {
-        // stop blink when time up
-        StopBackgroundBlink();
+        Vector3 start = timerText.transform.localScale;
+        float t = 0f;
 
-        timerText.text = "00:00";
-
-        if (timeUpPanel != null)
+        while (t < pulseSpeed)
         {
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.lose);
-            timeUpPanel.GetComponent<EndCart_Lose>()?.Show();
+            t += Time.deltaTime;
+            timerText.transform.localScale = Vector3.Lerp(start, target, t / pulseSpeed);
+            yield return null;
+        }
+    }
+    public void showPA()
+    {
+        if (isShowPA) return;
 
-            GameManager.Instance.finishGame = true;
+        timerPA += Time.deltaTime;
 
-            // ✅ CHỈ END GAME KHI BẬT TIMER
-            if (GameManager.Instance.isTimer)
-            {
-                Debug.Log(" Ending game.");
-                GameManager.Instance.EndGame();
-                Luna.Unity.Playable.InstallFullGame();
-            }
+        if (timerPA >= 30f)
+        {
+            isShowPA = true;
+            Luna.Unity.LifeCycle.GameEnded();
         }
     }
 
+    void OnTimeUp()
+    {
+        GameManager.instance.isCheckLose = true;
+        StopBackgroundBlink();
+        timerText.text = "00:00";
+        if (timeUpPanel != null)
+        {
+            AudioManager.Instance.StopBGM();
+            GameManager.instance.finishGame = true;
+            if (!GameManager.instance.isCheckWin)
+            {
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.lose);
+                ECLose.GetComponent<EndCart_Lose>()?.Show();
+            }
+        }
+    }
     public void StopCountdown()
     {
+        // dừng coroutine đếm giờ
         if (countdownCo != null)
         {
             StopCoroutine(countdownCo);
             countdownCo = null;
         }
 
+        // dừng blink nền
         StopBackgroundBlink();
-    }
-    public void ActiveEndCartWin()
-    {
-        wwin.GetComponent<EndCart_Lose>()?.Show();
+
+        // reset trạng thái nếu cần
+        hasStarted = false;
+
+        // optional: trả màu & scale về ban đầu
+        timerText.color = originalColor;
+        timerText.transform.localScale = originalScale;
     }
 
 }
