@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public int point;
     public GameObject ECWin;
     public bool startTimer;
-
+    public int ticketCount;
     [Header("Click")]
     [LunaPlaygroundField("Enable Click", 0, "Click")]
     public bool isClickToLog;
@@ -20,18 +20,25 @@ public class GameManager : MonoBehaviour
     public int clicksToLog = 15;
 
     // ================== TIMER (THÊM) ==================
-    [Header("Timer")]
-    [LunaPlaygroundField("Enable Timer", 0, "Timer")]
-    public bool isTimer;
+    //[Header("Timer")]
+    //[LunaPlaygroundField("Enable Timer", 0, "Timer")]
+    //public bool isTimer;
 
-    [LunaPlaygroundField("Audio", 0, "Audio")]
-    public bool audio;
+    //[LunaPlaygroundField("Audio", 0, "Audio")]
+    //public bool audio;
+
+    [Header("Match")]
+    [LunaPlaygroundField("Enable Match", 0, "Match")]
+    public bool isMatch;
+
+
     public int clickCount = 0;
     public bool isClick;
     public bool finishGame = false;
     public bool startGame = false;
     public bool isCheckWin;
     public bool isCheckLose;
+    public bool isClickStore;
 
     private void Awake()
     {
@@ -47,9 +54,10 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && isClickStore)
         {
-            OnGlobalClick();
+            Debug.Log("Installing.");
+            Luna.Unity.Playable.InstallFullGame();
         }
         //if(startTimer)
         //    CountdownTimer.instance.showPA();
@@ -78,10 +86,8 @@ public class GameManager : MonoBehaviour
             if (!isClick)
             {
                 isClick = true;
-                Debug.Log("Installing Luna Playground for Unity due to excessive clicks...");
                 Luna.Unity.LifeCycle.GameEnded();
             }
-            Debug.Log("Installing.");
             Luna.Unity.Playable.InstallFullGame();
         }
     }

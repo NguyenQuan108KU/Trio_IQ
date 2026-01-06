@@ -208,7 +208,7 @@ public class TrayManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
         //CacheSize();
         AlignInstant();
-        yield return new WaitForSeconds(2.0f);
+        //yield return new WaitForSeconds(2.0f);
         ShowTutorial();
     }
     void InitPool()
@@ -291,10 +291,13 @@ public class TrayManager : MonoBehaviour
         {
             SpawnTrayAtTop();
             AlignAnimated();
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.wood);
         });
 
         seq.Append(completedTray.DOMove(dropPos, 0.25f))
+           .AppendCallback(() =>
+           {
+               AudioManager.Instance.PlaySFX(AudioManager.Instance.wood); 
+           })
            .Append(completedTray.DOMoveY(dropPos.y + 0.4f, 0.15f).SetEase(Ease.OutCubic))
            .Append(completedTray.DOMoveY(dropPos.y, 0.15f).SetEase(Ease.InCubic))
            .Append(completedTray.DOMoveY(dropPos.y + 0.15f, 0.1f).SetEase(Ease.OutCubic))
@@ -307,7 +310,6 @@ public class TrayManager : MonoBehaviour
             completedTray.DOScale(0f, 0.2f)
                 .SetEase(Ease.InBack)
         );
-
         seq.OnComplete(() =>
         {
             if (IsAlive(completedTray))

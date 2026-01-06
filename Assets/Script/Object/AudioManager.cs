@@ -18,6 +18,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip win;
     public AudioClip warningTick;
     public AudioClip match;
+    public AudioClip sake;
 
     bool soundOn = true;
 
@@ -37,7 +38,7 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        if(GameManager.instance.audio)
+        //if(GameManager.instance.audio)
             PlayBGM();
     }
 

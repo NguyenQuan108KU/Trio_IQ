@@ -26,7 +26,7 @@ public class DragItem : MonoBehaviour
     public float outlineTweenTime = 0.12f;
     private GameObject outline;
     public ItemType itemType;
-
+    public bool lockItem;
 
     private void Awake()
     {
@@ -34,7 +34,7 @@ public class DragItem : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         startScale = transform.localScale;
         outline = transform.GetChild(0).gameObject;
-        outline.SetActive(false); // mặc định tắt
+        outline.SetActive(false);
     }
 
     private void Update()
@@ -65,6 +65,7 @@ public class DragItem : MonoBehaviour
             //CountdownTimer.instance.StartCountdown();
             GameManager.instance.startTimer = true;
         }
+        if (lockItem) return;
         //if (GameManager.instance.finishGame) return;
         //if(!GameManager.instance.startGame) return;
         TrayManager.instance.OnUserBeginInteract();
@@ -76,7 +77,7 @@ public class DragItem : MonoBehaviour
             if (hit.gameObject == gameObject)
             {
                 currentDrag = this;
-
+                GameManager.instance.OnGlobalClick();
                 tween?.Kill();
                 startPos = transform.position;
                 startParent = transform.parent;
@@ -99,8 +100,6 @@ public class DragItem : MonoBehaviour
     }
     void Drop()
     {
-        sr.sortingOrder = 1;
-        outline.GetComponent<SpriteRenderer>().sortingOrder = -1;
         currentDrag = null;
         ShowOutline(false);
         PlayDropScale();
@@ -127,8 +126,9 @@ public class DragItem : MonoBehaviour
                 .SetEase(Ease.OutBack)
                 .OnComplete(() =>
                 {
+                    sr.sortingOrder = 1;
+                    outline.GetComponent<SpriteRenderer>().sortingOrder = -1;
                     slot.SetItem(this);
-
                     Tray tray = slot.GetComponentInParent<Tray>();
                     if (tray != null)
                         tray.CheckMatch();
@@ -145,8 +145,14 @@ public class DragItem : MonoBehaviour
                     startSlot.anchor.localPosition,
                     0.5f
                 )
-                .SetEase(Ease.OutQuad);
+                .SetEase(Ease.OutQuad)
+                .OnComplete(() =>
+                {
+                    sr.sortingOrder = 1;
+                    outline.GetComponent<SpriteRenderer>().sortingOrder = -1;
+                });
     }
+
     Slot FindNearestSlot()
     {
         Slot[] slots = FindObjectsOfType<Slot>();

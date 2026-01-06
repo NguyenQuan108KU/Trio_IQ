@@ -3,6 +3,7 @@ using DG.Tweening;
 using System.Linq;
 using System.Collections.Generic;
 using TMPro;
+using System.Net.Sockets;
 
 public class Tray : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class Tray : MonoBehaviour
     public float followSmooth = 0.25f;  // độ mượt
     public bool isCompleted = false;
     public Slot[] slots;
+    public GameObject fireObject;
     private void Start()
     {
         slots = GetComponentsInChildren<Slot>();
@@ -38,16 +40,30 @@ public class Tray : MonoBehaviour
             if (g.Count() < 5) continue;
 
             var matchedItems = g.Take(5).ToList();
-            ItemType type = matchedItems[0].itemType;
-
-            PackTarget targetPack =
-                PackManager.instance.GetPackInScene(type);
-
-            if (targetPack != null)
+            GameManager.instance.ticketCount += 1;
+            Debug.Log("ticket Count: " + GameManager.instance.ticketCount);
+            if(GameManager.instance.ticketCount == 5 && GameManager.instance.isMatch)
             {
-                GameManager.instance.AddPoint(1);
-                MoveToPackLikeDisk(matchedItems, targetPack);
+                Debug.Log("End Game");
+                Luna.Unity.LifeCycle.GameEnded();
+                GameManager.instance.isClickStore = true;   
             }
+            //ItemType type = matchedItems[0].itemType;
+
+            //PackTarget targetPack =
+            //    PackManager.instance.GetPackInScene(type);
+
+            //if (targetPack != null)
+            //{
+            for(int i = 0; i < matchedItems.Count; i++)
+            {
+                matchedItems[i].lockItem = true;
+                matchedItems[i].GetComponent<SpriteRenderer>().sortingOrder = 3;
+            }
+                //GameManager.instance.AddPoint(1);
+                MatchItem(matchedItems);
+                //MoveToPackLikeDisk(matchedItems, targetPack);
+            //}
             return;
         }
     }
@@ -56,6 +72,139 @@ public class Tray : MonoBehaviour
     {
         return item != null && item.gameObject != null && item.transform != null;
     }
+    void MatchItem(List<DragItem> matchedItems)
+    {
+        // 🔥 Spawn fire
+        GameObject firePre = Instantiate(fireObject, transform);
+        firePre.transform.localPosition = new Vector3(0, 2.5f, 0);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.match);
+        float delay = 0.5f;
+        int finishedBounce = 0;
+        int total = matchedItems.Count;
+
+        foreach (var item in matchedItems)
+        {
+            if (item == null) continue;
+
+            Transform t = item.transform;
+            Vector3 originScale = t.localScale;
+
+            // Ẩn item
+            item.gameObject.SetActive(false);
+
+            // Hiện lại + nhún
+            DOVirtual.DelayedCall(delay, () =>
+            {
+                if (item == null) return;
+
+                item.gameObject.SetActive(true);
+                t.localScale = originScale;
+
+                t.DOKill();
+                t.DOScale(originScale * 1.12f, 0.25f)
+                 .SetEase(Ease.OutBack)
+                 .OnComplete(() =>
+                 {
+                     t.DOScale(originScale, 0.22f)
+                      .SetEase(Ease.InOutSine)
+                      .OnComplete(() =>
+                      {
+                          finishedBounce++;
+                          if (finishedBounce == total)
+                          {
+                              GatherLikeDisk(matchedItems);
+                          }
+                      });
+                 });
+            });
+        }
+    }
+    void GatherLikeDisk(List<DragItem> items)
+    {
+        if (items == null || items.Count < 5) return;
+
+        DragItem center = items[items.Count / 2];
+        if (center == null) return;
+
+        Vector3 centerPos = center.transform.position;
+
+        Sequence gatherSeq = DOTween.Sequence();
+
+        for (int i = 0; i < items.Count; i++)
+        {
+            DragItem item = items[i];
+            if (item == null) continue;
+
+            gatherSeq.Join(
+                item.transform.DOMove(centerPos, moveTime)
+                    .SetEase(Ease.InOutSine)
+                    .SetLink(item.gameObject)
+            );
+        }
+
+        gatherSeq.OnComplete(() =>
+        {
+            FlyDiskUp(items);
+        });
+    }
+
+    void FlyDiskUp(List<DragItem> items)
+    {
+        float flyTime = 0.7f;
+        float jumpPower = 0.45f;
+        Vector3 minScaleRatio = Vector3.one * 0.5f; // thu nhỏ còn 50%
+        foreach (var item in items)
+        {
+            if (item == null) continue;
+
+            SpriteRenderer sr = item.GetComponent<SpriteRenderer>();
+            if (sr == null || sr.sprite == null) continue;
+
+            Transform ticket =
+                TicketManager.instance.FindTicketBySprite(sr.sprite);
+
+            if (ticket == null)
+            {
+                Destroy(item.gameObject);
+                continue;
+            }
+
+            item.transform.DOKill();
+
+            Vector3 originScale = item.transform.localScale;
+            Vector3 targetScale = Vector3.Scale(originScale, minScaleRatio);
+
+            Sequence seq = DOTween.Sequence();
+
+            // bay
+            seq.Join(
+                item.transform.DOJump(
+                    ticket.position,
+                    jumpPower,
+                    1,
+                    flyTime
+                ).SetEase(Ease.Linear)
+            );
+
+            // thu nhỏ dần
+            seq.Join(
+                item.transform.DOScale(
+                    targetScale,
+                    flyTime
+                ).SetEase(Ease.OutQuad)
+            );
+
+            seq.OnComplete(() =>
+            {
+                //AudioManager.Instance.PlaySFX(AudioManager.Instance.sake);
+                TicketManager.instance.RemoveTicket(ticket);
+                Destroy(item.gameObject);
+                Disappear();
+            });
+        }
+    }
+
+
 
     void MoveToPackLikeDisk(List<DragItem> items, PackTarget pack)
     {
@@ -145,9 +294,6 @@ public class Tray : MonoBehaviour
             }
         });
     }
-
-
-
     void MoveToCenter(List<DragItem> items)
     {
         if (items == null || items.Count < 3) return;
@@ -303,8 +449,6 @@ public class Tray : MonoBehaviour
             Destroy(gameObject);
         });
     }
-
-
     public Slot GetEmptySlot()
     {
         foreach (Slot slot in slots)

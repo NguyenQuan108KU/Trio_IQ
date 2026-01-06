@@ -4,6 +4,7 @@ using DG.Tweening;
 
 public class TicketManager : MonoBehaviour
 {
+    public static TicketManager instance;
     [Header("Tickets")]
     public List<Transform> tickets = new List<Transform>();
 
@@ -11,8 +12,8 @@ public class TicketManager : MonoBehaviour
     public float moveTime = 0.25f;
 
     [Header("Scale")]
-    public Vector3 bigScale = new Vector3(0.185f, 0.185f, 0.185f);
-    public Vector3 smallScale = new Vector3(0.11f, 0.11f, 0.11f);
+    public Vector3 bigScale = new Vector3(0.19f, 0.19f, 0.19f);
+    public Vector3 smallScale = new Vector3(0.12f, 0.12f, 0.12f);
 
     [Header("Layout")]
     public float slotX;
@@ -21,18 +22,24 @@ public class TicketManager : MonoBehaviour
     Vector3 bigSlot;
     public List<Vector3> smallSlots = new List<Vector3>();
 
+    [Header("FX")]
+    public ParticleSystem removeFxPrefab;
+
+
     // ================= START =================
     void Awake()
     {
+        if(instance == null)
+            instance = this;
+        else
+            Destroy(instance);
+
         BuildSlots();
         SetupInitialTickets();
     }
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            RemoveTicket(tickets[0]);
-        }
+        
     }
     void SetupInitialTickets()
     {
@@ -91,14 +98,29 @@ public class TicketManager : MonoBehaviour
 
         Relayout();
     }
+    void PlayRemoveFX(Transform ticket)
+    {
+        if (removeFxPrefab == null) return;
+
+        ParticleSystem fx = Instantiate(
+            removeFxPrefab,
+            ticket.position,
+            Quaternion.identity,
+            ticket 
+        );
+
+        fx.transform.localPosition = Vector3.zero; // đúng tâm ticket
+        fx.Play();
+    }
+
 
     public void RemoveTicket(Transform ticket)
     {
         if (!tickets.Contains(ticket)) return;
 
         tickets.Remove(ticket);
-
-        ticket.DOScale(0f, 0.2f)
+        //PlayRemoveFX(ticket);
+        ticket.DOScale(0f, 0.5f)
               .SetEase(Ease.InBack)
               .OnComplete(() =>
               {
@@ -117,7 +139,7 @@ public class TicketManager : MonoBehaviour
             if (i == 0)
             {
                 t.DOLocalMove(bigSlot, moveTime).SetEase(Ease.OutCubic);
-                t.DOScale(bigScale, moveTime).SetEase(Ease.OutBack);
+                t.DOScale(bigScale, moveTime).SetEase(Ease.OutCubic);
             }
             else
             {
@@ -125,9 +147,29 @@ public class TicketManager : MonoBehaviour
                 if (slotIndex >= smallSlots.Count)
                     continue;
                 t.DOLocalMove(smallSlots[slotIndex], moveTime).SetEase(Ease.OutCubic);
-                t.DOScale(smallScale, moveTime).SetEase(Ease.OutBack);
+                t.DOScale(smallScale, moveTime).SetEase(Ease.OutCubic);
             }
         }
     }
+    public Transform FindTicketBySprite(Sprite sprite)
+    {
+        if (sprite == null) return null;
+
+        foreach (var t in tickets)
+        {
+            if (t == null) continue;
+
+            TicketIcon icon = t.GetComponentInChildren<TicketIcon>();
+            if (icon == null) continue;
+
+            SpriteRenderer sr = icon.GetComponent<SpriteRenderer>();
+            if (sr == null || sr.sprite == null) continue;
+
+            if (sr.sprite == sprite)   
+                return t;
+        }
+        return null;
+    }
+
 
 }

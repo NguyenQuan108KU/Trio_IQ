@@ -31,7 +31,6 @@ public class CheckSize : MonoBehaviour
 
     void Update()
     {
-        // aspect đổi → layout đổi (Editor + WebGL + Luna đều OK)
         if (Mathf.Abs(cam.aspect - lastAspect) > 0.01f)
         {
             UpdateCamera();
@@ -47,12 +46,12 @@ public class CheckSize : MonoBehaviour
         if (!isPortrait)
         {
             //cam.orthographicSize = size16by9;
-            cam.orthographicSize = 4.2f;
-            button_doc.SetActive(false);
-            trayManager.transform.position = new Vector3(0, -0.75f, 0);
-            target.GetComponent<RectTransform>().anchoredPosition = new Vector2(173, -127);
-            timer.GetComponent<RectTransform>().anchoredPosition = new Vector2(-281, -127);
-            diskTransform.transform.position = new Vector3(0, 3.3f, 0);
+            cam.orthographicSize = 3.9f;
+            //button_doc.SetActive(false);
+            //trayManager.transform.position = new Vector3(0, -0.75f, 0);
+            //target.GetComponent<RectTransform>().anchoredPosition = new Vector2(173, -127);
+            //timer.GetComponent<RectTransform>().anchoredPosition = new Vector2(-281, -127);
+            //diskTransform.transform.position = new Vector3(0, 3.3f, 0);
             //logoGame.GetComponent<RectTransform>().anchoredPosition = new Vector2(-1071f, -440);
             //buttonGame.GetComponent<RectTransform>().anchoredPosition = new Vector2(1079f, -503);
             //if (diskTransform)
@@ -67,24 +66,24 @@ public class CheckSize : MonoBehaviour
         {
             cam.orthographicSize = size16by9;
             
-            button_doc.SetActive(true);
-            trayManager.transform.position = new Vector3(0, -0.25f, 0);
-            button_doc.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -1295f, 0);
-            target.GetComponent<RectTransform>().anchoredPosition = new Vector2(111, -87);
-            timer.GetComponent<RectTransform>().anchoredPosition = new Vector2(-281, -87);
-            diskTransform.transform.position = new Vector3(0.15f, 3.48f, 0);
+            //button_doc.SetActive(true);
+            //trayManager.transform.position = new Vector3(0, -0.25f, 0);
+            //button_doc.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -1295f, 0);
+            //target.GetComponent<RectTransform>().anchoredPosition = new Vector2(111, -87);
+            //timer.GetComponent<RectTransform>().anchoredPosition = new Vector2(-281, -87);
+            //diskTransform.transform.position = new Vector3(0.15f, 3.48f, 0);
             //if (diskTransform)
             //diskTransform.position = diskPos16by9;
         }
         else
         {
             cam.orthographicSize = sizeLong;
-            button_doc.SetActive(true);
-            trayManager.transform.position = new Vector3(0, 0, 0);
-            button_doc.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -1522);
-            diskTransform.transform.position = new Vector3(0.15f, 4f, 0);
-            target.GetComponent<RectTransform>().anchoredPosition = new Vector2(111, -204);
-            timer.GetComponent<RectTransform>().anchoredPosition = new Vector2(-281, -204);
+            //button_doc.SetActive(true);
+            //trayManager.transform.position = new Vector3(0, 0, 0);
+            //button_doc.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -1522);
+            //diskTransform.transform.position = new Vector3(0.15f, 4f, 0);
+            //target.GetComponent<RectTransform>().anchoredPosition = new Vector2(111, -204);
+            //timer.GetComponent<RectTransform>().anchoredPosition = new Vector2(-281, -204);
             //if (diskTransform)
             //diskTransform.position = diskPosLong;
         }

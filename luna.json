@@ -2,7 +2,7 @@
     "version": "7.0.0",
     "projectId": "01007caba134ace46b9e4290577324b9",
     "applicationID": 35714,
-    "creativeName": "ColorfulPack",
+    "creativeName": "TicketRemove",
     "pgServer": "EU",
     "window": {
         "‐⁏": true
@@ -209,10 +209,6 @@
         "unusedClasses": [
             {
                 "name": "System.ValueType",
-                "excluded": true
-            },
-            {
-                "name": "System.Reflection.TargetSite",
                 "excluded": true
             },
             {
@@ -1881,10 +1877,6 @@
             },
             {
                 "name": "UnityEngine.TouchScreenKeyboard",
-                "excluded": true
-            },
-            {
-                "name": "UnityEngine.TrailModule",
                 "excluded": true
             },
             {
@@ -7321,7 +7313,7 @@
             },
             {
                 "name": "DG.Tweening.Core.SafeModeReport.SafeModeReportType",
-                "excluded": true
+                "excluded": false
             },
             {
                 "name": "DG.Tweening.Core.TargetType",
@@ -18037,7 +18029,7 @@
                     },
                     {
                         "name": "_aspect#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "_aspect#set",
@@ -18045,7 +18037,7 @@
                     },
                     {
                         "name": "aspect#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "aspect#set",
@@ -18057,7 +18049,7 @@
                     },
                     {
                         "name": "orthographicSize#set",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "orthographic#get",
@@ -18987,7 +18979,7 @@
                     },
                     {
                         "name": "OnDidApplyAnimationProperties",
-                        "excluded": true
+                        "excluded": false
                     }
                 ]
             },
@@ -28801,7 +28793,7 @@
                     },
                     {
                         "name": "Add",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "GetTotErrors",
@@ -32616,6 +32608,18 @@
                     {
                         "name": "GetMainItemKey",
                         "excluded": false
+                    },
+                    {
+                        "name": "MatchItem",
+                        "excluded": false
+                    },
+                    {
+                        "name": "GatherLikeDisk",
+                        "excluded": false
+                    },
+                    {
+                        "name": "FlyDiskUp",
+                        "excluded": false
                     }
                 ]
             },
@@ -33407,7 +33411,7 @@
                     },
                     {
                         "name": "LogSafeModeCapturedError",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "LogReport",
@@ -33455,7 +33459,7 @@
                     },
                     {
                         "name": "ShouldLogSafeModeCapturedError",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "GetDebugDataMessage",
@@ -39613,11 +39617,11 @@
                     },
                     {
                         "name": "init",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "ctor",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "GetParticles",
@@ -40794,6 +40798,116 @@
                     {
                         "name": "ctor",
                         "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "CheckSize",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Awake",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Update",
+                        "excluded": false
+                    },
+                    {
+                        "name": "UpdateCamera",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "TicketIcon",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "Start",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Update",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "TicketManager",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Awake",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Update",
+                        "excluded": false
+                    },
+                    {
+                        "name": "SetupInitialTickets",
+                        "excluded": false
+                    },
+                    {
+                        "name": "BuildSlots",
+                        "excluded": false
+                    },
+                    {
+                        "name": "AddTicket",
+                        "excluded": true
+                    },
+                    {
+                        "name": "RemoveTicket",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Relayout",
+                        "excluded": false
+                    },
+                    {
+                        "name": "FindTicketBySprite",
+                        "excluded": false
+                    },
+                    {
+                        "name": "PlayRemoveFX",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "System.Reflection.TargetSite",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "ctor",
+                        "excluded": false
+                    },
+                    {
+                        "name": "toString",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "UnityEngine.TrailModule",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "enabled#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "enabled#set",
+                        "excluded": true
                     }
                 ]
             }
