@@ -37,10 +37,6 @@ public class TicketManager : MonoBehaviour
         BuildSlots();
         SetupInitialTickets();
     }
-    private void Update()
-    {
-        
-    }
     void SetupInitialTickets()
     {
         for (int i = 0; i < tickets.Count; i++)
@@ -82,8 +78,6 @@ public class TicketManager : MonoBehaviour
             smallSlots.Add(tickets[i].transform.localPosition);
         }
     }
-
-
     public void AddTicket(Transform ticket)
     {
         ticket.SetParent(transform, false);
@@ -102,18 +96,18 @@ public class TicketManager : MonoBehaviour
     {
         if (removeFxPrefab == null) return;
 
-        ParticleSystem fx = Instantiate(
-            removeFxPrefab,
-            ticket.position,
-            Quaternion.identity,
-            ticket 
-        );
+        ParticleSystem fx = Instantiate(removeFxPrefab, ticket);
 
-        fx.transform.localPosition = Vector3.zero; // đúng tâm ticket
+        // reset local
+        fx.transform.localPosition = Vector3.zero;
+        fx.transform.localRotation = Quaternion.identity;
+        fx.transform.localScale = Vector3.one;
+
         fx.Play();
+
+        // tự huỷ sau khi xong
+        Destroy(fx.gameObject, fx.main.duration + fx.main.startLifetime.constantMax);
     }
-
-
     public void RemoveTicket(Transform ticket)
     {
         if (!tickets.Contains(ticket)) return;
@@ -128,7 +122,6 @@ public class TicketManager : MonoBehaviour
                   Relayout();
               });
     }
-
     void Relayout()
     {
         for (int i = 0; i < tickets.Count; i++)
@@ -170,6 +163,4 @@ public class TicketManager : MonoBehaviour
         }
         return null;
     }
-
-
 }

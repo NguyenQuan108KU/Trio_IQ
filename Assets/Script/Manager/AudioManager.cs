@@ -1,13 +1,10 @@
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : MonoBehaviourSingleton<AudioManager>
 {
-    public static AudioManager Instance;
-
     [Header("Audio Sources")]
     public AudioSource bgmSource;
     public AudioSource sfxSource;
-
     [Header("Clips")]
     public AudioClip bgm;
     public AudioClip drag;
@@ -19,29 +16,12 @@ public class AudioManager : MonoBehaviour
     public AudioClip warningTick;
     public AudioClip match;
     public AudioClip sake;
-
     bool soundOn = true;
-
-    void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-    }
-
     void Start()
     {
         //if(GameManager.instance.audio)
             PlayBGM();
     }
-
     public void PlayBGM()
     {
         if (!soundOn) return;
@@ -50,7 +30,6 @@ public class AudioManager : MonoBehaviour
         bgmSource.loop = true;
         bgmSource.Play();
     }
-
     public void PlaySFX(AudioClip clip)
     {
         if (!soundOn || clip == null) return;

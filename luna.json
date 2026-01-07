@@ -132,10 +132,11 @@
             ]
         },
         "scenes": [
-            "Assets/Scenes/Grill Remove.unity"
+            "Assets/Scenes/Double Match.unity"
         ],
         "disabledScenes": [
-            "Assets/Scenes/SampleScene.unity"
+            "Assets/Scenes/Color Pack.unity",
+            "Assets/Scenes/Grill Remove.unity"
         ],
         "startupScene": 0,
         "packages": {
@@ -8986,6 +8987,14 @@
             {
                 "name": "ItemType",
                 "excluded": true
+            },
+            {
+                "name": "pc.Debugger.Components.EditorCamera",
+                "excluded": true
+            },
+            {
+                "name": "pc.Debugger.Components.EditorGUI",
+                "excluded": true
             }
         ],
         "unusedMethods": [
@@ -15955,7 +15964,7 @@
                     },
                     {
                         "name": "position#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "position#set",
@@ -16043,7 +16052,7 @@
                     },
                     {
                         "name": "$ctor1",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "ctor",
@@ -17161,11 +17170,11 @@
                     },
                     {
                         "name": "width#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "height#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "filterMode#get",
@@ -22793,7 +22802,7 @@
                     },
                     {
                         "name": "DoUpdateDelay",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "DoStartup",
@@ -22977,7 +22986,7 @@
                     },
                     {
                         "name": "UpdateDelay",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Startup",
@@ -31910,6 +31919,10 @@
                     {
                         "name": "SetItem",
                         "excluded": false
+                    },
+                    {
+                        "name": "CanAcceptItem",
+                        "excluded": false
                     }
                 ]
             },
@@ -32644,10 +32657,6 @@
                         "excluded": false
                     },
                     {
-                        "name": "CacheSize",
-                        "excluded": false
-                    },
-                    {
                         "name": "SpawnTrayAtTop",
                         "excluded": false
                     },
@@ -32701,6 +32710,18 @@
                     },
                     {
                         "name": "GetItemFromOtherTray",
+                        "excluded": false
+                    },
+                    {
+                        "name": "SpawnTraySpecial",
+                        "excluded": false
+                    },
+                    {
+                        "name": "PromoteSpecialTrayToMain",
+                        "excluded": false
+                    },
+                    {
+                        "name": "GetSlotLocalPos",
                         "excluded": false
                     }
                 ]
@@ -34383,7 +34404,7 @@
                     },
                     {
                         "name": "SetDelay",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "SetDelay$1",
@@ -40016,10 +40037,6 @@
                         "excluded": false
                     },
                     {
-                        "name": "Awake",
-                        "excluded": false
-                    },
-                    {
                         "name": "Start",
                         "excluded": false
                     },
@@ -40037,6 +40054,10 @@
                     },
                     {
                         "name": "StopBGM",
+                        "excluded": false
+                    },
+                    {
+                        "name": "inherits",
                         "excluded": false
                     }
                 ]
@@ -40324,10 +40345,6 @@
                         "excluded": false
                     },
                     {
-                        "name": "Awake",
-                        "excluded": false
-                    },
-                    {
                         "name": "Start",
                         "excluded": false
                     },
@@ -40342,6 +40359,14 @@
                     {
                         "name": "SpawnSameTypePack",
                         "excluded": false
+                    },
+                    {
+                        "name": "inherits",
+                        "excluded": false
+                    },
+                    {
+                        "name": "FindPackBySprite",
+                        "excluded": true
                     }
                 ]
             },
@@ -40363,6 +40388,14 @@
                     },
                     {
                         "name": "Punch",
+                        "excluded": true
+                    },
+                    {
+                        "name": "GetNameSpriteItem",
+                        "excluded": true
+                    },
+                    {
+                        "name": "GetSpriteRenderer",
                         "excluded": true
                     }
                 ]
@@ -40802,28 +40835,6 @@
                 ]
             },
             {
-                "className": "CheckSize",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Awake",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Update",
-                        "excluded": false
-                    },
-                    {
-                        "name": "UpdateCamera",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
                 "className": "TicketIcon",
                 "staticMethods": [],
                 "instanceMethods": [
@@ -40847,10 +40858,6 @@
                     },
                     {
                         "name": "Awake",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Update",
                         "excluded": false
                     },
                     {
@@ -40908,6 +40915,20 @@
                     {
                         "name": "enabled#set",
                         "excluded": true
+                    }
+                ]
+            },
+            {
+                "className": "MonoBehaviourSingleton$1",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Awake",
+                        "excluded": false
                     }
                 ]
             }

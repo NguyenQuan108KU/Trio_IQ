@@ -90,7 +90,7 @@ public class CountdownTimer : MonoBehaviour
 
             if (timeLeft <= warningTime)
             {
-                AudioManager.Instance.PlaySFX(AudioManager.Instance.warningTick);
+                AudioManager.instance.PlaySFX(AudioManager.instance.warningTick);
 
                 timerText.color = warningColor;
 
@@ -195,11 +195,11 @@ public class CountdownTimer : MonoBehaviour
         timerText.text = "00:00";
         if (timeUpPanel != null)
         {
-            AudioManager.Instance.StopBGM();
+            AudioManager.instance.StopBGM();
             GameManager.instance.finishGame = true;
             if (!GameManager.instance.isCheckWin)
             {
-                AudioManager.Instance.PlaySFX(AudioManager.Instance.lose);
+                AudioManager.instance.PlaySFX(AudioManager.instance.lose);
                 ECLose.GetComponent<EndCart_Lose>()?.Show();
             }
         }

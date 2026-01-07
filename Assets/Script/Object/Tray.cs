@@ -14,10 +14,11 @@ public class Tray : MonoBehaviour
     public float shrinkTime = 0.1f;
     public float itemToDiskTime = 0.1f;
     public float attachDelay = 0.15f;   // item chậm theo disk
-    public float followSmooth = 0.25f;  // độ mượt
+    public float followSmooth = 0.25f;  
     public bool isCompleted = false;
     public Slot[] slots;
     public GameObject fireObject;
+    public bool isSpecial;
     private void Start()
     {
         slots = GetComponentsInChildren<Slot>();
@@ -41,10 +42,8 @@ public class Tray : MonoBehaviour
 
             var matchedItems = g.Take(5).ToList();
             GameManager.instance.ticketCount += 1;
-            Debug.Log("ticket Count: " + GameManager.instance.ticketCount);
             if(GameManager.instance.ticketCount == 5 && GameManager.instance.isMatch)
             {
-                Debug.Log("End Game");
                 Luna.Unity.LifeCycle.GameEnded();
                 GameManager.instance.isClickStore = true;   
             }
@@ -67,17 +66,16 @@ public class Tray : MonoBehaviour
             return;
         }
     }
-
     bool IsValidForTween(DragItem item)
     {
         return item != null && item.gameObject != null && item.transform != null;
     }
     void MatchItem(List<DragItem> matchedItems)
     {
-        // 🔥 Spawn fire
+        Debug.Log("Match Item!");
         GameObject firePre = Instantiate(fireObject, transform);
         firePre.transform.localPosition = new Vector3(0, 2.5f, 0);
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.match);
+        AudioManager.instance.PlaySFX(AudioManager.instance.match);
         float delay = 0.5f;
         int finishedBounce = 0;
         int total = matchedItems.Count;
@@ -147,12 +145,11 @@ public class Tray : MonoBehaviour
             FlyDiskUp(items);
         });
     }
-
     void FlyDiskUp(List<DragItem> items)
     {
         float flyTime = 0.7f;
         float jumpPower = 0.45f;
-        Vector3 minScaleRatio = Vector3.one * 0.5f; // thu nhỏ còn 50%
+        Vector3 minScaleRatio = Vector3.one * 0.5f; 
         foreach (var item in items)
         {
             if (item == null) continue;
@@ -160,9 +157,8 @@ public class Tray : MonoBehaviour
             SpriteRenderer sr = item.GetComponent<SpriteRenderer>();
             if (sr == null || sr.sprite == null) continue;
 
-            Transform ticket =
-                TicketManager.instance.FindTicketBySprite(sr.sprite);
-
+            //Transform ticket = TicketManager.instance.FindTicketBySprite(sr.sprite);
+            Transform ticket = PackManager.instance.FindPackBySprite(sr.sprite);
             if (ticket == null)
             {
                 Destroy(item.gameObject);
@@ -175,7 +171,6 @@ public class Tray : MonoBehaviour
             Vector3 targetScale = Vector3.Scale(originScale, minScaleRatio);
 
             Sequence seq = DOTween.Sequence();
-
             // bay
             seq.Join(
                 item.transform.DOJump(
@@ -185,7 +180,6 @@ public class Tray : MonoBehaviour
                     flyTime
                 ).SetEase(Ease.Linear)
             );
-
             // thu nhỏ dần
             seq.Join(
                 item.transform.DOScale(
@@ -197,15 +191,13 @@ public class Tray : MonoBehaviour
             seq.OnComplete(() =>
             {
                 //AudioManager.Instance.PlaySFX(AudioManager.Instance.sake);
-                TicketManager.instance.RemoveTicket(ticket);
+                //TicketManager.instance.RemoveTicket(ticket);
+                PackManager.instance.OnPackFilled(ticket.GetComponent<PackTarget>());
                 Destroy(item.gameObject);
                 Disappear();
             });
         }
     }
-
-
-
     void MoveToPackLikeDisk(List<DragItem> items, PackTarget pack)
     {
         if (items == null || items.Count < 5) return;
@@ -242,7 +234,7 @@ public class Tray : MonoBehaviour
                     .SetLink(item.gameObject)
             );
         }
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.match);
+        AudioManager.instance.PlaySFX(AudioManager.instance.match);
         gatherSeq.OnComplete(() =>
         {
             int finishedCount = 0;

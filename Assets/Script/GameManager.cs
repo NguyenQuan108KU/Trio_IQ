@@ -56,7 +56,6 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && isClickStore)
         {
-            Debug.Log("Installing.");
             Luna.Unity.Playable.InstallFullGame();
         }
         //if(startTimer)
@@ -71,8 +70,8 @@ public class GameManager : MonoBehaviour
             isCheckWin = true;
             CountdownTimer.instance.StopCountdown();
             GameManager.instance.finishGame = true;
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.win);
-            AudioManager.Instance.StopBGM();
+            AudioManager.instance.PlaySFX(AudioManager.instance.win);
+            AudioManager.instance.StopBGM();
         }
     }
     public void OnGlobalClick()
@@ -80,7 +79,6 @@ public class GameManager : MonoBehaviour
         if (!isClickToLog || finishGame) return;
 
         clickCount++;
-        Debug.Log("Click Count: " + clickCount);
         if (clickCount >= clicksToLog)
         {
             if (!isClick)

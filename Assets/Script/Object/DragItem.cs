@@ -53,7 +53,7 @@ public class DragItem : MonoBehaviour
         {
             Drop();
             TrayManager.instance.OnUserEndInteract();
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.drog);
+            AudioManager.instance.PlaySFX(AudioManager.instance.drog);
         }
 
     }
@@ -106,7 +106,7 @@ public class DragItem : MonoBehaviour
 
         Slot slot = FindNearestSlot();
 
-        if (slot != null && (slot.IsEmpty() || slot.transform == startParent))
+        if (slot != null && slot.CanAcceptItem() && (slot.IsEmpty() || slot.transform == startParent))
             Snap(slot);
         else
             Return();

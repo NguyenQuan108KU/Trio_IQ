@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
 
-public class PackManager : MonoBehaviour
+public class PackManager : MonoBehaviourSingleton<PackManager>
 {
-    public static PackManager instance;
-
     [Header("Pack Slots")]
     public Transform packRoot;
 
@@ -14,12 +12,7 @@ public class PackManager : MonoBehaviour
     public List<PackTarget> packPrefabs;
 
     public List<PackTarget> activePacks = new List<PackTarget>();
-
-    void Awake()
-    {
-        instance = this;
-    }
-
+    public List<PackTarget> packs = new List<PackTarget>(); 
     void Start()
     {
         activePacks = packRoot.GetComponentsInChildren<PackTarget>().ToList();
@@ -69,5 +62,21 @@ public class PackManager : MonoBehaviour
 
         newPack.transform.DOMoveY(slotPos.y, 0.6f)
             .SetEase(Ease.OutQuad);
+    }
+    public Transform FindPackBySprite(Sprite sprite)
+    {
+        if (sprite == null) return null;
+
+        foreach (PackTarget pack in packs)
+        {
+            if (pack == null) continue;
+
+            SpriteRenderer sr = pack.GetComponentInChildren<SpriteRenderer>();
+            if (sr == null || sr.sprite == null) continue;
+
+            if (sr.sprite == sprite)
+                return pack.transform;
+        }
+        return null;
     }
 }

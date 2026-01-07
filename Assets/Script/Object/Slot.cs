@@ -4,6 +4,8 @@ public class Slot : MonoBehaviour
 {
     public Transform anchor;
     public DragItem currentItem;
+    [Header("Lock")]
+    public bool isLocked;
 
     private void Awake()
     {
@@ -29,7 +31,10 @@ public class Slot : MonoBehaviour
             }
         }
     }
-
+    public bool CanAcceptItem()
+    {
+        return !isLocked;
+    }
     public bool IsEmpty()
     {
         if (currentItem == null)
