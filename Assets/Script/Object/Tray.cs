@@ -72,7 +72,6 @@ public class Tray : MonoBehaviour
     }
     void MatchItem(List<DragItem> matchedItems)
     {
-        Debug.Log("Match Item!");
         GameObject firePre = Instantiate(fireObject, transform);
         firePre.transform.localPosition = new Vector3(0, 2.5f, 0);
         AudioManager.instance.PlaySFX(AudioManager.instance.match);
@@ -159,12 +158,14 @@ public class Tray : MonoBehaviour
 
             //Transform ticket = TicketManager.instance.FindTicketBySprite(sr.sprite);
             Transform ticket = PackManager.instance.FindPackBySprite(sr.sprite);
+            Debug.Log("Ticket" + ticket.name);
             if (ticket == null)
             {
+                Debug.Log("Match Item!");
                 Destroy(item.gameObject);
                 continue;
             }
-
+            Debug.Log("Match Item!111111111111111");
             item.transform.DOKill();
 
             Vector3 originScale = item.transform.localScale;

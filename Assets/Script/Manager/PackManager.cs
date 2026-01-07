@@ -66,17 +66,21 @@ public class PackManager : MonoBehaviourSingleton<PackManager>
     public Transform FindPackBySprite(Sprite sprite)
     {
         if (sprite == null) return null;
-
         foreach (PackTarget pack in packs)
         {
             if (pack == null) continue;
-
-            SpriteRenderer sr = pack.GetComponentInChildren<SpriteRenderer>();
-            if (sr == null || sr.sprite == null) continue;
-
+            SpriteRenderer sr = null;
+            foreach (Transform child in pack.transform)
+            {
+                sr = child.GetComponent<SpriteRenderer>();
+                if (sr != null && sr.sprite != null)
+                    break;
+            }
+            if (sr == null) continue;
             if (sr.sprite == sprite)
                 return pack.transform;
         }
         return null;
     }
+
 }

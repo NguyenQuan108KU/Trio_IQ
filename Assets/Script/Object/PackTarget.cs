@@ -64,11 +64,4 @@ public class PackTarget : MonoBehaviour
     {
         return GetComponentInChildren<SpriteRenderer>();
     }
-    public string GetNameSpriteItem()
-    {
-        SpriteRenderer sr = GetComponentInChildren<SpriteRenderer>();
-        if (sr != null && sr.sprite != null)
-            return sr.sprite.name;
-        return null;
-    }
 }

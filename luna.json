@@ -8987,14 +8987,6 @@
             {
                 "name": "ItemType",
                 "excluded": true
-            },
-            {
-                "name": "pc.Debugger.Components.EditorCamera",
-                "excluded": true
-            },
-            {
-                "name": "pc.Debugger.Components.EditorGUI",
-                "excluded": true
             }
         ],
         "unusedMethods": [
@@ -17438,7 +17430,7 @@
                     },
                     {
                         "name": "name#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "name#set",
@@ -27846,7 +27838,7 @@
                     },
                     {
                         "name": "Resize",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Resize$1",
@@ -28180,7 +28172,7 @@
                 "instanceMethods": [
                     {
                         "name": "getDefaultValue",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "ctor",
@@ -28200,7 +28192,7 @@
                     },
                     {
                         "name": "$clone",
-                        "excluded": true
+                        "excluded": false
                     }
                 ]
             },
@@ -40366,7 +40358,7 @@
                     },
                     {
                         "name": "FindPackBySprite",
-                        "excluded": true
+                        "excluded": false
                     }
                 ]
             },
@@ -40388,10 +40380,6 @@
                     },
                     {
                         "name": "Punch",
-                        "excluded": true
-                    },
-                    {
-                        "name": "GetNameSpriteItem",
                         "excluded": true
                     },
                     {
@@ -40830,62 +40818,6 @@
                 "instanceMethods": [
                     {
                         "name": "ctor",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "TicketIcon",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "Start",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Update",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "TicketManager",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Awake",
-                        "excluded": false
-                    },
-                    {
-                        "name": "SetupInitialTickets",
-                        "excluded": false
-                    },
-                    {
-                        "name": "BuildSlots",
-                        "excluded": false
-                    },
-                    {
-                        "name": "AddTicket",
-                        "excluded": true
-                    },
-                    {
-                        "name": "RemoveTicket",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Relayout",
-                        "excluded": false
-                    },
-                    {
-                        "name": "FindTicketBySprite",
-                        "excluded": false
-                    },
-                    {
-                        "name": "PlayRemoveFX",
                         "excluded": false
                     }
                 ]

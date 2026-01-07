@@ -366,9 +366,10 @@ public class TrayManager : MonoBehaviour
         // spawn + align giữ nguyên
         seq.AppendCallback(() =>
         {
-            PromoteSpecialTrayToMain();
+            //PromoteSpecialTrayToMain();
+            SpawnTrayAtTop();
             AlignAnimated();
-            SpawnTraySpecial();
+            //SpawnTraySpecial();
         });
 
         seq.Append(completedTray.DOMove(dropPos, 0.25f))
