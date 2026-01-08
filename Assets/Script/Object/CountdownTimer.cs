@@ -3,9 +3,8 @@ using TMPro;
 using System.Collections;
 using UnityEngine.UI;
 
-public class CountdownTimer : MonoBehaviour
+public class CountdownTimer : MonoBehaviourSingleton<CountdownTimer>
 {
-    public static CountdownTimer instance;
     public TMP_Text timerText;
     public int startSeconds = 30;
 
@@ -36,23 +35,10 @@ public class CountdownTimer : MonoBehaviour
     public GameObject ECLose;
     public float timerPA;
     public bool isShowPA;
-
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-
-    }
     void Start()
     {
-        originalScale = timerText.transform.localScale;
-        originalColor = timerText.color;
+        //originalScale = timerText.transform.localScale;
+        //originalColor = timerText.color;
 
         // cache background image and hide it initially
         if (backgroundWarning != null)
@@ -62,13 +48,9 @@ public class CountdownTimer : MonoBehaviour
                 bgOriginalColor = bgImage.color;
             backgroundWarning.SetActive(false);
         }
-
-        
     }
-
     public void StartCountdown()
     {
-        // stop any previous blink
         StopBackgroundBlink();
 
         if (countdownCo != null)
@@ -177,14 +159,21 @@ public class CountdownTimer : MonoBehaviour
     }
     public void showPA()
     {
-        if (isShowPA) return;
+        if (isShowPA || GameManager.instance.isCheckWin) return;
 
         timerPA += Time.deltaTime;
 
-        if (timerPA >= 30f)
+        if (timerPA >= 45f)
         {
             isShowPA = true;
             Luna.Unity.LifeCycle.GameEnded();
+            AudioManager.instance.StopBGM();
+            GameManager.instance.finishGame = true;
+            if (!GameManager.instance.isCheckWin)
+            {
+                AudioManager.instance.PlaySFX(AudioManager.instance.lose);
+                ECLose.GetComponent<EndCart_Lose>()?.Show();
+            }
         }
     }
 

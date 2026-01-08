@@ -41,12 +41,12 @@ public class Tray : MonoBehaviour
             if (g.Count() < 5) continue;
 
             var matchedItems = g.Take(5).ToList();
-            GameManager.instance.ticketCount += 1;
-            if(GameManager.instance.ticketCount == 5 && GameManager.instance.isMatch)
-            {
-                Luna.Unity.LifeCycle.GameEnded();
-                GameManager.instance.isClickStore = true;   
-            }
+            //GameManager.instance.ticketCount += 1;
+            //if(GameManager.instance.ticketCount == 5 && GameManager.instance.isMatch)
+            //{
+            //    Luna.Unity.LifeCycle.GameEnded();
+            //    GameManager.instance.isClickStore = true;   
+            //}
             //ItemType type = matchedItems[0].itemType;
 
             //PackTarget targetPack =
@@ -59,7 +59,7 @@ public class Tray : MonoBehaviour
                 matchedItems[i].lockItem = true;
                 matchedItems[i].GetComponent<SpriteRenderer>().sortingOrder = 3;
             }
-                //GameManager.instance.AddPoint(1);
+                GameManager.instance.AddPoint(1);
                 MatchItem(matchedItems);
                 //MoveToPackLikeDisk(matchedItems, targetPack);
             //}
@@ -74,7 +74,9 @@ public class Tray : MonoBehaviour
     {
         GameObject firePre = Instantiate(fireObject, transform);
         firePre.transform.localPosition = new Vector3(0, 2.5f, 0);
+
         AudioManager.instance.PlaySFX(AudioManager.instance.match);
+
         float delay = 0.5f;
         int finishedBounce = 0;
         int total = matchedItems.Count;
@@ -86,18 +88,31 @@ public class Tray : MonoBehaviour
             Transform t = item.transform;
             Vector3 originScale = t.localScale;
 
-            // Ẩn item
+            string prefix = "";
+            var sr0 = item.GetComponent<SpriteRenderer>();
+            if (sr0 != null && sr0.sprite != null && sr0.sprite.name.Length >= 2)
+                prefix = sr0.sprite.name.Substring(0, 2);
+
             item.gameObject.SetActive(false);
 
-            // Hiện lại + nhún
             DOVirtual.DelayedCall(delay, () =>
             {
                 if (item == null) return;
 
                 item.gameObject.SetActive(true);
-                t.localScale = originScale;
 
+                // 🔥 LẤY LẠI SR SAU KHI ACTIVE
+                SpriteRenderer sr = item.GetComponent<SpriteRenderer>();
+                if (sr != null && !string.IsNullOrEmpty(prefix))
+                {
+                    Sprite newSprite = TrayManager.instance.GetSpriteByPrefix(prefix);
+                    if (newSprite != null)
+                        sr.sprite = newSprite;
+                }
+
+                t.localScale = originScale;
                 t.DOKill();
+
                 t.DOScale(originScale * 1.12f, 0.25f)
                  .SetEase(Ease.OutBack)
                  .OnComplete(() =>
@@ -116,6 +131,7 @@ public class Tray : MonoBehaviour
             });
         }
     }
+
     void GatherLikeDisk(List<DragItem> items)
     {
         if (items == null || items.Count < 5) return;
@@ -146,6 +162,7 @@ public class Tray : MonoBehaviour
     }
     void FlyDiskUp(List<DragItem> items)
     {
+        bool isFillSlider = false;
         float flyTime = 0.7f;
         float jumpPower = 0.45f;
         Vector3 minScaleRatio = Vector3.one * 0.5f; 
@@ -158,14 +175,11 @@ public class Tray : MonoBehaviour
 
             //Transform ticket = TicketManager.instance.FindTicketBySprite(sr.sprite);
             Transform ticket = PackManager.instance.FindPackBySprite(sr.sprite);
-            Debug.Log("Ticket" + ticket.name);
             if (ticket == null)
             {
-                Debug.Log("Match Item!");
                 Destroy(item.gameObject);
                 continue;
             }
-            Debug.Log("Match Item!111111111111111");
             item.transform.DOKill();
 
             Vector3 originScale = item.transform.localScale;
@@ -193,9 +207,11 @@ public class Tray : MonoBehaviour
             {
                 //AudioManager.Instance.PlaySFX(AudioManager.Instance.sake);
                 //TicketManager.instance.RemoveTicket(ticket);
-                PackManager.instance.OnPackFilled(ticket.GetComponent<PackTarget>());
                 Destroy(item.gameObject);
                 Disappear();
+                if(isFillSlider) return;
+                isFillSlider = true;
+                PackManager.instance.OnPackFilled(ticket.GetComponent<PackTarget>());
             });
         }
     }
@@ -435,9 +451,6 @@ public class Tray : MonoBehaviour
         });
         seq.OnComplete(() =>
         {
-            if (GameManager.instance.finishGame && !GameManager.instance.isCheckLose)
-                GameManager.instance.ECWin.SetActive(true);
-
             DOTween.Kill(transform);
             Destroy(gameObject);
         });

@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 477834457
   m_SortingLayer: 4
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: e779249b378b225429c37bd1145956d3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 626993ba35bf89b47bf6562536bfa850, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -161,7 +161,7 @@ SpriteRenderer:
   m_SortingLayerID: 477834457
   m_SortingLayer: 4
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: e779249b378b225429c37bd1145956d3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 626993ba35bf89b47bf6562536bfa850, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -187,6 +187,7 @@ MonoBehaviour:
   focusOutlineSize: 2
   outlineTweenTime: 0.12
   itemType: 1
+  lockItem: 0
 --- !u!61 &6627568658962283814
 BoxCollider2D:
   m_ObjectHideFlags: 0

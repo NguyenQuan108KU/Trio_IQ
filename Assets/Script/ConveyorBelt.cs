@@ -11,7 +11,6 @@ public class ConveyorBelt : MonoBehaviour
     private List<Transform> items = new List<Transform>();
     private int removedCount = 0;
     private bool isStarted = false;
-    public GameObject tutorial;
     void Start()
     {
         foreach (Transform child in transform)

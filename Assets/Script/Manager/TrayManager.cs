@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using DG.Tweening;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using DG.Tweening;
-using System.Collections;
 
 public class TrayManager : MonoBehaviour
 {
@@ -48,7 +48,8 @@ public class TrayManager : MonoBehaviour
     [SerializeField] Vector3 specialTrayScale = new Vector3(0.198f, 0.23f, 1f);
     [SerializeField] Vector3 specialTrayLocalPos;
 
-
+    [Header("Sprite Library")]
+    public List<Sprite> spriteLibrary;
     private void Awake()
     {
         if (instance == null)
@@ -215,7 +216,7 @@ public class TrayManager : MonoBehaviour
         InitPool();
         yield return new WaitForEndOfFrame();
         AlignInstant();
-        //yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(3.0f);
         ShowTutorial();
     }
     void InitPool()
@@ -427,7 +428,9 @@ public class TrayManager : MonoBehaviour
     }
     public void AlignAnimated()
     {
+        // Clean up null entries first
         activeTrays = activeTrays.Where(t => IsAlive(t)).ToList();
+
         if (activeTrays.Count == 0) return;
 
         int totalSlots = Mathf.Max(visibleCount, activeTrays.Count);
@@ -437,30 +440,56 @@ public class TrayManager : MonoBehaviour
             ? (visibleCount - activeTrays.Count)
             : 0;
 
-        float overshoot = step * 0.12f;
-        float fallTime = moveTime * 0.55f;
-        float bounceUpTime = moveTime * 0.25f;
-        float settleTime = moveTime * 0.2f;
+
+        float overshootRatio = 0.2f;
+        float fallPart = 0.8f;
+        float bounceUpPart = 0.25f;
+        float settlePart = 0.25f;
 
         for (int i = 0; i < activeTrays.Count; i++)
         {
             Transform tray = activeTrays[i];
             if (!IsAlive(tray)) continue;
-            if (tray == specialTray) continue;
-
-            // set X = 0 ngay
-            Vector3 p = tray.localPosition;
-            p.x = 0f;
-            tray.localPosition = p;
 
             int slotIndex = startSlot + i;
             float targetY = startY - slotIndex * step;
 
-            Sequence seq = DOTween.Sequence();
+            tray.DOKill();
 
-            seq.Append(tray.DOLocalMoveY(targetY, fallTime).SetEase(Ease.InQuad));
-            seq.Append(tray.DOLocalMoveY(targetY + overshoot, bounceUpTime).SetEase(Ease.OutQuad));
-            seq.Append(tray.DOLocalMoveY(targetY, settleTime).SetEase(Ease.OutCubic));
+            float currentY = tray.localPosition.y;
+            float delta = currentY - targetY;
+
+
+            if (delta > 0.01f)
+            {
+
+                float strength = Mathf.Clamp01(delta / step);
+
+                float overshoot = step * overshootRatio * strength;
+                float fallTime = moveTime * fallPart * strength;
+                float bounceUpTime = moveTime * bounceUpPart * strength;
+                float settleTime = moveTime * settlePart * strength;
+
+                Sequence seq = DOTween.Sequence();
+
+                seq.Append(
+                    tray.DOLocalMoveY(targetY, fallTime).SetEase(Ease.InQuad)
+                );
+
+                seq.Append(
+                    tray.DOLocalMoveY(targetY + overshoot, bounceUpTime)
+                        .SetEase(Ease.OutQuad)
+                );
+
+                seq.Append(
+                    tray.DOLocalMoveY(targetY, settleTime)
+                        .SetEase(Ease.OutCubic)
+                );
+            }
+            else
+            {
+                tray.DOLocalMoveY(targetY, moveTime).SetEase(Ease.OutQuad);
+            }
         }
     }
 
@@ -489,5 +518,20 @@ public class TrayManager : MonoBehaviour
             specialTray.localScale = specialTrayScale;
         }
     }
+    public Sprite GetSpriteByPrefix(string prefix)
+    {
+        Debug.Log("aaa: " + prefix);
+        Debug.Log("Count: " + spriteLibrary.Count());
+        foreach (var sp in spriteLibrary)
+        {
+            if (sp == null) continue;
 
+            if (sp.name.Length >= 2 &&
+                sp.name.Substring(0, 2) == prefix)
+            {
+                return sp;
+            }
+        }
+        return null;
+    }
 }

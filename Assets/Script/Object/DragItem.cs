@@ -66,11 +66,14 @@ public class DragItem : MonoBehaviour
             GameManager.instance.startTimer = true;
         }
         if (lockItem) return;
-        //if (GameManager.instance.finishGame) return;
-        //if(!GameManager.instance.startGame) return;
+        if (GameManager.instance.finishGame) return;
+        if(!GameManager.instance.startGame) return;
         TrayManager.instance.OnUserBeginInteract();
         Vector2 mouseWorld = cam.ScreenToWorldPoint(Input.mousePosition);
-
+        if(IsInBlockZone(mouseWorld))
+        {
+            return;
+        }
         Collider2D[] hits = Physics2D.OverlapPointAll(mouseWorld);
         foreach (var hit in hits)
         {
@@ -102,15 +105,29 @@ public class DragItem : MonoBehaviour
     {
         currentDrag = null;
         ShowOutline(false);
-        PlayDropScale();
 
+        Vector2 mouseWorld = cam.ScreenToWorldPoint(Input.mousePosition);
+
+        if (IsInBlockZone(mouseWorld))
+        {
+            Return();
+            return;
+        }
+        PackTarget pack = FindPackUnderItem();
+        if (pack != null && pack.CanAccept(this))
+        {
+            MoveToPack(pack);
+            return;
+        }
         Slot slot = FindNearestSlot();
+        PlayDropScale();
 
         if (slot != null && slot.CanAcceptItem() && (slot.IsEmpty() || slot.transform == startParent))
             Snap(slot);
         else
             Return();
     }
+
     void Snap(Slot slot)
     {
         Slot oldSlot = startParent ? startParent.GetComponent<Slot>() : null;
@@ -194,5 +211,90 @@ public class DragItem : MonoBehaviour
         if (outline != null)
             outline.SetActive(show);
     }
+    bool IsInBlockZone(Vector2 worldPos)
+    {
+        Collider2D[] hits = Physics2D.OverlapPointAll(worldPos);
+
+        foreach (var hit in hits)
+        {
+            if (hit.CompareTag("BlockDrag"))
+                return true;
+        }
+
+        return false;
+    }
+    public Sprite GetSprite()
+    {
+        return sr.sprite;
+    }
+    public void OnPacked()
+    {
+        lockItem = true;
+        sr.sortingOrder = 0;
+        outline.SetActive(false);
+    }
+    PackTarget FindPackUnderMouse(Vector2 worldPos)
+    {
+        Collider2D[] hits = Physics2D.OverlapPointAll(worldPos);
+
+        foreach (var hit in hits)
+        {
+            PackTarget pack = hit.GetComponent<PackTarget>();
+            if (pack != null)
+                return pack;
+        }
+
+        return null;
+    }
+    PackTarget FindPackUnderItem()
+    {
+        Collider2D[] hits = Physics2D.OverlapPointAll(transform.position);
+
+        foreach (var hit in hits)
+        {
+            PackTarget pack = hit.GetComponent<PackTarget>();
+            if (pack != null)
+                return pack;
+        }
+
+        return null;
+    }
+
+    void MoveToPack(PackTarget pack)
+    {
+        currentDrag = null;
+        lockItem = true;
+
+        tween?.Kill();
+        transform.DOKill(true); 
+
+        ShowOutline(false);
+
+        Vector3 targetPos = pack.attachPoint.position;
+        transform.localScale = startScale;
+
+        Sequence seq = DOTween.Sequence();
+
+        seq.Join(
+            transform.DOMove(targetPos, 0.3f)
+                .SetEase(Ease.InOutQuad)
+        );
+
+        seq.Join(
+            transform.DOScale(startScale * 0.3f, 0.3f)
+                .SetEase(Ease.InQuad)
+        );
+
+        seq.OnComplete(() =>
+        {
+            gameObject.SetActive(false);
+            pack.AcceptItem(this);
+        });
+    }
+
+
+
+
+
 
 }

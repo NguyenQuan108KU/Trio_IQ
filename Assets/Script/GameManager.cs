@@ -58,21 +58,21 @@ public class GameManager : MonoBehaviour
         {
             Luna.Unity.Playable.InstallFullGame();
         }
-        //if(startTimer)
-        //    CountdownTimer.instance.showPA();
+        if (startTimer)
+            CountdownTimer.instance.showPA();
     }
     public void AddPoint(int p)
     {
         point += p;
         pointText.text = point.ToString();
-        if(point == 5)
-        {
-            isCheckWin = true;
-            CountdownTimer.instance.StopCountdown();
-            GameManager.instance.finishGame = true;
-            AudioManager.instance.PlaySFX(AudioManager.instance.win);
-            AudioManager.instance.StopBGM();
-        }
+        //if(point == 5)
+        //{
+        //    isCheckWin = true;
+        //    CountdownTimer.instance.StopCountdown();
+        //    GameManager.instance.finishGame = true;
+        //    AudioManager.instance.PlaySFX(AudioManager.instance.win);
+        //    AudioManager.instance.StopBGM();
+        //}
     }
     public void OnGlobalClick()
     {
