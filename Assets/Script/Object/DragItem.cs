@@ -60,6 +60,7 @@ public class DragItem : MonoBehaviour
 
     void TryPick()
     {
+        GameManager.instance.startGame = true;
         if (!GameManager.instance.startTimer)
         {
             //CountdownTimer.instance.StartCountdown();
@@ -291,10 +292,4 @@ public class DragItem : MonoBehaviour
             pack.AcceptItem(this);
         });
     }
-
-
-
-
-
-
 }

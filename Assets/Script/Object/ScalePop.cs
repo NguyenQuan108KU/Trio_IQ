@@ -8,13 +8,14 @@ public class ScalePopLoop : MonoBehaviour
     public float duration = 0.4f;
     public Ease ease = Ease.InOutQuad;
 
+    public GameObject tut;
+
     Tween _tween;
 
     void OnEnable()
     {
         Play();
     }
-
     void Play()
     {
         _tween?.Kill();
@@ -26,7 +27,6 @@ public class ScalePopLoop : MonoBehaviour
             .SetEase(ease)
             .SetLoops(-1, LoopType.Yoyo);
     }
-
     void OnDisable()
     {
         _tween?.Kill();

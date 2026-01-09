@@ -41,13 +41,10 @@ public class TrayManager : MonoBehaviour
     public DragItem manualItem;
     public bool justEndedInteract;
     [SerializeField] Transform specialSpawnPoint;
-
-
     [Header("Special Tray")]
     [SerializeField] Transform specialTray;
     [SerializeField] Vector3 specialTrayScale = new Vector3(0.198f, 0.23f, 1f);
     [SerializeField] Vector3 specialTrayLocalPos;
-
     [Header("Sprite Library")]
     public List<Sprite> spriteLibrary;
     private void Awake()

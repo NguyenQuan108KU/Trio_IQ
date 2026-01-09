@@ -74,6 +74,14 @@ public class GameManager : MonoBehaviour
         //    AudioManager.instance.StopBGM();
         //}
     }
+    public void FinishGame()
+    {
+        isCheckWin = true;
+        GameManager.instance.ECWin.SetActive(true);
+        GameManager.instance.finishGame = true;
+        AudioManager.instance.PlaySFX(AudioManager.instance.win);
+        AudioManager.instance.PlaySFX(AudioManager.instance.excell);
+    }
     public void OnGlobalClick()
     {
         if (!isClickToLog || finishGame) return;

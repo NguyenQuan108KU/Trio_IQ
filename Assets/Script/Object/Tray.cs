@@ -19,6 +19,8 @@ public class Tray : MonoBehaviour
     public Slot[] slots;
     public GameObject fireObject;
     public bool isSpecial;
+    public float spacingItemCenter;
+    public GameObject targetTransform;
     private void Start()
     {
         slots = GetComponentsInChildren<Slot>();
@@ -62,6 +64,7 @@ public class Tray : MonoBehaviour
                 GameManager.instance.AddPoint(1);
                 MatchItem(matchedItems);
                 //MoveToPackLikeDisk(matchedItems, targetPack);
+                //MoveToCenter(matchedItems);
             //}
             return;
         }
@@ -100,15 +103,14 @@ public class Tray : MonoBehaviour
                 if (item == null) return;
 
                 item.gameObject.SetActive(true);
-
-                // 🔥 LẤY LẠI SR SAU KHI ACTIVE
-                SpriteRenderer sr = item.GetComponent<SpriteRenderer>();
-                if (sr != null && !string.IsNullOrEmpty(prefix))
-                {
-                    Sprite newSprite = TrayManager.instance.GetSpriteByPrefix(prefix);
-                    if (newSprite != null)
-                        sr.sprite = newSprite;
-                }
+                // ------------- Đổi sprite ---------------
+                //SpriteRenderer sr = item.GetComponent<SpriteRenderer>();
+                //if (sr != null && !string.IsNullOrEmpty(prefix))
+                //{
+                //    Sprite newSprite = TrayManager.instance.GetSpriteByPrefix(prefix);
+                //    if (newSprite != null)
+                //        sr.sprite = newSprite;
+                //}
 
                 t.localScale = originScale;
                 t.DOKill();
@@ -124,12 +126,26 @@ public class Tray : MonoBehaviour
                           finishedBounce++;
                           if (finishedBounce == total)
                           {
-                              GatherLikeDisk(matchedItems);
+                              //GatherLikeDisk(matchedItems);
+                              MoveToCenter(matchedItems);
+
                           }
                       });
                  });
             });
         }
+    }
+    void ChangeItemSprite(DragItem item, string prefix, bool needChange)
+    {
+        if (!needChange) return;
+        if (item == null) return;
+
+        SpriteRenderer sr = item.GetComponent<SpriteRenderer>();
+        if (sr == null || string.IsNullOrEmpty(prefix)) return;
+
+        Sprite newSprite = TrayManager.instance.GetSpriteByPrefix(prefix);
+        if (newSprite != null)
+            sr.sprite = newSprite;
     }
 
     void GatherLikeDisk(List<DragItem> items)
@@ -147,7 +163,6 @@ public class Tray : MonoBehaviour
         {
             DragItem item = items[i];
             if (item == null) continue;
-
             gatherSeq.Join(
                 item.transform.DOMove(centerPos, moveTime)
                     .SetEase(Ease.InOutSine)
@@ -320,23 +335,15 @@ public class Tray : MonoBehaviour
         {
             var itm = items[i];
             if (!IsValidForTween(itm)) continue;
-
             var sr = itm.GetComponent<SpriteRenderer>();
-            if (sr != null) sr.sortingOrder = i;
-
+            if (sr != null) sr.sortingOrder = i + 2;
             Vector3 target =
                 centerPos + new Vector3(startX + i * spacing, 0, 0);
-
-            // capture the target position and create a move tween that uses the item's transform directly.
-            // We SetLink immediately to the item's GameObject to avoid DOTween trying to operate on a destroyed transform.
             var moveTween = itm.transform.DOMove(target, moveTime)
                 .SetEase(Ease.OutBack)
                 .SetLink(itm.gameObject);
-
             seq.Join(moveTween);
         }
-
-
         seq.OnComplete(() =>
         {
 
@@ -346,8 +353,8 @@ public class Tray : MonoBehaviour
                 item.transform.SetParent(null, true);
 
             }
-
-            SpawnDisk(items, centerPos);
+            //SpawnDisk(items, centerPos);
+            MoveToTarget(items, centerPos);
         });
 
     }
@@ -431,6 +438,55 @@ public class Tray : MonoBehaviour
         }
 
         // disappear only after all item sequences complete
+        master.OnComplete(() =>
+        {
+            Disappear();
+        });
+    }
+    void MoveToTarget(List<DragItem> items, Vector3 centerPos)
+    {
+        if (targetTransform == null) return;
+
+        float spacingRatio = 0.65f;
+        float gapTime = 0.1f;
+        Vector3 targetScale = new Vector3(0.2f, 0.2f, 0.2f);
+
+        Sequence master = DOTween.Sequence();
+
+        int index = 0;
+        foreach (var item in items)
+        {
+            if (!IsValidForTween(item)) continue;
+
+            var it = item;
+            it.transform.DOKill();
+
+            Vector3 offset = it.transform.position - centerPos;
+            Vector3 compressedOffset = offset * spacingRatio;
+            Vector3 targetPos = targetTransform.transform.position;
+
+            Sequence itemSeq = DOTween.Sequence();
+
+            itemSeq.Append(
+                it.transform.DOMove(targetPos, itemToDiskTime)
+                    .SetEase(Ease.InOutQuad)
+            );
+            itemSeq.Join(
+                it.transform.DOScale(targetScale, itemToDiskTime)
+                    .SetEase(Ease.OutQuad)
+            );
+            itemSeq.AppendCallback(() =>
+            {
+                if (it == null) return;
+
+                targetTransform.GetComponentInParent<SetText>().DotNudge();
+                Destroy(it.gameObject);
+            });
+            itemSeq.SetLink(it.gameObject);
+            master.Insert(index * gapTime, itemSeq);
+            index++;
+        }
+
         master.OnComplete(() =>
         {
             Disappear();

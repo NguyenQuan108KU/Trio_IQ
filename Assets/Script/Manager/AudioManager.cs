@@ -16,6 +16,7 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
     public AudioClip warningTick;
     public AudioClip match;
     public AudioClip sake;
+    public AudioClip excell;
     bool soundOn = true;
     void Start()
     {

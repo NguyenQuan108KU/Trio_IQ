@@ -13,12 +13,23 @@ public class NotiBox : MonoBehaviour
     Vector3 boxOriginScale;
     Tween delayTween;
     Sequence seq;
+
+    public bool isNotiBook;
+    public GameObject tut;
     void Awake()
     {
         boxOriginScale = box.localScale;
     }
+    private void Update()
+    {
+        if (GameManager.instance.startGame && !isNotiBook)
+        {
+            gameObject.SetActive(false);  
+        }
+    }
     void OnEnable()
     {
+        if (!isNotiBook) return; 
         box.localScale = boxOriginScale;
         if (bg != null)
         {
