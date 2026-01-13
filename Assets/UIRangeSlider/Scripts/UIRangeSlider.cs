@@ -25,18 +25,18 @@ namespace UIRangeSliderNamespace
 			get => m_OnMinValueChanged;
 			set => m_OnMinValueChanged = value;
 		}
-		/*[Serializable]
+        /*[Serializable]MatchFlowManager
 		public class MinMaxSliderEvent : UnityEvent<float, float> { }
 
 		public MinMaxSliderEvent onValueChanged {
 			get => m_OnValueChanged;
 			set => m_OnValueChanged = value;
 		}*/
-		[SerializeField] private ValuesChangedEvent m_OnValuesChanged = new();
-		[SerializeField] private ValueChangedEvent m_OnMaxValueChanged = new();
-		[SerializeField] private ValueChangedEvent m_OnMinValueChanged = new();
+        [SerializeField] private ValuesChangedEvent m_OnValuesChanged = new ValuesChangedEvent();
+		[SerializeField] private ValueChangedEvent m_OnMaxValueChanged = new ValueChangedEvent();
+        [SerializeField] private ValueChangedEvent m_OnMinValueChanged = new ValueChangedEvent();
 
-		[SerializeField] protected float m_MinValue;
+        [SerializeField] protected float m_MinValue;
 		[SerializeField] protected float m_MaxValue;
 		[SerializeField] private Direction m_Direction = Direction.LeftToRight;
 		[SerializeField] private RectTransform m_FillRect;

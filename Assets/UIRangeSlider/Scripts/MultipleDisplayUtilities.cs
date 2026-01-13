@@ -12,20 +12,7 @@
 		  /// <param name="position"></param>
 		  /// <returns>Returns true except when the drag operation is not on the same display as it originated</returns>
 		  public static bool GetRelativeMousePositionForDrag(PointerEventData eventData, ref Vector2 position) {
-            #if UNITY_EDITOR
 			  position = eventData.position;
-            #else
-            int pressDisplayIndex = eventData.pointerPressRaycast.displayIndex;
-            var relativePosition = RelativeMouseAtScaled(eventData.position);
-            int currentDisplayIndex = (int)relativePosition.z;
-
-            // Discard events on a different display.
-            if (currentDisplayIndex != pressDisplayIndex)
-                return false;
-
-            // If we are not on the main display then we must use the relative position.
-            position = pressDisplayIndex != 0 ? (Vector2)relativePosition : eventData.position;
-            #endif
 			  return true;
 		  }
 

@@ -218,6 +218,10 @@ MonoBehaviour:
   followSmooth: 0.25
   isCompleted: 0
   slots: []
+  fireObject: {fileID: 0}
+  isSpecial: 0
+  spacingItemCenter: 0
+  targetTransform: {fileID: 0}
   diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!212 &80665215
 SpriteRenderer:
@@ -373,6 +377,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1176633047}
   currentItem: {fileID: 2096157721}
+  isLocked: 0
 --- !u!61 &83318860
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -467,16 +472,17 @@ MonoBehaviour:
   point: 0
   ECWin: {fileID: 769211181}
   startTimer: 0
+  ticketCount: 0
   isClickToLog: 0
   clicksToLog: 10
-  isTimer: 0
-  audio: 0
+  isMatch: 0
   clickCount: 0
   isClick: 0
   finishGame: 0
   startGame: 0
   isCheckWin: 0
   isCheckLose: 0
+  isClickStore: 0
 --- !u!114 &97587822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -496,6 +502,11 @@ MonoBehaviour:
   - {fileID: 4993734747134755594, guid: 910049ed778dce44da6c254f947625ff, type: 3}
   - {fileID: 4474740977644032061, guid: 3125769b04e8d244686f5600a91f564c, type: 3}
   activePacks: []
+  packs: []
+  redSlider: {fileID: 0}
+  yellowSlider: {fileID: 0}
+  greenSlider: {fileID: 0}
+  packSprites: []
 --- !u!1 &101058793
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,6 +694,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1606172022}
   currentItem: {fileID: 2069741505}
+  isLocked: 0
 --- !u!61 &103314779
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -830,6 +842,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 182129968}
   currentItem: {fileID: 122576085}
+  isLocked: 0
 --- !u!61 &105756197
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -998,6 +1011,7 @@ MonoBehaviour:
   focusOutlineSize: 2
   outlineTweenTime: 0.12
   itemType: 3
+  lockItem: 0
 --- !u!212 &122576086
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1535,6 +1549,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1821423692}
   currentItem: {fileID: 1860327703}
+  isLocked: 0
 --- !u!61 &203571225
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1674,6 +1689,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1153141391}
   currentItem: {fileID: 2032860573}
+  isLocked: 0
 --- !u!1 &210389149
 GameObject:
   m_ObjectHideFlags: 0
@@ -3046,6 +3062,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 2017993971}
   currentItem: {fileID: 1563167710}
+  isLocked: 0
 --- !u!61 &391416903
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3332,6 +3349,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 392429936}
   currentItem: {fileID: 1699347800}
+  isLocked: 0
 --- !u!1 &426413984
 GameObject:
   m_ObjectHideFlags: 0
@@ -3426,6 +3444,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 694420425}
   currentItem: {fileID: 746709845}
+  isLocked: 0
 --- !u!1 &446327890
 GameObject:
   m_ObjectHideFlags: 0
@@ -3486,6 +3505,10 @@ MonoBehaviour:
   followSmooth: 0.25
   isCompleted: 0
   slots: []
+  fireObject: {fileID: 0}
+  isSpecial: 0
+  spacingItemCenter: 0
+  targetTransform: {fileID: 0}
   diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!212 &446327893
 SpriteRenderer:
@@ -8583,6 +8606,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 210389150}
   currentItem: {fileID: 1161287389}
+  isLocked: 0
 --- !u!1 &501851109
 GameObject:
   m_ObjectHideFlags: 0
@@ -8677,6 +8701,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1358193564}
   currentItem: {fileID: 1511192388}
+  isLocked: 0
 --- !u!1 &506195945
 GameObject:
   m_ObjectHideFlags: 0
@@ -9021,6 +9046,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 745823298}
   currentItem: {fileID: 1641096579}
+  isLocked: 0
 --- !u!1 &562352569
 GameObject:
   m_ObjectHideFlags: 0
@@ -14349,6 +14375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 259110105}
   currentItem: {fileID: 0}
+  isLocked: 0
 --- !u!1 &694133753
 GameObject:
   m_ObjectHideFlags: 0
@@ -14661,6 +14688,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1984991735}
   currentItem: {fileID: 945329576}
+  isLocked: 0
 --- !u!1 &737038852
 GameObject:
   m_ObjectHideFlags: 0
@@ -14784,6 +14812,7 @@ MonoBehaviour:
   focusOutlineSize: 2
   outlineTweenTime: 0.12
   itemType: 3
+  lockItem: 0
 --- !u!212 &737038857
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15049,7 +15078,6 @@ GameObject:
   m_Component:
   - component: {fileID: 780030115}
   - component: {fileID: 780030116}
-  - component: {fileID: 780030117}
   - component: {fileID: 780030118}
   m_Layer: 0
   m_Name: AudioManager
@@ -15097,38 +15125,8 @@ MonoBehaviour:
   win: {fileID: 8300000, guid: 63f86793856b2fa4fa01a89ab8f5040f, type: 3}
   warningTick: {fileID: 8300000, guid: 367c4fb90a9ea1647bb3cfeddcf5a72b, type: 3}
   match: {fileID: 8300000, guid: 12f5c305d4d736645856c600540ca2cf, type: 3}
---- !u!114 &780030117
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 780030114}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91a19660f175b3e43a33b8c0c62af97a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spacing: 1.2
-  visibleCount: 4
-  moveTime: 0.5
-  listTray: []
-  curve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  step: 0
-  canCountIdle: 0
-  spawnHeightMultiplier: 1
-  isFirstTutorial: 1
-  tutorialDelay: 3
-  idleTimer: 0
-  tutorialEnabled: 1
-  manualTray: {fileID: 0}
-  manualItem: {fileID: 0}
-  justEndedInteract: 0
+  sake: {fileID: 0}
+  excell: {fileID: 0}
 --- !u!82 &780030118
 AudioSource:
   m_ObjectHideFlags: 0
@@ -15379,9 +15377,9 @@ Transform:
   m_GameObject: {fileID: 829619889}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.3, z: 90}
+  m_LocalPosition: {x: 0, y: 2, z: 90}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1672369677}
   - {fileID: 446327891}
@@ -15404,92 +15402,8 @@ MonoBehaviour:
   spacing: -0.1
   visibleCount: 4
   moveTime: 0.3
-  listTray:
-  - {fileID: 5809705611198431481, guid: a0aae93a4cf1d784bbc564d77993821d, type: 3}
-  - {fileID: 5206698710355902504, guid: 81a706be23bf5854ab0dd46186b16d0e, type: 3}
-  - {fileID: 4954555433282746783, guid: bab3c912dae5b5f489af6665befea088, type: 3}
-  - {fileID: 6530757236351355157, guid: 65ae90a2810b4be4a8596add5043b404, type: 3}
-  - {fileID: 7202018752934731464, guid: 7f54bae70facb024fb88a4f5aaa929e7, type: 3}
-  - {fileID: 2928315042766501162, guid: 23c14977e38db2745b27ad1c61b5bd3c, type: 3}
-  - {fileID: 8537574297927549207, guid: 3e0b41e00a37ed54f90301a4fc7f4b57, type: 3}
-  curve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.33024088
-      value: 1.1355168
-      inSlope: -0.30563396
-      outSlope: -0.30563396
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.45014036
-      value: 0.7308301
-      inSlope: -0.07742307
-      outSlope: -0.07742307
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.632177
-      value: 0.8871587
-      inSlope: -0.045635406
-      outSlope: -0.045635406
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.77444315
-      value: 0.758646
-      inSlope: 0.29976463
-      outSlope: 0.29976463
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.88352597
-      value: 0.87207216
-      inSlope: 0.2327414
-      outSlope: 0.2327414
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1.0661759
-      value: 0.7446854
-      inSlope: -0.37176165
-      outSlope: -0.37176165
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1.0855029
-      value: 0.7399662
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  listTrayPrepare: []
+  listTrayValiable: []
   step: 1.44
   canCountIdle: 1
   spawnHeightMultiplier: 1
@@ -15500,6 +15414,11 @@ MonoBehaviour:
   manualTray: {fileID: 446327892}
   manualItem: {fileID: 122576085}
   justEndedInteract: 0
+  specialSpawnPoint: {fileID: 0}
+  specialTray: {fileID: 0}
+  specialTrayScale: {x: 0.198, y: 0.23, z: 1}
+  specialTrayLocalPos: {x: 0, y: 0, z: 0}
+  spriteLibrary: []
 --- !u!1001 &839151212
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15694,6 +15613,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1607100480}
   currentItem: {fileID: 0}
+  isLocked: 0
 --- !u!61 &874038864
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15841,6 +15761,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 292683312}
   currentItem: {fileID: 916650096}
+  isLocked: 0
 --- !u!61 &897825938
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15935,6 +15856,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 913424750}
   currentItem: {fileID: 1487149978}
+  isLocked: 0
 --- !u!61 &900257329
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16377,6 +16299,7 @@ MonoBehaviour:
   focusOutlineSize: 2
   outlineTweenTime: 0.12
   itemType: 3
+  lockItem: 0
 --- !u!212 &945329577
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17059,6 +16982,7 @@ MonoBehaviour:
   focusOutlineSize: 2
   outlineTweenTime: 0.12
   itemType: 3
+  lockItem: 0
 --- !u!212 &1161287390
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17244,6 +17168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 756277243}
   currentItem: {fileID: 1014447218}
+  isLocked: 0
 --- !u!61 &1176953280
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17453,6 +17378,10 @@ MonoBehaviour:
   followSmooth: 0.25
   isCompleted: 0
   slots: []
+  fireObject: {fileID: 0}
+  isSpecial: 0
+  spacingItemCenter: 0
+  targetTransform: {fileID: 0}
   diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!212 &1216640098
 SpriteRenderer:
@@ -17600,6 +17529,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 2111786946}
   currentItem: {fileID: 1657173716}
+  isLocked: 0
 --- !u!1 &1217679811
 GameObject:
   m_ObjectHideFlags: 0
@@ -18572,6 +18502,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1099447348}
   currentItem: {fileID: 2085183691}
+  isLocked: 0
 --- !u!1 &1377383421
 GameObject:
   m_ObjectHideFlags: 0
@@ -18749,6 +18680,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 423501250}
   currentItem: {fileID: 1300344622}
+  isLocked: 0
 --- !u!61 &1388325504
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18888,6 +18820,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 39439484}
   currentItem: {fileID: 1258254191}
+  isLocked: 0
 --- !u!1001 &1454596253
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19451,6 +19384,7 @@ MonoBehaviour:
   maxScale: {x: 1.1, y: 1.1, z: 1.1}
   duration: 0.55
   ease: 7
+  tut: {fileID: 0}
 --- !u!1 &1550439716
 GameObject:
   m_ObjectHideFlags: 0
@@ -19584,6 +19518,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1154929869}
   currentItem: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1556814650
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19704,7 +19639,6 @@ MonoBehaviour:
   spacing: 1.3
   leftLimit: -5.5
   removeFirstCount: 4
-  tutorial: {fileID: 0}
 --- !u!1 &1591089138
 GameObject:
   m_ObjectHideFlags: 0
@@ -19754,6 +19688,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 594276835}
   currentItem: {fileID: 1979049196}
+  isLocked: 0
 --- !u!61 &1591089142
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19955,6 +19890,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 587183603}
   currentItem: {fileID: 1040490714}
+  isLocked: 0
 --- !u!1 &1620452005
 GameObject:
   m_ObjectHideFlags: 0
@@ -20005,6 +19941,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1934876345}
   currentItem: {fileID: 839151216}
+  isLocked: 0
 --- !u!61 &1620452008
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -20298,6 +20235,10 @@ MonoBehaviour:
   followSmooth: 0.25
   isCompleted: 0
   slots: []
+  fireObject: {fileID: 0}
+  isSpecial: 0
+  spacingItemCenter: 0
+  targetTransform: {fileID: 0}
   diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!1 &1672643632
 GameObject:
@@ -20468,6 +20409,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1205654489}
   currentItem: {fileID: 1035106483}
+  isLocked: 0
 --- !u!1 &1678596835
 GameObject:
   m_ObjectHideFlags: 0
@@ -20601,6 +20543,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 348455199}
   currentItem: {fileID: 1180140919}
+  isLocked: 0
 --- !u!61 &1683980618
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -20646,6 +20589,52 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.18, y: 3.4}
   m_EdgeRadius: 0
+--- !u!1 &1695173831
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1695173832}
+  - component: {fileID: 1695173833}
+  m_Layer: 0
+  m_Name: LevelController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1695173832
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1695173831}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 9.4237, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1695173833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1695173831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a650cadada71e34e81774c500898d17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelConfig: {fileID: 11400000, guid: 6d2979dd62278be45bf6a63863448994, type: 2}
+  trayManager: {fileID: 829619891}
 --- !u!4 &1699347797 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2031971303487593579, guid: 73ceff547dab07b459278878b08731b3, type: 3}
@@ -21052,6 +21041,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1226894549}
   currentItem: {fileID: 0}
+  isLocked: 0
 --- !u!1 &1821423691
 GameObject:
   m_ObjectHideFlags: 0
@@ -21185,6 +21175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1337411534}
   currentItem: {fileID: 578512850}
+  isLocked: 0
 --- !u!61 &1826391445
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21378,6 +21369,8 @@ MonoBehaviour:
   bg: {fileID: 324727864}
   delay: 2
   animTime: 0.4
+  isNotiBook: 0
+  tut: {fileID: 0}
 --- !u!1 &1915028838
 GameObject:
   m_ObjectHideFlags: 0
@@ -21465,6 +21458,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 520194892}
   currentItem: {fileID: 867221106}
+  isLocked: 0
 --- !u!61 &1917460496
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22285,6 +22279,7 @@ MonoBehaviour:
   maxScale: {x: 0.012, y: 0.012, z: 1.1}
   duration: 0.7
   ease: 7
+  tut: {fileID: 0}
 --- !u!114 &2069741505 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1082168289782064727, guid: b6f286930bc94c44ebec6ed7557cba02, type: 3}
@@ -22521,6 +22516,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1678596836}
   currentItem: {fileID: 762801189}
+  isLocked: 0
 --- !u!61 &2085125062
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22877,6 +22873,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 623741743}
   currentItem: {fileID: 737038856}
+  isLocked: 0
 --- !u!1 &2139429694
 GameObject:
   m_ObjectHideFlags: 0
@@ -34615,3 +34612,4 @@ SceneRoots:
   - {fileID: 2139429696}
   - {fileID: 232144102}
   - {fileID: 3073313577977702727}
+  - {fileID: 1695173832}

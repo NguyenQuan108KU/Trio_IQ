@@ -170,9 +170,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &16668536
 Rigidbody2D:
   serializedVersion: 4
@@ -284,7 +285,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7ee3c9f4a7d14944b81c8b7fda68826c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -345,9 +346,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &20488218
 Rigidbody2D:
   serializedVersion: 4
@@ -459,7 +461,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -552,7 +554,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1812045377}
   currentItem: {fileID: 1510953873}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &33070490
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -748,9 +750,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &37261245
 Rigidbody2D:
   serializedVersion: 4
@@ -862,7 +865,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7ee3c9f4a7d14944b81c8b7fda68826c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -924,7 +927,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 836053870}
   currentItem: {fileID: 1136009250}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &37565896
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1018,9 +1021,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &39664781
 Rigidbody2D:
   serializedVersion: 4
@@ -1132,7 +1136,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1295,7 +1299,7 @@ Transform:
   m_GameObject: {fileID: 48118508}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.02, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1324,15 +1328,13 @@ MonoBehaviour:
   itemToDiskTime: 0.5
   attachDelay: 0.15
   followSmooth: 0.25
-  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
-  soldOutPrefabs: {fileID: 1395313062320027224, guid: 15d893b95a2190f459d9eb91a1f1ea9b, type: 3}
-  listItem: []
-  maxSlot: 3
   isCompleted: 0
   slots: []
-  isClosed: 0
-  fireEffectPrefab: {fileID: 1847458354238678972, guid: d68c05dd008eac1478e83814d7b929be, type: 3}
-  fireEffectTime: 0.6
+  fireObject: {fileID: 0}
+  isSpecial: 0
+  spacingItemCenter: 0
+  targetTransform: {fileID: 0}
+  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!212 &48118511
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1456,7 +1458,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1518,7 +1520,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 755609378}
   currentItem: {fileID: 494575695}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &51334614
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1620,6 +1622,7 @@ MonoBehaviour:
   maxScale: {x: 1, y: 1, z: 0.8}
   duration: 0.5
   ease: 7
+  tut: {fileID: 0}
 --- !u!114 &55098506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1762,9 +1765,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &62594562
 Rigidbody2D:
   serializedVersion: 4
@@ -1876,7 +1880,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1960,7 +1964,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2118,9 +2122,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &79464578
 Rigidbody2D:
   serializedVersion: 4
@@ -2232,7 +2237,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7ee3c9f4a7d14944b81c8b7fda68826c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2294,7 +2299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1086643000}
   currentItem: {fileID: 1820833317}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &82988959
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2389,7 +2394,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1337836317}
   currentItem: {fileID: 520372746}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &84438706
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2576,9 +2581,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &100207194
 Rigidbody2D:
   serializedVersion: 4
@@ -2690,7 +2696,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2751,9 +2757,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &107836793
 Rigidbody2D:
   serializedVersion: 4
@@ -2865,7 +2872,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7ee3c9f4a7d14944b81c8b7fda68826c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3006,7 +3013,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebee715a24da0a14e9d19c972acee5ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateSpeed: 20
 --- !u!114 &120493806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3113,7 +3119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 298836566}
   currentItem: {fileID: 1699697106}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &123191650
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3268,9 +3274,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &124322542
 Rigidbody2D:
   serializedVersion: 4
@@ -3382,7 +3389,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7ee3c9f4a7d14944b81c8b7fda68826c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3449,7 +3456,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1964250583}
   currentItem: {fileID: 1382601405}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &130277168
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3543,9 +3550,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &135581133
 Rigidbody2D:
   serializedVersion: 4
@@ -3657,7 +3665,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7ee3c9f4a7d14944b81c8b7fda68826c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3835,9 +3843,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &140840982
 Rigidbody2D:
   serializedVersion: 4
@@ -3949,7 +3958,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4010,9 +4019,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &146891151
 Rigidbody2D:
   serializedVersion: 4
@@ -4124,7 +4134,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4216,9 +4226,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &161966250
 Rigidbody2D:
   serializedVersion: 4
@@ -4330,7 +4341,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4445,7 +4456,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4546,7 +4557,7 @@ Transform:
   m_GameObject: {fileID: 179921786}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.78, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -4575,15 +4586,13 @@ MonoBehaviour:
   itemToDiskTime: 0.5
   attachDelay: 0.15
   followSmooth: 0.25
-  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
-  soldOutPrefabs: {fileID: 1395313062320027224, guid: 15d893b95a2190f459d9eb91a1f1ea9b, type: 3}
-  listItem: []
-  maxSlot: 3
   isCompleted: 0
   slots: []
-  isClosed: 0
-  fireEffectPrefab: {fileID: 1847458354238678972, guid: d68c05dd008eac1478e83814d7b929be, type: 3}
-  fireEffectTime: 0.6
+  fireObject: {fileID: 0}
+  isSpecial: 0
+  spacingItemCenter: 0
+  targetTransform: {fileID: 0}
+  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!212 &179921789
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4663,7 +4672,7 @@ Transform:
   m_GameObject: {fileID: 191417980}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.02, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -4692,15 +4701,13 @@ MonoBehaviour:
   itemToDiskTime: 0.5
   attachDelay: 0.15
   followSmooth: 0.25
-  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
-  soldOutPrefabs: {fileID: 1395313062320027224, guid: 15d893b95a2190f459d9eb91a1f1ea9b, type: 3}
-  listItem: []
-  maxSlot: 3
   isCompleted: 0
   slots: []
-  isClosed: 0
-  fireEffectPrefab: {fileID: 1847458354238678972, guid: d68c05dd008eac1478e83814d7b929be, type: 3}
-  fireEffectTime: 0.6
+  fireObject: {fileID: 0}
+  isSpecial: 0
+  spacingItemCenter: 0
+  targetTransform: {fileID: 0}
+  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!212 &191417983
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4829,7 +4836,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4900,7 +4907,7 @@ Transform:
   m_GameObject: {fileID: 205946281}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.02, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -4929,15 +4936,13 @@ MonoBehaviour:
   itemToDiskTime: 0.5
   attachDelay: 0.15
   followSmooth: 0.25
-  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
-  soldOutPrefabs: {fileID: 1395313062320027224, guid: 15d893b95a2190f459d9eb91a1f1ea9b, type: 3}
-  listItem: []
-  maxSlot: 3
   isCompleted: 0
   slots: []
-  isClosed: 0
-  fireEffectPrefab: {fileID: 1847458354238678972, guid: d68c05dd008eac1478e83814d7b929be, type: 3}
-  fireEffectTime: 0.6
+  fireObject: {fileID: 0}
+  isSpecial: 0
+  spacingItemCenter: 0
+  targetTransform: {fileID: 0}
+  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!212 &205946284
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5039,7 +5044,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1024878507}
   currentItem: {fileID: 1514399022}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &206749908
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5301,7 +5306,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1558594252}
   currentItem: {fileID: 584390539}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &213555605
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5462,7 +5467,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1910852997}
   currentItem: {fileID: 766219975}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &224016813
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5556,9 +5561,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &233808059
 Rigidbody2D:
   serializedVersion: 4
@@ -5670,7 +5676,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5732,7 +5738,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 205290058}
   currentItem: {fileID: 2006738043}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &233895172
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5805,7 +5811,7 @@ Transform:
   m_GameObject: {fileID: 241612847}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.02, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -5834,15 +5840,13 @@ MonoBehaviour:
   itemToDiskTime: 0.5
   attachDelay: 0.15
   followSmooth: 0.25
-  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
-  soldOutPrefabs: {fileID: 1395313062320027224, guid: 15d893b95a2190f459d9eb91a1f1ea9b, type: 3}
-  listItem: []
-  maxSlot: 3
   isCompleted: 0
   slots: []
-  isClosed: 0
-  fireEffectPrefab: {fileID: 1847458354238678972, guid: d68c05dd008eac1478e83814d7b929be, type: 3}
-  fireEffectTime: 0.6
+  fireObject: {fileID: 0}
+  isSpecial: 0
+  spacingItemCenter: 0
+  targetTransform: {fileID: 0}
+  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!212 &241612850
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6130,7 +6134,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6266,9 +6270,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &271022539
 Rigidbody2D:
   serializedVersion: 4
@@ -6380,7 +6385,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7ee3c9f4a7d14944b81c8b7fda68826c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6442,7 +6447,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 560937709}
   currentItem: {fileID: 1669430578}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &271302937
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6537,7 +6542,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1428286676}
   currentItem: {fileID: 997043866}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &275830728
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6734,6 +6739,7 @@ MonoBehaviour:
   maxScale: {x: 1.15, y: 1.15, z: 1.2}
   duration: 0.5
   ease: 7
+  tut: {fileID: 0}
 --- !u!1 &279446665
 GameObject:
   m_ObjectHideFlags: 0
@@ -6761,7 +6767,7 @@ Transform:
   m_GameObject: {fileID: 279446665}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.02, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -6790,15 +6796,13 @@ MonoBehaviour:
   itemToDiskTime: 0.5
   attachDelay: 0.15
   followSmooth: 0.25
-  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
-  soldOutPrefabs: {fileID: 1395313062320027224, guid: 15d893b95a2190f459d9eb91a1f1ea9b, type: 3}
-  listItem: []
-  maxSlot: 3
   isCompleted: 0
   slots: []
-  isClosed: 0
-  fireEffectPrefab: {fileID: 1847458354238678972, guid: d68c05dd008eac1478e83814d7b929be, type: 3}
-  fireEffectTime: 0.6
+  fireObject: {fileID: 0}
+  isSpecial: 0
+  spacingItemCenter: 0
+  targetTransform: {fileID: 0}
+  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!212 &279446668
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6899,9 +6903,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &281956867
 Rigidbody2D:
   serializedVersion: 4
@@ -7013,7 +7018,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -7053,7 +7058,7 @@ Transform:
   m_GameObject: {fileID: 286587804}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.02, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -7082,15 +7087,13 @@ MonoBehaviour:
   itemToDiskTime: 0.5
   attachDelay: 0.15
   followSmooth: 0.25
-  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
-  soldOutPrefabs: {fileID: 1395313062320027224, guid: 15d893b95a2190f459d9eb91a1f1ea9b, type: 3}
-  listItem: []
-  maxSlot: 3
   isCompleted: 0
   slots: []
-  isClosed: 0
-  fireEffectPrefab: {fileID: 1847458354238678972, guid: d68c05dd008eac1478e83814d7b929be, type: 3}
-  fireEffectTime: 0.6
+  fireObject: {fileID: 0}
+  isSpecial: 0
+  spacingItemCenter: 0
+  targetTransform: {fileID: 0}
+  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!212 &286587807
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7441,7 +7444,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1196259463}
   currentItem: {fileID: 1824784393}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &302380234
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7597,9 +7600,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &320075262
 Rigidbody2D:
   serializedVersion: 4
@@ -7711,7 +7715,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -7773,7 +7777,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 162658870}
   currentItem: {fileID: 407834276}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &324099717
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8009,7 +8013,7 @@ Transform:
   m_GameObject: {fileID: 346311792}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.02, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -8038,15 +8042,13 @@ MonoBehaviour:
   itemToDiskTime: 0.5
   attachDelay: 0.15
   followSmooth: 0.25
-  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
-  soldOutPrefabs: {fileID: 1395313062320027224, guid: 15d893b95a2190f459d9eb91a1f1ea9b, type: 3}
-  listItem: []
-  maxSlot: 3
   isCompleted: 0
   slots: []
-  isClosed: 0
-  fireEffectPrefab: {fileID: 1847458354238678972, guid: d68c05dd008eac1478e83814d7b929be, type: 3}
-  fireEffectTime: 0.6
+  fireObject: {fileID: 0}
+  isSpecial: 0
+  spacingItemCenter: 0
+  targetTransform: {fileID: 0}
+  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!212 &346311795
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8268,7 +8270,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 316975571}
   currentItem: {fileID: 79464577}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &379022115
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8341,7 +8343,7 @@ Transform:
   m_GameObject: {fileID: 386621537}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.02, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -8370,15 +8372,13 @@ MonoBehaviour:
   itemToDiskTime: 0.5
   attachDelay: 0.15
   followSmooth: 0.25
-  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
-  soldOutPrefabs: {fileID: 1395313062320027224, guid: 15d893b95a2190f459d9eb91a1f1ea9b, type: 3}
-  listItem: []
-  maxSlot: 3
   isCompleted: 0
   slots: []
-  isClosed: 0
-  fireEffectPrefab: {fileID: 1847458354238678972, guid: d68c05dd008eac1478e83814d7b929be, type: 3}
-  fireEffectTime: 0.6
+  fireObject: {fileID: 0}
+  isSpecial: 0
+  spacingItemCenter: 0
+  targetTransform: {fileID: 0}
+  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!212 &386621540
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8480,7 +8480,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1365385786}
   currentItem: {fileID: 2112268011}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &389226140
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8553,7 +8553,7 @@ Transform:
   m_GameObject: {fileID: 397189432}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.02, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -8582,15 +8582,13 @@ MonoBehaviour:
   itemToDiskTime: 0.5
   attachDelay: 0.15
   followSmooth: 0.25
-  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
-  soldOutPrefabs: {fileID: 1395313062320027224, guid: 15d893b95a2190f459d9eb91a1f1ea9b, type: 3}
-  listItem: []
-  maxSlot: 3
   isCompleted: 0
   slots: []
-  isClosed: 0
-  fireEffectPrefab: {fileID: 1847458354238678972, guid: d68c05dd008eac1478e83814d7b929be, type: 3}
-  fireEffectTime: 0.6
+  fireObject: {fileID: 0}
+  isSpecial: 0
+  spacingItemCenter: 0
+  targetTransform: {fileID: 0}
+  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!212 &397189435
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8692,7 +8690,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 482330807}
   currentItem: {fileID: 140840981}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &399835371
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8786,9 +8784,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &399929780
 Rigidbody2D:
   serializedVersion: 4
@@ -8900,7 +8899,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -8992,9 +8991,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &406603558
 Rigidbody2D:
   serializedVersion: 4
@@ -9106,7 +9106,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -9190,7 +9190,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -9251,9 +9251,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &407834277
 Rigidbody2D:
   serializedVersion: 4
@@ -9365,7 +9366,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -9426,9 +9427,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &417877989
 Rigidbody2D:
   serializedVersion: 4
@@ -9540,7 +9542,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7ee3c9f4a7d14944b81c8b7fda68826c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -9781,7 +9783,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1796300661}
   currentItem: {fileID: 1919643481}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!1 &460341721
 GameObject:
   m_ObjectHideFlags: 0
@@ -9853,7 +9855,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -9915,7 +9917,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1835712818}
   currentItem: {fileID: 1314906379}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &467795788
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9988,7 +9990,7 @@ Transform:
   m_GameObject: {fileID: 476253262}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.02, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -10017,15 +10019,13 @@ MonoBehaviour:
   itemToDiskTime: 0.5
   attachDelay: 0.15
   followSmooth: 0.25
-  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
-  soldOutPrefabs: {fileID: 1395313062320027224, guid: 15d893b95a2190f459d9eb91a1f1ea9b, type: 3}
-  listItem: []
-  maxSlot: 3
   isCompleted: 0
   slots: []
-  isClosed: 0
-  fireEffectPrefab: {fileID: 1847458354238678972, guid: d68c05dd008eac1478e83814d7b929be, type: 3}
-  fireEffectTime: 0.6
+  fireObject: {fileID: 0}
+  isSpecial: 0
+  spacingItemCenter: 0
+  targetTransform: {fileID: 0}
+  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!212 &476253265
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10291,9 +10291,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &489218244
 Rigidbody2D:
   serializedVersion: 4
@@ -10405,7 +10406,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -10466,9 +10467,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &493520404
 Rigidbody2D:
   serializedVersion: 4
@@ -10580,7 +10582,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7ee3c9f4a7d14944b81c8b7fda68826c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -10664,7 +10666,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -10725,9 +10727,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &494575696
 Rigidbody2D:
   serializedVersion: 4
@@ -10839,7 +10842,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -10923,7 +10926,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -11015,9 +11018,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &515164956
 Rigidbody2D:
   serializedVersion: 4
@@ -11129,7 +11133,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -11221,9 +11225,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &520372747
 Rigidbody2D:
   serializedVersion: 4
@@ -11335,7 +11340,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -11397,7 +11402,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1726299451}
   currentItem: {fileID: 1792017678}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &536712675
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11491,9 +11496,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &543619526
 Rigidbody2D:
   serializedVersion: 4
@@ -11605,7 +11611,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7ee3c9f4a7d14944b81c8b7fda68826c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -11676,7 +11682,7 @@ Transform:
   m_GameObject: {fileID: 556374795}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.02, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -11705,15 +11711,13 @@ MonoBehaviour:
   itemToDiskTime: 0.5
   attachDelay: 0.15
   followSmooth: 0.25
-  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
-  soldOutPrefabs: {fileID: 1395313062320027224, guid: 15d893b95a2190f459d9eb91a1f1ea9b, type: 3}
-  listItem: []
-  maxSlot: 3
   isCompleted: 0
   slots: []
-  isClosed: 0
-  fireEffectPrefab: {fileID: 1847458354238678972, guid: d68c05dd008eac1478e83814d7b929be, type: 3}
-  fireEffectTime: 0.6
+  fireObject: {fileID: 0}
+  isSpecial: 0
+  spacingItemCenter: 0
+  targetTransform: {fileID: 0}
+  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!212 &556374798
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11845,9 +11849,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &564953469
 Rigidbody2D:
   serializedVersion: 4
@@ -11959,7 +11964,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7ee3c9f4a7d14944b81c8b7fda68826c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -12043,7 +12048,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -12105,7 +12110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 759836509}
   currentItem: {fileID: 1241893696}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &570567613
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12230,9 +12235,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &584390540
 Rigidbody2D:
   serializedVersion: 4
@@ -12344,7 +12350,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -12405,9 +12411,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &585761000
 Rigidbody2D:
   serializedVersion: 4
@@ -12519,7 +12526,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -12643,7 +12650,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 108843568}
   currentItem: {fileID: 62594561}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &598234550
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12738,7 +12745,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 957927553}
   currentItem: {fileID: 320075261}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &613191444
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12886,7 +12893,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -12958,7 +12965,7 @@ Transform:
   m_GameObject: {fileID: 623594446}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.02, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -12987,15 +12994,13 @@ MonoBehaviour:
   itemToDiskTime: 0.5
   attachDelay: 0.15
   followSmooth: 0.25
-  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
-  soldOutPrefabs: {fileID: 1395313062320027224, guid: 15d893b95a2190f459d9eb91a1f1ea9b, type: 3}
-  listItem: []
-  maxSlot: 3
   isCompleted: 0
   slots: []
-  isClosed: 0
-  fireEffectPrefab: {fileID: 1847458354238678972, guid: d68c05dd008eac1478e83814d7b929be, type: 3}
-  fireEffectTime: 0.6
+  fireObject: {fileID: 0}
+  isSpecial: 0
+  spacingItemCenter: 0
+  targetTransform: {fileID: 0}
+  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!212 &623594449
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13150,7 +13155,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -13211,9 +13216,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &637124184
 Rigidbody2D:
   serializedVersion: 4
@@ -13325,7 +13331,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -13599,7 +13605,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 342869982}
   currentItem: {fileID: 107836792}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &654536980
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13980,7 +13986,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -14020,7 +14026,7 @@ Transform:
   m_GameObject: {fileID: 705832576}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.02, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -14049,15 +14055,13 @@ MonoBehaviour:
   itemToDiskTime: 0.5
   attachDelay: 0.15
   followSmooth: 0.25
-  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
-  soldOutPrefabs: {fileID: 1395313062320027224, guid: 15d893b95a2190f459d9eb91a1f1ea9b, type: 3}
-  listItem: []
-  maxSlot: 3
   isCompleted: 0
   slots: []
-  isClosed: 0
-  fireEffectPrefab: {fileID: 1847458354238678972, guid: d68c05dd008eac1478e83814d7b929be, type: 3}
-  fireEffectTime: 0.6
+  fireObject: {fileID: 0}
+  isSpecial: 0
+  spacingItemCenter: 0
+  targetTransform: {fileID: 0}
+  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!212 &705832579
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14190,7 +14194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 615152974}
   currentItem: {fileID: 406603557}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &720424653
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14316,7 +14320,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1504179228}
   currentItem: {fileID: 637124183}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &724171123
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14411,7 +14415,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1701809987}
   currentItem: {fileID: 100207193}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &729989515
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14506,7 +14510,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 519221860}
   currentItem: {fileID: 564953468}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &733524551
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14601,7 +14605,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1238450262}
   currentItem: {fileID: 1946633359}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &734649252
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14696,7 +14700,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1262525977}
   currentItem: {fileID: 2025831171}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &734843183
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14964,7 +14968,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -15087,9 +15091,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &766219976
 Rigidbody2D:
   serializedVersion: 4
@@ -15201,7 +15206,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7ee3c9f4a7d14944b81c8b7fda68826c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -15324,7 +15329,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 41106561}
   currentItem: {fileID: 803549708}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &772599403
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15441,7 +15446,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -15480,7 +15485,7 @@ Transform:
   m_GameObject: {fileID: 775376879}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.12, z: 0}
+  m_LocalPosition: {x: -1.9, y: -3, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -15533,19 +15538,23 @@ MonoBehaviour:
   spacing: 1.15
   visibleCount: 4
   moveTime: 0.5
-  win: {fileID: 1080773319397989399}
-  listTray: []
-  activeTrays: []
-  columns: 4
-  rows: 8
-  stepX: 3.18
-  stepY: 2.2
-  idleTime: 0
-  hintDelay: 3
-  isTutorialShowing: 0
+  listTrayPrepare: []
+  listTrayValiable: []
+  step: 1.5335
+  canCountIdle: 0
+  spawnHeightMultiplier: 1
   isFirstTutorial: 1
+  tutorialDelay: 4
+  idleTimer: 0
+  tutorialEnabled: 0
   manualTray: {fileID: 705832578}
   manualItem: {fileID: 1503784943}
+  justEndedInteract: 0
+  specialSpawnPoint: {fileID: 0}
+  specialTray: {fileID: 0}
+  specialTrayScale: {x: 0.198, y: 0.23, z: 1}
+  specialTrayLocalPos: {x: 0, y: 0, z: 0}
+  spriteLibrary: []
 --- !u!1 &778221924
 GameObject:
   m_ObjectHideFlags: 0
@@ -15617,7 +15626,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -15679,7 +15688,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 157536677}
   currentItem: {fileID: 1503784943}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &779456282
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15752,7 +15761,7 @@ Transform:
   m_GameObject: {fileID: 780567220}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.02, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -15781,15 +15790,13 @@ MonoBehaviour:
   itemToDiskTime: 0.5
   attachDelay: 0.15
   followSmooth: 0.25
-  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
-  soldOutPrefabs: {fileID: 1395313062320027224, guid: 15d893b95a2190f459d9eb91a1f1ea9b, type: 3}
-  listItem: []
-  maxSlot: 3
   isCompleted: 0
   slots: []
-  isClosed: 0
-  fireEffectPrefab: {fileID: 1847458354238678972, guid: d68c05dd008eac1478e83814d7b929be, type: 3}
-  fireEffectTime: 0.6
+  fireObject: {fileID: 0}
+  isSpecial: 0
+  spacingItemCenter: 0
+  targetTransform: {fileID: 0}
+  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!212 &780567223
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15913,7 +15920,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -15953,7 +15960,7 @@ Transform:
   m_GameObject: {fileID: 784041360}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.02, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -15982,15 +15989,13 @@ MonoBehaviour:
   itemToDiskTime: 0.5
   attachDelay: 0.15
   followSmooth: 0.25
-  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
-  soldOutPrefabs: {fileID: 1395313062320027224, guid: 15d893b95a2190f459d9eb91a1f1ea9b, type: 3}
-  listItem: []
-  maxSlot: 3
   isCompleted: 0
   slots: []
-  isClosed: 0
-  fireEffectPrefab: {fileID: 1847458354238678972, guid: d68c05dd008eac1478e83814d7b929be, type: 3}
-  fireEffectTime: 0.6
+  fireObject: {fileID: 0}
+  isSpecial: 0
+  spacingItemCenter: 0
+  targetTransform: {fileID: 0}
+  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!212 &784041363
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16091,9 +16096,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &792096762
 Rigidbody2D:
   serializedVersion: 4
@@ -16205,7 +16211,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -16245,7 +16251,7 @@ Transform:
   m_GameObject: {fileID: 793403691}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.02, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -16274,15 +16280,13 @@ MonoBehaviour:
   itemToDiskTime: 0.5
   attachDelay: 0.15
   followSmooth: 0.25
-  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
-  soldOutPrefabs: {fileID: 1395313062320027224, guid: 15d893b95a2190f459d9eb91a1f1ea9b, type: 3}
-  listItem: []
-  maxSlot: 3
   isCompleted: 0
   slots: []
-  isClosed: 0
-  fireEffectPrefab: {fileID: 1847458354238678972, guid: d68c05dd008eac1478e83814d7b929be, type: 3}
-  fireEffectTime: 0.6
+  fireObject: {fileID: 0}
+  isSpecial: 0
+  spacingItemCenter: 0
+  targetTransform: {fileID: 0}
+  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!212 &793403694
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16362,7 +16366,7 @@ Transform:
   m_GameObject: {fileID: 793788172}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.02, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -16391,15 +16395,13 @@ MonoBehaviour:
   itemToDiskTime: 0.5
   attachDelay: 0.15
   followSmooth: 0.25
-  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
-  soldOutPrefabs: {fileID: 1395313062320027224, guid: 15d893b95a2190f459d9eb91a1f1ea9b, type: 3}
-  listItem: []
-  maxSlot: 3
   isCompleted: 0
   slots: []
-  isClosed: 0
-  fireEffectPrefab: {fileID: 1847458354238678972, guid: d68c05dd008eac1478e83814d7b929be, type: 3}
-  fireEffectTime: 0.6
+  fireObject: {fileID: 0}
+  isSpecial: 0
+  spacingItemCenter: 0
+  targetTransform: {fileID: 0}
+  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!212 &793788175
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16481,18 +16483,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07c8ff9e9de1019478e284feca570496, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionButton: {fileID: 252002873}
-  emoji: {fileID: 893175481}
-  logo: {fileID: 883232506}
-  praticle: {fileID: 120493804}
-  buttonScaleTime: 0.25
-  itemStartScale: 0.4
-  itemPopScale: 1.1
-  itemInTime: 0.25
-  itemSettleTime: 0.1
-  itemFinalScale: 0.85
-  emojiFinalScale: 0.45
-  otherItemFinalScale: 0.85
 --- !u!4 &799573684
 Transform:
   m_ObjectHideFlags: 0
@@ -16583,7 +16573,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -16676,7 +16666,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 42287280}
   currentItem: {fileID: 1402439077}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &803224820
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16770,9 +16760,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &803549709
 Rigidbody2D:
   serializedVersion: 4
@@ -16884,7 +16875,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -17021,7 +17012,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 28146319}
   currentItem: {fileID: 825053753}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &805500516
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17115,9 +17106,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &806453614
 Rigidbody2D:
   serializedVersion: 4
@@ -17229,7 +17221,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -17313,7 +17305,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -17397,7 +17389,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -17464,7 +17456,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 211777366}
   currentItem: {fileID: 146891150}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &815762072
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17558,9 +17550,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &825053754
 Rigidbody2D:
   serializedVersion: 4
@@ -17672,7 +17665,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -17830,9 +17823,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &837556307
 Rigidbody2D:
   serializedVersion: 4
@@ -17944,7 +17938,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7ee3c9f4a7d14944b81c8b7fda68826c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -18006,7 +18000,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 685060893}
   currentItem: {fileID: 1391825729}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &854105362
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18101,7 +18095,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1989805177}
   currentItem: {fileID: 881307318}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &860056391
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18277,15 +18271,16 @@ MonoBehaviour:
   bgmSource: {fileID: 876330825}
   sfxSource: {fileID: 876330825}
   bgm: {fileID: 8300000, guid: 89dc0825846692e49b8d6f22a6457789, type: 3}
-  finish: {fileID: 8300000, guid: 1c3111620004e88458400abb3513ecd2, type: 3}
-  drog: {fileID: 8300000, guid: 63f86793856b2fa4fa01a89ab8f5040f, type: 3}
-  match: {fileID: 8300000, guid: 12f5c305d4d736645856c600540ca2cf, type: 3}
-  pop: {fileID: 8300000, guid: daea80d5d19d33a4cb5cc7a0947268e5, type: 3}
-  lose: {fileID: 8300000, guid: 01fa15e2251d51f43bf3766c106bdbd7, type: 3}
   drag: {fileID: 8300000, guid: 1c3111620004e88458400abb3513ecd2, type: 3}
-  closeBox: {fileID: 8300000, guid: d15dd8b1fcdc28e459d26707427f2f73, type: 3}
-  normalTick: {fileID: 8300000, guid: 1c3111620004e88458400abb3513ecd2, type: 3}
+  drog: {fileID: 8300000, guid: 63f86793856b2fa4fa01a89ab8f5040f, type: 3}
+  lose: {fileID: 8300000, guid: 01fa15e2251d51f43bf3766c106bdbd7, type: 3}
+  pop: {fileID: 8300000, guid: daea80d5d19d33a4cb5cc7a0947268e5, type: 3}
+  wood: {fileID: 0}
+  win: {fileID: 0}
   warningTick: {fileID: 8300000, guid: daea80d5d19d33a4cb5cc7a0947268e5, type: 3}
+  match: {fileID: 8300000, guid: 12f5c305d4d736645856c600540ca2cf, type: 3}
+  sake: {fileID: 0}
+  excell: {fileID: 0}
 --- !u!4 &876330824
 Transform:
   m_ObjectHideFlags: 0
@@ -18446,9 +18441,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &878520629
 Rigidbody2D:
   serializedVersion: 4
@@ -18560,7 +18556,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7ee3c9f4a7d14944b81c8b7fda68826c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -18600,7 +18596,7 @@ Transform:
   m_GameObject: {fileID: 878598461}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.98, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -18629,15 +18625,13 @@ MonoBehaviour:
   itemToDiskTime: 0.5
   attachDelay: 0.15
   followSmooth: 0.25
-  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
-  soldOutPrefabs: {fileID: 1395313062320027224, guid: 15d893b95a2190f459d9eb91a1f1ea9b, type: 3}
-  listItem: []
-  maxSlot: 3
   isCompleted: 0
   slots: []
-  isClosed: 0
-  fireEffectPrefab: {fileID: 1847458354238678972, guid: d68c05dd008eac1478e83814d7b929be, type: 3}
-  fireEffectTime: 0.6
+  fireObject: {fileID: 0}
+  isSpecial: 0
+  spacingItemCenter: 0
+  targetTransform: {fileID: 0}
+  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!212 &878598464
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -18738,9 +18732,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &881307319
 Rigidbody2D:
   serializedVersion: 4
@@ -18852,7 +18847,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -18967,7 +18962,7 @@ Transform:
   m_GameObject: {fileID: 891419779}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.02, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -18996,15 +18991,13 @@ MonoBehaviour:
   itemToDiskTime: 0.5
   attachDelay: 0.15
   followSmooth: 0.25
-  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
-  soldOutPrefabs: {fileID: 1395313062320027224, guid: 15d893b95a2190f459d9eb91a1f1ea9b, type: 3}
-  listItem: []
-  maxSlot: 3
   isCompleted: 0
   slots: []
-  isClosed: 0
-  fireEffectPrefab: {fileID: 1847458354238678972, guid: d68c05dd008eac1478e83814d7b929be, type: 3}
-  fireEffectTime: 0.6
+  fireObject: {fileID: 0}
+  isSpecial: 0
+  spacingItemCenter: 0
+  targetTransform: {fileID: 0}
+  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!212 &891419782
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19186,9 +19179,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &901367727
 Rigidbody2D:
   serializedVersion: 4
@@ -19300,7 +19294,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -19361,9 +19355,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &905738200
 Rigidbody2D:
   serializedVersion: 4
@@ -19475,7 +19470,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -19559,7 +19554,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -19652,7 +19647,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1562261928}
   currentItem: {fileID: 1166605370}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &921091295
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19985,6 +19980,7 @@ MonoBehaviour:
   maxScale: {x: 1.1, y: 1.1, z: 1.1}
   duration: 0.5
   ease: 7
+  tut: {fileID: 0}
 --- !u!1 &957927552
 GameObject:
   m_ObjectHideFlags: 0
@@ -20087,7 +20083,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -20149,7 +20145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 691135598}
   currentItem: {fileID: 1373423539}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &986289822
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -20222,7 +20218,7 @@ Transform:
   m_GameObject: {fileID: 988548047}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.02, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -20251,15 +20247,13 @@ MonoBehaviour:
   itemToDiskTime: 0.5
   attachDelay: 0.15
   followSmooth: 0.25
-  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
-  soldOutPrefabs: {fileID: 1395313062320027224, guid: 15d893b95a2190f459d9eb91a1f1ea9b, type: 3}
-  listItem: []
-  maxSlot: 3
   isCompleted: 0
   slots: []
-  isClosed: 0
-  fireEffectPrefab: {fileID: 1847458354238678972, guid: d68c05dd008eac1478e83814d7b929be, type: 3}
-  fireEffectTime: 0.6
+  fireObject: {fileID: 0}
+  isSpecial: 0
+  spacingItemCenter: 0
+  targetTransform: {fileID: 0}
+  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!212 &988548050
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20360,9 +20354,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &997043867
 Rigidbody2D:
   serializedVersion: 4
@@ -20474,7 +20469,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -20514,7 +20509,7 @@ Transform:
   m_GameObject: {fileID: 1008371078}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.02, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -20543,15 +20538,13 @@ MonoBehaviour:
   itemToDiskTime: 0.5
   attachDelay: 0.15
   followSmooth: 0.25
-  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
-  soldOutPrefabs: {fileID: 1395313062320027224, guid: 15d893b95a2190f459d9eb91a1f1ea9b, type: 3}
-  listItem: []
-  maxSlot: 3
   isCompleted: 0
   slots: []
-  isClosed: 0
-  fireEffectPrefab: {fileID: 1847458354238678972, guid: d68c05dd008eac1478e83814d7b929be, type: 3}
-  fireEffectTime: 0.6
+  fireObject: {fileID: 0}
+  isSpecial: 0
+  spacingItemCenter: 0
+  targetTransform: {fileID: 0}
+  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!212 &1008371081
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20631,7 +20624,7 @@ Transform:
   m_GameObject: {fileID: 1008918085}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.02, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -20660,15 +20653,13 @@ MonoBehaviour:
   itemToDiskTime: 0.5
   attachDelay: 0.15
   followSmooth: 0.25
-  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
-  soldOutPrefabs: {fileID: 1395313062320027224, guid: 15d893b95a2190f459d9eb91a1f1ea9b, type: 3}
-  listItem: []
-  maxSlot: 3
   isCompleted: 0
   slots: []
-  isClosed: 0
-  fireEffectPrefab: {fileID: 1847458354238678972, guid: d68c05dd008eac1478e83814d7b929be, type: 3}
-  fireEffectTime: 0.6
+  fireObject: {fileID: 0}
+  isSpecial: 0
+  spacingItemCenter: 0
+  targetTransform: {fileID: 0}
+  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!212 &1008918088
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20792,7 +20783,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -20854,7 +20845,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1464256590}
   currentItem: {fileID: 878520628}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1013568168
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -20949,7 +20940,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1617979436}
   currentItem: {fileID: 1498539046}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1018923753
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21128,7 +21119,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -21212,7 +21203,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -21296,7 +21287,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -21380,7 +21371,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -21464,7 +21455,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -21526,7 +21517,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 317135050}
   currentItem: {fileID: 792096761}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1065660385
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21621,7 +21612,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 648469229}
   currentItem: {fileID: 1793926599}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1065698213
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21879,7 +21870,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -21940,9 +21931,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1078758799
 Rigidbody2D:
   serializedVersion: 4
@@ -22054,7 +22046,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -22177,7 +22169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 2136213308}
   currentItem: {fileID: 161966249}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1086363216
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22368,9 +22360,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1087901909
 Rigidbody2D:
   serializedVersion: 4
@@ -22482,7 +22475,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -22544,7 +22537,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 434525448}
   currentItem: {fileID: 905738199}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1090941373
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22617,7 +22610,7 @@ Transform:
   m_GameObject: {fileID: 1094055836}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.02, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -22646,15 +22639,13 @@ MonoBehaviour:
   itemToDiskTime: 0.5
   attachDelay: 0.15
   followSmooth: 0.25
-  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
-  soldOutPrefabs: {fileID: 1395313062320027224, guid: 15d893b95a2190f459d9eb91a1f1ea9b, type: 3}
-  listItem: []
-  maxSlot: 3
   isCompleted: 0
   slots: []
-  isClosed: 0
-  fireEffectPrefab: {fileID: 1847458354238678972, guid: d68c05dd008eac1478e83814d7b929be, type: 3}
-  fireEffectTime: 0.6
+  fireObject: {fileID: 0}
+  isSpecial: 0
+  spacingItemCenter: 0
+  targetTransform: {fileID: 0}
+  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!212 &1094055839
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -22755,7 +22746,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1187163496}
   currentItem: {fileID: 0}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1096943372
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22925,7 +22916,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 241835217}
   currentItem: {fileID: 37261244}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1114502317
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -23299,7 +23290,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -23360,9 +23351,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1136009251
 Rigidbody2D:
   serializedVersion: 4
@@ -23474,7 +23466,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -23535,9 +23527,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1137486333
 Rigidbody2D:
   serializedVersion: 4
@@ -23649,7 +23642,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -23711,7 +23704,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1411290428}
   currentItem: {fileID: 281956866}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1138494430
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -23806,7 +23799,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 906633443}
   currentItem: {fileID: 1896420367}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1148390459
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -23883,6 +23876,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1925938421}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1155667002
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1155667004}
+  - component: {fileID: 1155667003}
+  m_Layer: 0
+  m_Name: LevelController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1155667003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155667002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a650cadada71e34e81774c500898d17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelConfig: {fileID: 11400000, guid: 77a82d5036d3b654b85977ca1c6cac5d, type: 2}
+  trayManager: {fileID: 775376881}
+--- !u!4 &1155667004
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155667002}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.1142701, y: -4.069838, z: 188.84773}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1166605368
 GameObject:
   m_ObjectHideFlags: 0
@@ -23931,9 +23970,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1166605371
 Rigidbody2D:
   serializedVersion: 4
@@ -24045,7 +24085,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7ee3c9f4a7d14944b81c8b7fda68826c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -24129,7 +24169,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -24328,7 +24368,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 596059142}
   currentItem: {fileID: 1612121020}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1190590218
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -24555,9 +24595,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1203464340
 Rigidbody2D:
   serializedVersion: 4
@@ -24669,7 +24710,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -24731,7 +24772,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 2082473375}
   currentItem: {fileID: 271022538}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1203535352
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -24826,7 +24867,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1693979186}
   currentItem: {fileID: 1803400814}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1205428137
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -24943,7 +24984,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -24983,7 +25024,7 @@ Transform:
   m_GameObject: {fileID: 1210190339}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 9.23, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -25012,15 +25053,13 @@ MonoBehaviour:
   itemToDiskTime: 0.5
   attachDelay: 0.15
   followSmooth: 0.25
-  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
-  soldOutPrefabs: {fileID: 1395313062320027224, guid: 15d893b95a2190f459d9eb91a1f1ea9b, type: 3}
-  listItem: []
-  maxSlot: 3
   isCompleted: 0
   slots: []
-  isClosed: 0
-  fireEffectPrefab: {fileID: 1847458354238678972, guid: d68c05dd008eac1478e83814d7b929be, type: 3}
-  fireEffectTime: 0.6
+  fireObject: {fileID: 0}
+  isSpecial: 0
+  spacingItemCenter: 0
+  targetTransform: {fileID: 0}
+  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!212 &1210190342
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -25153,7 +25192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 96311042}
   currentItem: {fileID: 135581132}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1241118658
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -25247,9 +25286,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1241893697
 Rigidbody2D:
   serializedVersion: 4
@@ -25361,7 +25401,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7ee3c9f4a7d14944b81c8b7fda68826c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -25422,7 +25462,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1560541983}
   currentItem: {fileID: 0}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1242423754
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -25552,9 +25592,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1279050596
 Rigidbody2D:
   serializedVersion: 4
@@ -25666,7 +25707,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -25727,9 +25768,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1280249041
 Rigidbody2D:
   serializedVersion: 4
@@ -25841,7 +25883,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -25902,9 +25944,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1289087128
 Rigidbody2D:
   serializedVersion: 4
@@ -26016,7 +26059,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7ee3c9f4a7d14944b81c8b7fda68826c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -26078,7 +26121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1988385336}
   currentItem: {fileID: 1708674961}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1291543939
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -26195,7 +26238,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -26296,7 +26339,7 @@ Transform:
   m_GameObject: {fileID: 1307991372}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.02, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -26325,15 +26368,13 @@ MonoBehaviour:
   itemToDiskTime: 0.5
   attachDelay: 0.15
   followSmooth: 0.25
-  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
-  soldOutPrefabs: {fileID: 1395313062320027224, guid: 15d893b95a2190f459d9eb91a1f1ea9b, type: 3}
-  listItem: []
-  maxSlot: 3
   isCompleted: 0
   slots: []
-  isClosed: 0
-  fireEffectPrefab: {fileID: 1847458354238678972, guid: d68c05dd008eac1478e83814d7b929be, type: 3}
-  fireEffectTime: 0.6
+  fireObject: {fileID: 0}
+  isSpecial: 0
+  spacingItemCenter: 0
+  targetTransform: {fileID: 0}
+  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!212 &1307991375
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -26495,9 +26536,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1314906380
 Rigidbody2D:
   serializedVersion: 4
@@ -26609,7 +26651,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -26693,7 +26735,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -26777,7 +26819,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -26861,7 +26903,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -26945,7 +26987,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -27007,7 +27049,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 874389730}
   currentItem: {fileID: 1280249040}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1320245634
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -27258,7 +27300,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -27320,7 +27362,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1558033677}
   currentItem: {fileID: 2093787801}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1332288152
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -27611,7 +27653,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 802297451}
   currentItem: {fileID: 20488217}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1340032024
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -27706,7 +27748,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1813765206}
   currentItem: {fileID: 837556306}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1352352072
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -28002,9 +28044,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1373423540
 Rigidbody2D:
   serializedVersion: 4
@@ -28116,7 +28159,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -28177,9 +28220,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1377941377
 Rigidbody2D:
   serializedVersion: 4
@@ -28291,7 +28335,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7ee3c9f4a7d14944b81c8b7fda68826c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -28375,7 +28419,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -28436,9 +28480,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1382601406
 Rigidbody2D:
   serializedVersion: 4
@@ -28550,7 +28595,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7ee3c9f4a7d14944b81c8b7fda68826c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -28708,9 +28753,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1391825730
 Rigidbody2D:
   serializedVersion: 4
@@ -28822,7 +28868,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -28884,7 +28930,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1538720371}
   currentItem: {fileID: 806453613}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1397398966
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -29001,7 +29047,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -29062,9 +29108,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1402439078
 Rigidbody2D:
   serializedVersion: 4
@@ -29176,7 +29223,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7ee3c9f4a7d14944b81c8b7fda68826c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -29379,7 +29426,7 @@ Transform:
   m_GameObject: {fileID: 1419347865}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.02, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -29408,15 +29455,13 @@ MonoBehaviour:
   itemToDiskTime: 0.5
   attachDelay: 0.15
   followSmooth: 0.25
-  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
-  soldOutPrefabs: {fileID: 1395313062320027224, guid: 15d893b95a2190f459d9eb91a1f1ea9b, type: 3}
-  listItem: []
-  maxSlot: 3
   isCompleted: 0
   slots: []
-  isClosed: 0
-  fireEffectPrefab: {fileID: 1847458354238678972, guid: d68c05dd008eac1478e83814d7b929be, type: 3}
-  fireEffectTime: 0.6
+  fireObject: {fileID: 0}
+  isSpecial: 0
+  spacingItemCenter: 0
+  targetTransform: {fileID: 0}
+  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!212 &1419347868
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -29517,9 +29562,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1426218126
 Rigidbody2D:
   serializedVersion: 4
@@ -29631,7 +29677,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7ee3c9f4a7d14944b81c8b7fda68826c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -29693,7 +29739,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1650126918}
   currentItem: {fileID: 1846304642}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1426811892
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -29819,7 +29865,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 708535685}
   currentItem: {fileID: 2007035867}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1431847349
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -29979,9 +30025,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1444110193
 Rigidbody2D:
   serializedVersion: 4
@@ -30093,7 +30140,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7ee3c9f4a7d14944b81c8b7fda68826c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -30221,7 +30268,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 629245649}
   currentItem: {fileID: 1078758798}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1450955225
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -30315,9 +30362,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1455014270
 Rigidbody2D:
   serializedVersion: 4
@@ -30429,7 +30477,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7ee3c9f4a7d14944b81c8b7fda68826c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -30621,7 +30669,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 944525219}
   currentItem: {fileID: 493520403}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1468846667
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -30715,9 +30763,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1471242479
 Rigidbody2D:
   serializedVersion: 4
@@ -30829,7 +30878,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -30890,9 +30939,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1472020443
 Rigidbody2D:
   serializedVersion: 4
@@ -31004,7 +31054,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -31066,7 +31116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 89059139}
   currentItem: {fileID: 1788248070}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1474540434
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -31161,7 +31211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 723041476}
   currentItem: {fileID: 124322541}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1480163032
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -31256,7 +31306,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1962355477}
   currentItem: {fileID: 1137486332}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1481831495
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -31426,7 +31476,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1114697107}
   currentItem: {fileID: 1289087127}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1488910664
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -31521,7 +31571,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 2092525141}
   currentItem: {fileID: 515164955}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1489956838
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -31615,9 +31665,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1498539047
 Rigidbody2D:
   serializedVersion: 4
@@ -31729,7 +31780,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -31790,9 +31841,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1503784944
 Rigidbody2D:
   serializedVersion: 4
@@ -31904,7 +31956,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -32019,7 +32071,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -32080,9 +32132,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1510953874
 Rigidbody2D:
   serializedVersion: 4
@@ -32194,7 +32247,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -32255,9 +32308,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1514399023
 Rigidbody2D:
   serializedVersion: 4
@@ -32369,7 +32423,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -32431,7 +32485,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1117583699}
   currentItem: {fileID: 1444110192}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1520503770
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -32579,7 +32633,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -32930,7 +32984,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1190092064}
   currentItem: {fileID: 585760999}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1558639703
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -33056,7 +33110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 94393317}
   currentItem: {fileID: 1426218125}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1561210062
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -33279,7 +33333,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -33363,7 +33417,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -33425,7 +33479,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 73785126}
   currentItem: {fileID: 1587491916}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1577913880
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -33520,7 +33574,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 554449050}
   currentItem: {fileID: 417877988}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1585869392
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -33645,9 +33699,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1587491917
 Rigidbody2D:
   serializedVersion: 4
@@ -33759,7 +33814,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -33804,7 +33859,7 @@ Transform:
   m_GameObject: {fileID: 1593591811}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.6, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -33833,15 +33888,13 @@ MonoBehaviour:
   itemToDiskTime: 0.5
   attachDelay: 0.15
   followSmooth: 0.25
-  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
-  soldOutPrefabs: {fileID: 1395313062320027224, guid: 15d893b95a2190f459d9eb91a1f1ea9b, type: 3}
-  listItem: []
-  maxSlot: 3
   isCompleted: 0
   slots: []
-  isClosed: 0
-  fireEffectPrefab: {fileID: 1847458354238678972, guid: d68c05dd008eac1478e83814d7b929be, type: 3}
-  fireEffectTime: 0.6
+  fireObject: {fileID: 0}
+  isSpecial: 0
+  spacingItemCenter: 0
+  targetTransform: {fileID: 0}
+  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!212 &1593591814
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -33942,9 +33995,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1596421760
 Rigidbody2D:
   serializedVersion: 4
@@ -34056,7 +34110,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7ee3c9f4a7d14944b81c8b7fda68826c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -34118,7 +34172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 933128911}
   currentItem: {fileID: 1721066332}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1598095121
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -34316,7 +34370,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -34417,7 +34471,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebee715a24da0a14e9d19c972acee5ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateSpeed: 20
 --- !u!1 &1608034109
 GameObject:
   m_ObjectHideFlags: 0
@@ -34467,7 +34520,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1892086697}
   currentItem: {fileID: 2143775973}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1608034112
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -34561,9 +34614,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1612121021
 Rigidbody2D:
   serializedVersion: 4
@@ -34675,7 +34729,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7ee3c9f4a7d14944b81c8b7fda68826c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -34768,7 +34822,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1537046384}
   currentItem: {fileID: 1909442043}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1619033277
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -34863,7 +34917,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1955358776}
   currentItem: {fileID: 399929779}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1635892570
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -35055,7 +35109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1952332944}
   currentItem: {fileID: 1472020442}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1662947556
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -35150,7 +35204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1587102326}
   currentItem: {fileID: 1471242478}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1663719090
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -35244,7 +35298,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 571048983}
   currentItem: {fileID: 0}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1667928481
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -35338,9 +35392,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1669430579
 Rigidbody2D:
   serializedVersion: 4
@@ -35452,7 +35507,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7ee3c9f4a7d14944b81c8b7fda68826c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -35605,9 +35660,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1699697107
 Rigidbody2D:
   serializedVersion: 4
@@ -35719,7 +35775,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7ee3c9f4a7d14944b81c8b7fda68826c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -35848,7 +35904,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1870633746}
   currentItem: {fileID: 16668535}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1705845509
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -35942,9 +35998,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1708674962
 Rigidbody2D:
   serializedVersion: 4
@@ -36056,7 +36113,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7ee3c9f4a7d14944b81c8b7fda68826c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -36272,7 +36329,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -36333,9 +36390,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1721066333
 Rigidbody2D:
   serializedVersion: 4
@@ -36447,7 +36505,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7ee3c9f4a7d14944b81c8b7fda68826c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -36518,7 +36576,7 @@ Transform:
   m_GameObject: {fileID: 1728124358}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.02, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -36547,15 +36605,13 @@ MonoBehaviour:
   itemToDiskTime: 0.5
   attachDelay: 0.15
   followSmooth: 0.25
-  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
-  soldOutPrefabs: {fileID: 1395313062320027224, guid: 15d893b95a2190f459d9eb91a1f1ea9b, type: 3}
-  listItem: []
-  maxSlot: 3
   isCompleted: 0
   slots: []
-  isClosed: 0
-  fireEffectPrefab: {fileID: 1847458354238678972, guid: d68c05dd008eac1478e83814d7b929be, type: 3}
-  fireEffectTime: 0.6
+  fireObject: {fileID: 0}
+  isSpecial: 0
+  spacingItemCenter: 0
+  targetTransform: {fileID: 0}
+  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!212 &1728124361
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -36679,7 +36735,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -36801,7 +36857,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -36885,7 +36941,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -36971,7 +37027,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 464886473
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 1
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -41901,7 +41957,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1335610605}
   currentItem: {fileID: 2024836679}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1770301606
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -42049,7 +42105,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -42110,9 +42166,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1788248071
 Rigidbody2D:
   serializedVersion: 4
@@ -42224,7 +42281,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -42285,9 +42342,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1792017679
 Rigidbody2D:
   serializedVersion: 4
@@ -42399,7 +42457,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7ee3c9f4a7d14944b81c8b7fda68826c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -42460,9 +42518,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1793926600
 Rigidbody2D:
   serializedVersion: 4
@@ -42574,7 +42633,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -42847,9 +42906,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1803400815
 Rigidbody2D:
   serializedVersion: 4
@@ -42961,7 +43021,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -43084,9 +43144,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1820833318
 Rigidbody2D:
   serializedVersion: 4
@@ -43198,7 +43259,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7ee3c9f4a7d14944b81c8b7fda68826c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -43241,19 +43302,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bca13f94d4e40d842b092ad9b75341c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointText: {fileID: 0}
+  point: 0
+  ECWin: {fileID: 0}
+  startTimer: 0
+  ticketCount: 0
   isClickToLog: 0
   clicksToLog: 15
-  isTimer: 1
-  time: 30
+  isMatch: 0
   clickCount: 0
   isClick: 0
   finishGame: 0
-  textPoint: {fileID: 210372419}
-  point: 0
-  tutGame: {fileID: 1704411303}
-  target: {fileID: 1171375384}
-  text_target: {fileID: 448741782}
-  totalTime: 0
+  startGame: 0
+  isCheckWin: 0
+  isCheckLose: 0
+  isClickStore: 0
 --- !u!4 &1821411509
 Transform:
   m_ObjectHideFlags: 0
@@ -43281,7 +43344,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c34bb838da49645bbf1feb249bac60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handPrefab: {fileID: 8370459745067459544, guid: 1a66be478991dfc4ab834bd18263f87e, type: 3}
 --- !u!1 &1824784391
 GameObject:
   m_ObjectHideFlags: 0
@@ -43330,9 +43392,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1824784394
 Rigidbody2D:
   serializedVersion: 4
@@ -43444,7 +43507,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7ee3c9f4a7d14944b81c8b7fda68826c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -43585,9 +43648,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1834290212
 Rigidbody2D:
   serializedVersion: 4
@@ -43699,7 +43763,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7ee3c9f4a7d14944b81c8b7fda68826c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -43858,7 +43922,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1797454611}
   currentItem: {fileID: 39664780}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1843441097
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -43952,9 +44016,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1846304643
 Rigidbody2D:
   serializedVersion: 4
@@ -44066,7 +44131,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -44150,7 +44215,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -44212,7 +44277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 594842297}
   currentItem: {fileID: 489218243}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1855369804
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -44391,7 +44456,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -44523,7 +44588,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 405651252}
   currentItem: {fileID: 1203464339}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1892396912
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -44617,9 +44682,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1896420368
 Rigidbody2D:
   serializedVersion: 4
@@ -44731,7 +44797,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -44792,9 +44858,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1909442044
 Rigidbody2D:
   serializedVersion: 4
@@ -44906,7 +44973,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7ee3c9f4a7d14944b81c8b7fda68826c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -45021,7 +45088,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -45082,9 +45149,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1919643482
 Rigidbody2D:
   serializedVersion: 4
@@ -45196,7 +45264,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -45319,7 +45387,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1149288408}
   currentItem: {fileID: 1596421759}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1925938423
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -45436,7 +45504,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -45497,9 +45565,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &1946633360
 Rigidbody2D:
   serializedVersion: 4
@@ -45611,7 +45680,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -45697,7 +45766,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 464886473
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 1
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -50685,7 +50754,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1552998850}
   currentItem: {fileID: 1455014269}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1964313214
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -50936,7 +51005,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -50998,7 +51067,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1855502175}
   currentItem: {fileID: 901367726}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1972638004
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -51071,7 +51140,7 @@ Transform:
   m_GameObject: {fileID: 1984652091}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.02, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -51100,15 +51169,13 @@ MonoBehaviour:
   itemToDiskTime: 0.5
   attachDelay: 0.15
   followSmooth: 0.25
-  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
-  soldOutPrefabs: {fileID: 1395313062320027224, guid: 15d893b95a2190f459d9eb91a1f1ea9b, type: 3}
-  listItem: []
-  maxSlot: 3
   isCompleted: 0
   slots: []
-  isClosed: 0
-  fireEffectPrefab: {fileID: 1847458354238678972, guid: d68c05dd008eac1478e83814d7b929be, type: 3}
-  fireEffectTime: 0.6
+  fireObject: {fileID: 0}
+  isSpecial: 0
+  spacingItemCenter: 0
+  targetTransform: {fileID: 0}
+  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!212 &1984652094
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -51215,7 +51282,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1521361357}
   currentItem: {fileID: 1834290211}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &1986672169
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -51394,7 +51461,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -51455,9 +51522,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &2006738044
 Rigidbody2D:
   serializedVersion: 4
@@ -51569,7 +51637,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -51630,9 +51698,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &2007035868
 Rigidbody2D:
   serializedVersion: 4
@@ -51744,7 +51813,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7ee3c9f4a7d14944b81c8b7fda68826c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -51806,7 +51875,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 2080902784}
   currentItem: {fileID: 1377941376}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &2022538447
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -51944,9 +52013,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &2024836680
 Rigidbody2D:
   serializedVersion: 4
@@ -52058,7 +52128,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -52119,9 +52189,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &2025831172
 Rigidbody2D:
   serializedVersion: 4
@@ -52233,7 +52304,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -52305,7 +52376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1023531842}
   currentItem: {fileID: 1087901908}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &2057123069
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -52378,7 +52449,7 @@ Transform:
   m_GameObject: {fileID: 2063995221}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.02, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -52407,15 +52478,13 @@ MonoBehaviour:
   itemToDiskTime: 0.5
   attachDelay: 0.15
   followSmooth: 0.25
-  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
-  soldOutPrefabs: {fileID: 1395313062320027224, guid: 15d893b95a2190f459d9eb91a1f1ea9b, type: 3}
-  listItem: []
-  maxSlot: 3
   isCompleted: 0
   slots: []
-  isClosed: 0
-  fireEffectPrefab: {fileID: 1847458354238678972, guid: d68c05dd008eac1478e83814d7b929be, type: 3}
-  fireEffectTime: 0.6
+  fireObject: {fileID: 0}
+  isSpecial: 0
+  spacingItemCenter: 0
+  targetTransform: {fileID: 0}
+  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!212 &2063995224
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -52609,9 +52678,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &2093787802
 Rigidbody2D:
   serializedVersion: 4
@@ -52723,7 +52793,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -52785,7 +52855,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 654335526}
   currentItem: {fileID: 543619525}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &2095031417
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -52880,7 +52950,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1386285875}
   currentItem: {fileID: 233808058}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &2101299061
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -52974,9 +53044,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &2112268012
 Rigidbody2D:
   serializedVersion: 4
@@ -53088,7 +53159,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfbf9bca0bbb14f4f8ce5c808f8ea8bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -53219,19 +53290,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7153b4891d6f4f54585c8cce0f9a772c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerText: {fileID: 1331128670}
-  startSeconds: 60
-  warningTime: 5
-  warningColor: {r: 1, g: 0, b: 0, a: 1}
-  pulseScale: 1.3
-  pulseSpeed: 0.5
-  backgroundWarning: {fileID: 651593695}
-  timeUpPanel: {fileID: 1080773319397989399}
-  hasStarted: 0
-  bgMinAlpha: 0.25
-  bgMaxAlpha: 1
-  bgBlinkSpeed: 4
-  wwin: {fileID: 799573682}
 --- !u!1 &2126545575
 GameObject:
   m_ObjectHideFlags: 0
@@ -53281,7 +53339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 499533834}
   currentItem: {fileID: 1279050595}
-  tray: {fileID: 0}
+  isLocked: 0
 --- !u!61 &2126545578
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -53385,7 +53443,7 @@ Transform:
   m_GameObject: {fileID: 2140110617}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.02, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -53414,15 +53472,13 @@ MonoBehaviour:
   itemToDiskTime: 0.5
   attachDelay: 0.15
   followSmooth: 0.25
-  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
-  soldOutPrefabs: {fileID: 1395313062320027224, guid: 15d893b95a2190f459d9eb91a1f1ea9b, type: 3}
-  listItem: []
-  maxSlot: 3
   isCompleted: 0
   slots: []
-  isClosed: 0
-  fireEffectPrefab: {fileID: 1847458354238678972, guid: d68c05dd008eac1478e83814d7b929be, type: 3}
-  fireEffectTime: 0.6
+  fireObject: {fileID: 0}
+  isSpecial: 0
+  spacingItemCenter: 0
+  targetTransform: {fileID: 0}
+  diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!212 &2140110620
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -53523,9 +53579,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b7a0605abe7b4192578d2362eec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   focusOutlineSize: 1
   outlineTweenTime: 0.12
+  itemType: 0
+  lockItem: 0
 --- !u!50 &2143775974
 Rigidbody2D:
   serializedVersion: 4
@@ -53637,7 +53694,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 477834457
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7ee3c9f4a7d14944b81c8b7fda68826c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -58560,18 +58617,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07c8ff9e9de1019478e284feca570496, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionButton: {fileID: 3514744348048275223}
-  emoji: {fileID: 1602108805}
-  logo: {fileID: 1564602322}
-  praticle: {fileID: 1603106862}
-  buttonScaleTime: 0.25
-  itemStartScale: 0.4
-  itemPopScale: 1.1
-  itemInTime: 0.25
-  itemSettleTime: 0.1
-  itemFinalScale: 0.85
-  emojiFinalScale: 0.45
-  otherItemFinalScale: 0.85
 --- !u!114 &1157373711421989920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58925,7 +58970,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 464886473
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 1
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -59103,7 +59148,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 464886473
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 1
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -64220,3 +64265,4 @@ SceneRoots:
   - {fileID: 736115257123883758}
   - {fileID: 799573684}
   - {fileID: 292442978}
+  - {fileID: 1155667004}

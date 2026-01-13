@@ -111,6 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1013154915603452371}
   currentItem: {fileID: 6993563312040242122}
+  isLocked: 0
 --- !u!61 &1567002761372055557
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -245,7 +246,7 @@ Transform:
   m_GameObject: {fileID: 4954555433282746783}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 10.18, z: 0}
+  m_LocalPosition: {x: 0, y: -0.25, z: 0}
   m_LocalScale: {x: 0.45000002, y: 0.45000002, z: 0.45000002}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -330,7 +331,12 @@ MonoBehaviour:
   followSmooth: 0.25
   isCompleted: 0
   slots: []
+  fireObject: {fileID: 1847458354238678972, guid: d68c05dd008eac1478e83814d7b929be, type: 3}
+  isSpecial: 0
+  spacingItemCenter: 0
+  targetTransform: {fileID: 0}
   diskItemScale: {x: 0.75, y: 0.75, z: 0.75}
+  trayType: 0
 --- !u!1 &5223000767080607457
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,6 +417,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1372510092798135280}
   currentItem: {fileID: 6495063803536418375}
+  isLocked: 0
 --- !u!61 &7540018301772210193
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -505,6 +512,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 1439506685407128930}
   currentItem: {fileID: 8889142353770168453}
+  isLocked: 0
 --- !u!61 &8613321803624888302
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -599,6 +607,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 2045996225098596403}
   currentItem: {fileID: 1668571826868269972}
+  isLocked: 0
 --- !u!61 &179364559143544626
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -693,6 +702,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 4508450527023597344}
   currentItem: {fileID: 3590432387558474693}
+  isLocked: 0
 --- !u!61 &4537911279558793364
 BoxCollider2D:
   m_ObjectHideFlags: 0

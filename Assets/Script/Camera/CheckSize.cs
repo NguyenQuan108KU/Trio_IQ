@@ -7,18 +7,19 @@ public class CheckSize : MonoBehaviour
     public float size16by9 = 4.6f;   // 16:9
     public float size18by9 = 5.0f;   // 18:9
     public float sizeLong = 5.6f;   // 20:9+
+    public float sizeOrthographic;
 
     [Header("Disk")]
     public Transform diskTransform;
     public Vector3 diskPos16by9 = new Vector3(3.55f, 2.87f, 0f);
     public Vector3 diskPosLong = new Vector3(1.15f, 3.6f, 0f);
 
-    public Transform trayManager;
-    public GameObject button_doc;
-    public GameObject target;
-    public GameObject timer;
-    public GameObject logoGame;
-    public GameObject buttonGame;
+    //public Transform trayManager;
+    //public GameObject button_doc;
+    //public GameObject target;
+    //public GameObject timer;
+    //public GameObject logoGame;
+    //public GameObject buttonGame;
 
     private Camera cam;
     private float lastAspect;
@@ -46,7 +47,7 @@ public class CheckSize : MonoBehaviour
         if (!isPortrait)
         {
             //cam.orthographicSize = size16by9;
-            cam.orthographicSize = 3.9f;
+            cam.orthographicSize = sizeOrthographic;
             //button_doc.SetActive(false);
             //trayManager.transform.position = new Vector3(0, -0.75f, 0);
             //target.GetComponent<RectTransform>().anchoredPosition = new Vector2(173, -127);

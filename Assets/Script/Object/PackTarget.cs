@@ -40,9 +40,6 @@ public class PackTarget : MonoBehaviour
             Punch();
         }
     }
-
-
-
     void Punch()
     {
         if (!this || !gameObject) return;

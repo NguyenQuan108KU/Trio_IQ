@@ -19,24 +19,39 @@ public class DragItem : MonoBehaviour
     private SpriteRenderer sr;
     private Vector3 startScale;
     private Slot startSlot;
-    private Material mat;
 
     [Header("Outline")]
     public float focusOutlineSize = 1f;
     public float outlineTweenTime = 0.12f;
     private GameObject outline;
     public ItemType itemType;
-    public bool lockItem;
+    public bool isLockItem;
+    public bool onTimer;
+    Material mat;
 
+    private void OnEnable()
+    {
+        GameEvent.LockItem.AddListener(LockItem);
+        GameEvent.UnLockItem.AddListener(UnLockItem);
+    }
+    private void OnDisable()
+    {
+        GameEvent.LockItem.RemoveListener(LockItem);
+        GameEvent.UnLockItem.RemoveListener(UnLockItem);
+    }
     private void Awake()
     {
         cam = Camera.main;
         sr = GetComponent<SpriteRenderer>();
         startScale = transform.localScale;
-        outline = transform.GetChild(0).gameObject;
-        outline.SetActive(false);
+        //outline = transform.GetChild(0).gameObject;
+        //outline.SetActive(false);
     }
-
+    private void Start()
+    {
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        mat = spriteRenderer.material;
+    }
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -57,16 +72,21 @@ public class DragItem : MonoBehaviour
         }
 
     }
-
     void TryPick()
     {
+        GameEvent.StartTimer?.Invoke();
         GameManager.instance.startGame = true;
         if (!GameManager.instance.startTimer)
         {
             //CountdownTimer.instance.StartCountdown();
-            GameManager.instance.startTimer = true;
         }
-        if (lockItem) return;
+        if (!onTimer)
+        {
+            onTimer = true;
+            GameEvent.TimeOut?.Invoke();
+
+        }
+        if (isLockItem) return;
         if (GameManager.instance.finishGame) return;
         if(!GameManager.instance.startGame) return;
         TrayManager.instance.OnUserBeginInteract();
@@ -80,6 +100,7 @@ public class DragItem : MonoBehaviour
         {
             if (hit.gameObject == gameObject)
             {
+                ShowOutline();
                 currentDrag = this;
                 GameManager.instance.OnGlobalClick();
                 tween?.Kill();
@@ -90,8 +111,8 @@ public class DragItem : MonoBehaviour
 
                 offset = transform.position - (Vector3)mouseWorld;
                 sr.sortingOrder = 10;
-                outline.GetComponent<SpriteRenderer>().sortingOrder = 9;
-                ShowOutline(true);
+                //outline.GetComponent<SpriteRenderer>().sortingOrder = 9;
+                //ShowOutline(true);
                 return;
             }
         }
@@ -105,7 +126,7 @@ public class DragItem : MonoBehaviour
     void Drop()
     {
         currentDrag = null;
-        ShowOutline(false);
+        //ShowOutline(false);
 
         Vector2 mouseWorld = cam.ScreenToWorldPoint(Input.mousePosition);
 
@@ -114,6 +135,7 @@ public class DragItem : MonoBehaviour
             Return();
             return;
         }
+        HideOutline();
         PackTarget pack = FindPackUnderItem();
         if (pack != null && pack.CanAccept(this))
         {
@@ -128,7 +150,6 @@ public class DragItem : MonoBehaviour
         else
             Return();
     }
-
     void Snap(Slot slot)
     {
         Slot oldSlot = startParent ? startParent.GetComponent<Slot>() : null;
@@ -145,7 +166,7 @@ public class DragItem : MonoBehaviour
                 .OnComplete(() =>
                 {
                     sr.sortingOrder = 1;
-                    outline.GetComponent<SpriteRenderer>().sortingOrder = -1;
+                    //outline.GetComponent<SpriteRenderer>().sortingOrder = -1;
                     slot.SetItem(this);
                     Tray tray = slot.GetComponentInParent<Tray>();
                     if (tray != null)
@@ -167,10 +188,9 @@ public class DragItem : MonoBehaviour
                 .OnComplete(() =>
                 {
                     sr.sortingOrder = 1;
-                    outline.GetComponent<SpriteRenderer>().sortingOrder = -1;
+                    //outline.GetComponent<SpriteRenderer>().sortingOrder = -1;
                 });
     }
-
     Slot FindNearestSlot()
     {
         Slot[] slots = FindObjectsOfType<Slot>();
@@ -207,11 +227,11 @@ public class DragItem : MonoBehaviour
                     .SetEase(Ease.OutBack);
             });
     }
-    void ShowOutline(bool show)
-    {
-        if (outline != null)
-            outline.SetActive(show);
-    }
+    //void ShowOutline(bool show)
+    //{
+    //    if (outline != null)
+    //        outline.SetActive(show);
+    //}
     bool IsInBlockZone(Vector2 worldPos)
     {
         Collider2D[] hits = Physics2D.OverlapPointAll(worldPos);
@@ -230,9 +250,9 @@ public class DragItem : MonoBehaviour
     }
     public void OnPacked()
     {
-        lockItem = true;
+        isLockItem = true;
         sr.sortingOrder = 0;
-        outline.SetActive(false);
+        //outline.SetActive(false);
     }
     PackTarget FindPackUnderMouse(Vector2 worldPos)
     {
@@ -260,16 +280,15 @@ public class DragItem : MonoBehaviour
 
         return null;
     }
-
     void MoveToPack(PackTarget pack)
     {
         currentDrag = null;
-        lockItem = true;
+        isLockItem = true;
 
         tween?.Kill();
         transform.DOKill(true); 
 
-        ShowOutline(false);
+        //ShowOutline(false);
 
         Vector3 targetPos = pack.attachPoint.position;
         transform.localScale = startScale;
@@ -292,4 +311,15 @@ public class DragItem : MonoBehaviour
             pack.AcceptItem(this);
         });
     }
+    public void ShowOutline()
+    {
+        mat.SetFloat("_OuterOutlineFade", 1);        mat.SetFloat("_OuterOutlineWidth", 0.05f);
+    }
+    public void HideOutline()
+    {
+        mat.SetFloat("_OuterOutlineFade", 0);        mat.SetFloat("_OuterOutlineWidth", 0);
+    }
+    public void LockItem() =>  isLockItem = true;
+    public void UnLockItem() => isLockItem = false;
+
 }

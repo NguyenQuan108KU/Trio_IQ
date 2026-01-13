@@ -3,10 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class SetText : Anim
 {
+    public static SetText instance;
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
+    }
     [Header("Text Settings")]
     public TMP_Text ageText;
     public int age;
@@ -19,6 +26,7 @@ public class SetText : Anim
     public float maxTimer;
     public float countTimer;
 
+    public GameObject anchor;
     private void Start()
     {
         ageText.text = age.ToString();

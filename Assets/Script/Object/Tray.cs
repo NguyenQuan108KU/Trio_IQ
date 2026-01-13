@@ -24,8 +24,52 @@ public class Tray : MonoBehaviour
     private void Start()
     {
         slots = GetComponentsInChildren<Slot>();
+       // targetTransform = SetText.instance.anchor;
     }
     public Vector3 diskItemScale = new Vector3(0.03f, 0.03f, 0.03f);
+    //public void CheckMatch()
+    //{
+    //    DragItem[] items = GetComponentsInChildren<DragItem>();
+
+    //    var groups = items.GroupBy(i =>
+    //    {
+    //        var sr = i.GetComponent<SpriteRenderer>();
+    //        return sr != null && sr.sprite != null
+    //            ? sr.sprite.name
+    //            : i.gameObject.name;
+    //    });
+
+    //    foreach (var g in groups)
+    //    {
+    //        if (g.Count() < 5) continue;
+
+    //        var matchedItems = g.Take(5).ToList();
+    //        //GameManager.instance.ticketCount += 1;
+    //        //if(GameManager.instance.ticketCount == 5 && GameManager.instance.isMatch)
+    //        //{
+    //        //    Luna.Unity.LifeCycle.GameEnded();
+    //        //    GameManager.instance.isClickStore = true;   
+    //        //}
+    //        //ItemType type = matchedItems[0].itemType;
+
+    //        //PackTarget targetPack =
+    //        //    PackManager.instance.GetPackInScene(type);
+
+    //        //if (targetPack != null)
+    //        //{
+    //        for(int i = 0; i < matchedItems.Count; i++)
+    //        {
+    //            matchedItems[i].lockItem = true;
+    //            matchedItems[i].GetComponent<SpriteRenderer>().sortingOrder = 3;
+    //        }
+    //            GameManager.instance.AddPoint(1);
+    //            MatchItem(matchedItems);
+    //            //MoveToPackLikeDisk(matchedItems, targetPack);
+    //            //MoveToCenter(matchedItems);
+    //        //}
+    //        return;
+    //    }
+    //}
     public void CheckMatch()
     {
         DragItem[] items = GetComponentsInChildren<DragItem>();
@@ -40,38 +84,27 @@ public class Tray : MonoBehaviour
 
         foreach (var g in groups)
         {
-            if (g.Count() < 5) continue;
+            if (g.Count() < 3) continue;
 
-            var matchedItems = g.Take(5).ToList();
-            //GameManager.instance.ticketCount += 1;
-            //if(GameManager.instance.ticketCount == 5 && GameManager.instance.isMatch)
-            //{
-            //    Luna.Unity.LifeCycle.GameEnded();
-            //    GameManager.instance.isClickStore = true;   
-            //}
-            //ItemType type = matchedItems[0].itemType;
-
-            //PackTarget targetPack =
-            //    PackManager.instance.GetPackInScene(type);
-
-            //if (targetPack != null)
-            //{
-            for(int i = 0; i < matchedItems.Count; i++)
+            var matchedItems = g.Take(3).ToList();
+            for (int i = 0; i < matchedItems.Count; i++)
             {
-                matchedItems[i].lockItem = true;
-                matchedItems[i].GetComponent<SpriteRenderer>().sortingOrder = 3;
+                matchedItems[i].GetComponent<SpriteRenderer>().sortingOrder = i + 3;
             }
-                GameManager.instance.AddPoint(1);
-                MatchItem(matchedItems);
-                //MoveToPackLikeDisk(matchedItems, targetPack);
-                //MoveToCenter(matchedItems);
-            //}
-            return;
+            foreach (var item in matchedItems)
+            {
+                
+                item.isLockItem = true;
+                Slot slot = item.GetComponentInParent<Slot>();
+                if (slot != null)
+                {
+                    slot.isLocked = true;
+                }
+            }
+            GameEvent.OnTrayMatched?.Invoke(this, matchedItems);
+            GameEvent.OnAddPoint?.Invoke();
+            return; 
         }
-    }
-    bool IsValidForTween(DragItem item)
-    {
-        return item != null && item.gameObject != null && item.transform != null;
     }
     void MatchItem(List<DragItem> matchedItems)
     {
@@ -111,7 +144,6 @@ public class Tray : MonoBehaviour
                 //    if (newSprite != null)
                 //        sr.sprite = newSprite;
                 //}
-
                 t.localScale = originScale;
                 t.DOKill();
 
@@ -135,6 +167,10 @@ public class Tray : MonoBehaviour
             });
         }
     }
+    bool IsValidForTween(DragItem item)
+    {
+        return item != null && item.gameObject != null && item.transform != null;
+    }
     void ChangeItemSprite(DragItem item, string prefix, bool needChange)
     {
         if (!needChange) return;
@@ -147,7 +183,6 @@ public class Tray : MonoBehaviour
         if (newSprite != null)
             sr.sprite = newSprite;
     }
-
     void GatherLikeDisk(List<DragItem> items)
     {
         if (items == null || items.Count < 5) return;
@@ -336,7 +371,7 @@ public class Tray : MonoBehaviour
             var itm = items[i];
             if (!IsValidForTween(itm)) continue;
             var sr = itm.GetComponent<SpriteRenderer>();
-            if (sr != null) sr.sortingOrder = i + 2;
+            if (sr != null) sr.sortingOrder = i;
             Vector3 target =
                 centerPos + new Vector3(startX + i * spacing, 0, 0);
             var moveTween = itm.transform.DOMove(target, moveTime)
@@ -445,7 +480,7 @@ public class Tray : MonoBehaviour
     }
     void MoveToTarget(List<DragItem> items, Vector3 centerPos)
     {
-        if (targetTransform == null) return;
+        if (SetText.instance.anchor == null) return;
 
         float spacingRatio = 0.65f;
         float gapTime = 0.1f;
@@ -463,7 +498,7 @@ public class Tray : MonoBehaviour
 
             Vector3 offset = it.transform.position - centerPos;
             Vector3 compressedOffset = offset * spacingRatio;
-            Vector3 targetPos = targetTransform.transform.position;
+            Vector3 targetPos = SetText.instance.anchor.transform.position;
 
             Sequence itemSeq = DOTween.Sequence();
 
@@ -479,7 +514,7 @@ public class Tray : MonoBehaviour
             {
                 if (it == null) return;
 
-                targetTransform.GetComponentInParent<SetText>().DotNudge();
+                SetText.instance.anchor.GetComponentInParent<SetText>().DotNudge();
                 Destroy(it.gameObject);
             });
             itemSeq.SetLink(it.gameObject);
@@ -499,18 +534,20 @@ public class Tray : MonoBehaviour
         Sequence seq = DOTween.Sequence()
             .SetLink(gameObject);
 
+        // Thu nhỏ dần
+        seq.Append(
+            transform.DOScale(0f, 0.15f)
+                     .SetEase(Ease.InQuad)
+        );
+
         seq.AppendCallback(() =>
         {
             TrayManager manager = GetComponentInParent<TrayManager>();
             if (manager != null)
                 manager.CompleteTray(transform);
         });
-        seq.OnComplete(() =>
-        {
-            DOTween.Kill(transform);
-            Destroy(gameObject);
-        });
     }
+
     public Slot GetEmptySlot()
     {
         foreach (Slot slot in slots)

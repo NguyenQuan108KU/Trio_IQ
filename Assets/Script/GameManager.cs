@@ -89,6 +89,7 @@ public class GameManager : MonoBehaviour
         clickCount++;
         if (clickCount >= clicksToLog)
         {
+            isClickStore = true;
             if (!isClick)
             {
                 isClick = true;

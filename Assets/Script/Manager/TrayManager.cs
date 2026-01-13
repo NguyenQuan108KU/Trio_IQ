@@ -4,23 +4,18 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class TrayManager : MonoBehaviour
+public class TrayManager : MonoBehaviourSingleton<TrayManager>
 {
-    public static TrayManager instance;
     public float spacing = 1.2f;
     public int visibleCount = 4;
-
-
     public float moveTime = 0.5f;
-
-    [Header("Tray Prefabs / Pool")]
-    public List<GameObject> listTray;
-
-    private List<Transform> activeTrays = new List<Transform>();
+    [Header("--------------- List Tray ----------")]
+    public List<GameObject> listTrayPrepare = new List<GameObject>();
+    public List<Transform> listTrayValiable = new List<Transform>();
+    List<float> listBaseY = new List<float>();
     private Queue<GameObject> trayPool = new Queue<GameObject>();
-    public AnimationCurve curve;
-
-    private float trayHeight;
+    [Header("---------- Load Tray ----------")]
+    public TrayConfig levelConfig;
     [SerializeField] private float step = 1.5335f;
     int sorting = 0;
     public bool canCountIdle = false;
@@ -47,19 +42,15 @@ public class TrayManager : MonoBehaviour
     [SerializeField] Vector3 specialTrayLocalPos;
     [Header("Sprite Library")]
     public List<Sprite> spriteLibrary;
-    private void Awake()
-    {
-        if (instance == null)
-            instance = this;
-        else
-            Destroy(instance);
-    }
+
+    [SerializeField] float startY;   // Y của tray trên cùng
 
     void Start()
     {
-       
-        StartCoroutine(InitializeRoutine());
-        
+        InitTray();
+        ApplyLayout(levelConfig);
+        CacheInitialBaseY();
+        //SetUpTray();
     }
     void Update()
     {
@@ -81,7 +72,57 @@ public class TrayManager : MonoBehaviour
         }
 
     }
+    void CacheInitialBaseY()
+    {
+        listBaseY.Clear();
 
+        foreach (var tray in listTrayValiable)
+        {
+            listBaseY.Add(tray.localPosition.y);
+        }
+    }
+
+    public IEnumerator SetUpTutorial()
+    {
+        yield return new WaitForSeconds(3f);
+        ShowTutorial();
+    }
+    //Set up layout các Tray
+    public void InitTray()
+    {
+        //Đưa các tray vào listTrayPrepare để sập xuống
+        if (listTrayPrepare == null) return;
+        foreach (var tray in listTrayPrepare)
+        {
+            if (tray == null) continue;
+            trayPool.Enqueue(tray); 
+        }
+
+        //Lấy các tray hiện tại để sắp xếp
+        foreach (Transform child in transform)
+        {
+            Tray tray = child.GetComponent<Tray>();
+            if (tray == null)  continue;
+            listTrayValiable.Add(child);
+        }
+    }
+    void ApplyLayout(TrayConfig config)
+    {
+        if (config == null) return;
+
+        ITrayLayout layout = null;
+
+        if (config.layoutType == TrayLayoutType.Vertical)
+            layout = new VerticalTrayLayout();
+        else if (config.layoutType == TrayLayoutType.Grid)
+            layout = new GridTrayLayout();
+        else if (config.layoutType == TrayLayoutType.VerticalSpecial)
+            layout = new VerticalSpecialTrayLayout();
+
+        if (layout == null) return;
+
+        layout.Apply(listTrayValiable, config);
+    }
     public bool ShowTutorial()
     {
         if (GameManager.instance.finishGame) return false;
@@ -119,7 +160,6 @@ public class TrayManager : MonoBehaviour
         );
         return true;
     }
-
     public void OnUserBeginInteract()
     {
         canCountIdle = false;
@@ -128,19 +168,17 @@ public class TrayManager : MonoBehaviour
         if (TutorialManager.instance.IsShowing)
             TutorialManager.instance.HideHint();
     }
-
     public void OnUserEndInteract()
     {
         idleTimer = 0f;
         canCountIdle = true; // ⬅️ CHỈ TỪ LÚC NHẢ CHUỘT MỚI ĐẾM
         justEndedInteract = true;
     }
-
     (DragItem item, Slot fromSlot, Slot toSlot)? GetRandomValidMove()
     {
         List<Tray> trays = new List<Tray>();
 
-        foreach (Transform tf in activeTrays)
+        foreach (Transform tf in listTrayValiable)
         {
             if (tf == null) continue;
             Tray tray = tf.GetComponent<Tray>();
@@ -178,7 +216,7 @@ public class TrayManager : MonoBehaviour
 
         List<DragItem> candidates = new List<DragItem>();
 
-        foreach (Transform trayTf in activeTrays)
+        foreach (Transform trayTf in listTrayValiable)
         {
             if (trayTf == null) continue;
             Tray tray = trayTf.GetComponent<Tray>();
@@ -204,37 +242,22 @@ public class TrayManager : MonoBehaviour
 
         return candidates[Random.Range(0, candidates.Count)];
     }
-
     private static bool IsAlive(Transform t) => t != null && t.gameObject != null;
 
-    System.Collections.IEnumerator InitializeRoutine()
-    {
-        InitActiveTraysFromScene();
-        InitPool();
-        yield return new WaitForEndOfFrame();
-        AlignInstant();
-        yield return new WaitForSeconds(3.0f);
-        ShowTutorial();
-    }
-    void InitPool()
-    {
-        if (listTray == null) return;
-
-        foreach (var tray in listTray)
-            if (tray != null)
-                trayPool.Enqueue(tray);
-    }
     void SpawnTrayAtTop()
     {
-        if (trayPool.Count == 0) return;
+        if (trayPool.Count == 0)
+            return;
 
         GameObject prefab = trayPool.Dequeue();
-        if (prefab == null) return;
+        if (prefab == null)
+            return;
 
         GameObject tray = Instantiate(prefab, transform);
 
         var sr = tray.GetComponent<SpriteRenderer>();
-        if (sr != null) sr.sortingOrder = sorting--;
+        if (sr != null)
+            sr.sortingOrder = sorting--;
 
         // Spawn tại vị trí tray đặc biệt
         if (specialSpawnPoint != null)
@@ -243,13 +266,20 @@ public class TrayManager : MonoBehaviour
         }
         else
         {
-            float startY = (activeTrays.Count) * step * 0.5f;
-            float spawnY = startY + step * spawnHeightMultiplier;
-            tray.transform.localPosition = new Vector3(0, spawnY, 0);
-        }
+            float newBaseY;
 
-        activeTrays.Insert(0, tray.transform);
+            if (listBaseY.Count > 0)
+                newBaseY = listBaseY[0] + spacing + 1.0f;   // tray trên cùng
+            else
+                newBaseY = startY;
+
+            tray.transform.localPosition = new Vector3(0f, newBaseY, 0f);
+
+            listTrayValiable.Insert(0, tray.transform);
+            listBaseY.Insert(0, newBaseY);
+        }
     }
+
     void SpawnTraySpecial()
     {
         if (trayPool.Count == 0) return;
@@ -260,7 +290,7 @@ public class TrayManager : MonoBehaviour
         GameObject tray = Instantiate(prefab, transform);
         foreach (var drag in tray.GetComponentsInChildren<DragItem>())
         {
-            drag.lockItem = true; 
+            drag.isLockItem = true; 
         }
         foreach (var slot in tray.GetComponentsInChildren<Slot>())
         {
@@ -305,8 +335,6 @@ public class TrayManager : MonoBehaviour
             specialTray = t;
         });
     }
-
-
     void PromoteSpecialTrayToMain()
     {
         if (specialTray == null) return;
@@ -315,14 +343,14 @@ public class TrayManager : MonoBehaviour
         tray.SetParent(transform, false);
         foreach (var drag in tray.GetComponentsInChildren<DragItem>())
         {
-            drag.lockItem = false;
+            drag.isLockItem = false;
         }
         foreach (var slot in tray.GetComponentsInChildren<Slot>())
         {
             slot.isLocked = false;
         }
 
-        activeTrays.Insert(0, tray);
+        listTrayValiable.Insert(0, tray);
 
         Vector3 targetScale = new Vector3(0.345f, 0.345f, 0.345f);
         tray.localScale = targetScale;
@@ -335,45 +363,48 @@ public class TrayManager : MonoBehaviour
 
         specialTray = null;
     }
-
-
     Vector3 GetSlotLocalPos(int index)
     {
-        int totalSlots = Mathf.Max(visibleCount, activeTrays.Count);
+        int totalSlots = Mathf.Max(visibleCount, listTrayValiable.Count);
         float startY = (totalSlots - 1) * step * 0.5f;
 
         float y = startY - index * step;
         return new Vector3(0f, y, 0f);
     }
-
-
     public void CompleteTray(Transform completedTray)
     {
         if (!IsAlive(completedTray)) return;
-        if (!activeTrays.Contains(completedTray)) return;
 
-        activeTrays.Remove(completedTray);
+        int index = listTrayValiable.IndexOf(completedTray);
+        if (index < 0) return;
+
+        // LẤY BASE Y LOGIC (KHÔNG DÙNG localPosition)
+        float removedBaseY = listBaseY[index];
+
+        // REMOVE KHỎI DATA
+        listTrayValiable.RemoveAt(index);
+        listBaseY.RemoveAt(index);
+
         completedTray.SetParent(null, true);
 
         Vector3 dropPos = completedTray.position + Vector3.down;
 
-        try { completedTray.DOKill(); } catch { }
+        completedTray.DOKill(true);
 
         Sequence seq = DOTween.Sequence();
 
-        // spawn + align giữ nguyên
+        // spawn + align
         seq.AppendCallback(() =>
         {
-            //PromoteSpecialTrayToMain();
-            SpawnTrayAtTop();
-            AlignAnimated();
-            //SpawnTraySpecial();
+            SpawnTrayAtTop();                 // hàm này PHẢI add cả baseY
+            AlignAnimated(index);      // align theo baseY
         });
 
+        // animation rơi & bounce (GIỮ NGUYÊN LOGIC CŨ)
         seq.Append(completedTray.DOMove(dropPos, 0.25f))
            .AppendCallback(() =>
            {
-               AudioManager.instance.PlaySFX(AudioManager.instance.wood); 
+               AudioManager.instance.PlaySFX(AudioManager.instance.wood);
            })
            .Append(completedTray.DOMoveY(dropPos.y + 0.4f, 0.15f).SetEase(Ease.OutCubic))
            .Append(completedTray.DOMoveY(dropPos.y, 0.15f).SetEase(Ease.InCubic))
@@ -387,134 +418,47 @@ public class TrayManager : MonoBehaviour
             completedTray.DOScale(0f, 0.2f)
                 .SetEase(Ease.InBack)
         );
+
         seq.OnComplete(() =>
         {
             if (IsAlive(completedTray))
                 Destroy(completedTray.gameObject);
         });
     }
-    void AlignInstant()
+
+    public void AlignAnimated(int removedIndex)
     {
-        activeTrays = activeTrays.Where(t => IsAlive(t)).ToList();
-        if (activeTrays.Count == 0) return;
-
-        int normalVisibleCount = visibleCount;
-
-        // ❗ Nếu có tray nhỏ thì trừ 1 slot
-        if (specialTray != null)
-            normalVisibleCount -= 1;
-
-        int totalSlots = Mathf.Max(normalVisibleCount, activeTrays.Count);
-        float startY = (totalSlots - 1) * step * 0.5f;
-
-        int startSlot = (activeTrays.Count < normalVisibleCount)
-            ? (normalVisibleCount - activeTrays.Count)
-            : 0;
-
-        for (int i = 0; i < activeTrays.Count; i++)
+        for (int i = 0; i < listTrayValiable.Count; i++)
         {
-            if (!IsAlive(activeTrays[i])) continue;
-
-            int slotIndex = startSlot + i;
-            float targetY = startY - slotIndex * step;
-
-            Vector3 pos = activeTrays[i].localPosition;
-            pos.y = targetY;
-            activeTrays[i].localPosition = pos;
-        }
-    }
-    public void AlignAnimated()
-    {
-        // Clean up null entries first
-        activeTrays = activeTrays.Where(t => IsAlive(t)).ToList();
-
-        if (activeTrays.Count == 0) return;
-
-        int totalSlots = Mathf.Max(visibleCount, activeTrays.Count);
-        float startY = (totalSlots - 1) * step * 0.5f;
-
-        int startSlot = (activeTrays.Count < visibleCount)
-            ? (visibleCount - activeTrays.Count)
-            : 0;
-
-
-        float overshootRatio = 0.2f;
-        float fallPart = 0.8f;
-        float bounceUpPart = 0.25f;
-        float settlePart = 0.25f;
-
-        for (int i = 0; i < activeTrays.Count; i++)
-        {
-            Transform tray = activeTrays[i];
-            if (!IsAlive(tray)) continue;
-
-            int slotIndex = startSlot + i;
-            float targetY = startY - slotIndex * step;
-
-            tray.DOKill();
-
-            float currentY = tray.localPosition.y;
-            float delta = currentY - targetY;
-
-
-            if (delta > 0.01f)
-            {
-
-                float strength = Mathf.Clamp01(delta / step);
-
-                float overshoot = step * overshootRatio * strength;
-                float fallTime = moveTime * fallPart * strength;
-                float bounceUpTime = moveTime * bounceUpPart * strength;
-                float settleTime = moveTime * settlePart * strength;
-
-                Sequence seq = DOTween.Sequence();
-
-                seq.Append(
-                    tray.DOLocalMoveY(targetY, fallTime).SetEase(Ease.InQuad)
-                );
-
-                seq.Append(
-                    tray.DOLocalMoveY(targetY + overshoot, bounceUpTime)
-                        .SetEase(Ease.OutQuad)
-                );
-
-                seq.Append(
-                    tray.DOLocalMoveY(targetY, settleTime)
-                        .SetEase(Ease.OutCubic)
-                );
-            }
-            else
-            {
-                tray.DOLocalMoveY(targetY, moveTime).SetEase(Ease.OutQuad);
-            }
-        }
-    }
-
-    void InitActiveTraysFromScene()
-    {
-        activeTrays.Clear();
-
-        foreach (Transform child in transform)
-        {
-            if (child == null) continue;
-
-            if (child == specialTray)
+            // chỉ tray nằm TRÊN tray bị remove
+            if (i > removedIndex)
                 continue;
 
-            activeTrays.Add(child);
-        }
+            float targetBaseY = GetSlotLocalPos(i).y;
+            listBaseY[i] = targetBaseY;
 
-        activeTrays = activeTrays
-            .Where(t => IsAlive(t))
-            .OrderByDescending(t => t.localPosition.y)
-            .ToList();
+            Transform tray = listTrayValiable[i];
+            tray.DOKill(true);
 
-        if (specialTray != null)
-        {
-            specialTray.localPosition = specialTrayLocalPos;
-            specialTray.localScale = specialTrayScale;
+            Sequence seq = DOTween.Sequence();
+
+            // 1️⃣ Rơi xuống vị trí mới
+            seq.Append(
+                tray.DOLocalMoveY(targetBaseY, moveTime * 0.6f).SetEase(Ease.InQuad));
+            seq.Append(tray.DOLocalMoveY(targetBaseY + 0.4f, 0.15f).SetEase(Ease.OutCubic) );
+            seq.Append(tray.DOLocalMoveY(targetBaseY, 0.15f).SetEase(Ease.InCubic));
+            seq.Append(tray.DOLocalMoveY(targetBaseY + 0.15f, 0.1f) .SetEase(Ease.OutCubic));
+            seq.Append(tray.DOLocalMoveY(targetBaseY, 0.1f).SetEase(Ease.InCubic));
+            seq.Append(tray.DOLocalMoveY(targetBaseY + 0.05f, 0.08f).SetEase(Ease.OutCubic));
+            seq.Append(tray.DOLocalMoveY(targetBaseY, 0.08f).SetEase(Ease.InCubic)
+            );
         }
     }
+
+
+
+
+
     public Sprite GetSpriteByPrefix(string prefix)
     {
         Debug.Log("aaa: " + prefix);

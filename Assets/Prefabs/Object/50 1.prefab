@@ -140,7 +140,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ffb0607df5594f340b76e360dbc3f7d0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -170,7 +170,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!114 &8893665763829237414
 MonoBehaviour:
@@ -187,6 +187,8 @@ MonoBehaviour:
   focusOutlineSize: 2
   outlineTweenTime: 0.12
   itemType: 3
+  isLockItem: 0
+  onTimer: 0
 --- !u!61 &1324511838877269466
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@
     "version": "6.4.0",
     "projectId": "01007caba134ace46b9e4290577324b9",
     "applicationID": 35714,
-    "creativeName": "DoubleMatch",
+    "creativeName": "BrainAge",
     "pgServer": "EU",
     "window": {
         "‐′": true
@@ -132,10 +132,11 @@
             ]
         },
         "scenes": [
-            "Assets/Scenes/Double Match.unity"
+            "Assets/Scenes/BrainAge.unity"
         ],
         "disabledScenes": [
             "Assets/Scenes/Color Pack.unity",
+            "Assets/Scenes/Double Match.unity",
             "Assets/Scenes/Grill Remove.unity"
         ],
         "startupScene": 0,
@@ -1789,6 +1790,34 @@
                 "excluded": false
             },
             {
+                "name": "IMatchStep",
+                "excluded": false
+            },
+            {
+                "name": "EndCardType",
+                "excluded": false
+            },
+            {
+                "name": "IFlyTarget",
+                "excluded": false
+            },
+            {
+                "name": "FlyType",
+                "excluded": false
+            },
+            {
+                "name": "ITrayLayout",
+                "excluded": false
+            },
+            {
+                "name": "MatchContext",
+                "excluded": false
+            },
+            {
+                "name": "TrayLayoutType",
+                "excluded": false
+            },
+            {
                 "name": "System.ValueType",
                 "excluded": true
             },
@@ -3345,10 +3374,6 @@
                 "excluded": true
             },
             {
-                "name": "UnityEngine.RequireComponent",
-                "excluded": true
-            },
-            {
                 "name": "UnityEngine.RootMotionData",
                 "excluded": true
             },
@@ -3622,10 +3647,6 @@
             },
             {
                 "name": "UnityEngine.WaitForSecondsRealtime",
-                "excluded": true
-            },
-            {
-                "name": "UnityEngine.WaitUntil",
                 "excluded": true
             },
             {
@@ -8097,10 +8118,6 @@
                 "excluded": true
             },
             {
-                "name": "TMPro.TMP_SubMesh",
-                "excluded": true
-            },
-            {
                 "name": "TMPro.TMP_TextUtilities.LineSegment",
                 "excluded": true
             },
@@ -8118,10 +8135,6 @@
             },
             {
                 "name": "TMPro.FloatTween",
-                "excluded": true
-            },
-            {
-                "name": "TMPro.TextMeshPro",
                 "excluded": true
             },
             {
@@ -8449,6 +8462,14 @@
                 "excluded": true
             },
             {
+                "name": "ActiveTutorialBegin",
+                "excluded": true
+            },
+            {
+                "name": "Anim",
+                "excluded": true
+            },
+            {
                 "name": "DG.Tweening.DOTweenCYInstruction.WaitForCompletion",
                 "excluded": true
             },
@@ -8673,6 +8694,70 @@
                 "excluded": true
             },
             {
+                "name": "Target",
+                "excluded": true
+            },
+            {
+                "name": "TimeManager",
+                "excluded": true
+            },
+            {
+                "name": "TimerUI",
+                "excluded": true
+            },
+            {
+                "name": "TutorialBeginRunner",
+                "excluded": true
+            },
+            {
+                "name": "CloseBoxStep",
+                "excluded": true
+            },
+            {
+                "name": "DelayStep",
+                "excluded": true
+            },
+            {
+                "name": "FlyStep",
+                "excluded": true
+            },
+            {
+                "name": "FlyToDiskTarget",
+                "excluded": true
+            },
+            {
+                "name": "FlyToPackTarget",
+                "excluded": true
+            },
+            {
+                "name": "FlyToTicketTarget",
+                "excluded": true
+            },
+            {
+                "name": "GridTrayLayout",
+                "excluded": true
+            },
+            {
+                "name": "HideStep",
+                "excluded": true
+            },
+            {
+                "name": "SetText",
+                "excluded": true
+            },
+            {
+                "name": "ShowStep",
+                "excluded": true
+            },
+            {
+                "name": "SpawnFromTopStrategy",
+                "excluded": true
+            },
+            {
+                "name": "SpawnSpecialStrategy",
+                "excluded": true
+            },
+            {
                 "name": "Spine.DrawOrderTimeline",
                 "excluded": true
             },
@@ -8770,6 +8855,14 @@
             },
             {
                 "name": "Spine.Unity.WaitForSpineAnimationEnd",
+                "excluded": true
+            },
+            {
+                "name": "VerticalSpecialTrayLayout",
+                "excluded": true
+            },
+            {
+                "name": "WaitClickStep",
                 "excluded": true
             },
             {
@@ -8889,11 +8982,27 @@
                 "excluded": true
             },
             {
+                "name": "ITutorialBeginStep",
+                "excluded": true
+            },
+            {
                 "name": "DG.Tweening.DOTweenCYInstruction",
                 "excluded": true
             },
             {
+                "name": "HideMode",
+                "excluded": true
+            },
+            {
                 "name": "IAmAnEmptyScriptJustToMakeCodelessProjectsCompileProperty",
+                "excluded": true
+            },
+            {
+                "name": "ITraySpawn",
+                "excluded": true
+            },
+            {
+                "name": "LockType",
                 "excluded": true
             },
             {
@@ -8961,19 +9070,23 @@
                 "excluded": true
             },
             {
+                "name": "TargetType",
+                "excluded": true
+            },
+            {
+                "name": "TutorialCase",
+                "excluded": true
+            },
+            {
+                "name": "TutorialContext",
+                "excluded": true
+            },
+            {
                 "name": "Spine.Unity.IHasSkeletonComponent",
                 "excluded": true
             },
             {
                 "name": "Spine.Unity.IHasSkeletonRenderer",
-                "excluded": true
-            },
-            {
-                "name": "pc.Debugger.Components.EditorCamera",
-                "excluded": true
-            },
-            {
-                "name": "pc.Debugger.Components.EditorGUI",
                 "excluded": true
             }
         ],
@@ -15495,6 +15608,10 @@
                         "excluded": false
                     },
                     {
+                        "name": "UnsafeRemoveListener",
+                        "excluded": false
+                    },
+                    {
                         "name": "RemoveAllListeners",
                         "excluded": true
                     },
@@ -15504,10 +15621,6 @@
                     },
                     {
                         "name": "GetPersistentMethodName",
-                        "excluded": true
-                    },
-                    {
-                        "name": "UnsafeRemoveListener",
                         "excluded": true
                     },
                     {
@@ -16906,11 +17019,11 @@
                 "instanceMethods": [
                     {
                         "name": "Invoke",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "AddListener",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "RemoveListener",
@@ -17917,6 +18030,30 @@
                         "excluded": false
                     },
                     {
+                        "name": "hdr#get",
+                        "excluded": false
+                    },
+                    {
+                        "name": "clearFlags#get",
+                        "excluded": false
+                    },
+                    {
+                        "name": "orthographicSize#get",
+                        "excluded": false
+                    },
+                    {
+                        "name": "cullingMask#get",
+                        "excluded": false
+                    },
+                    {
+                        "name": "targetTexture#get",
+                        "excluded": false
+                    },
+                    {
+                        "name": "rect#get",
+                        "excluded": false
+                    },
+                    {
                         "name": "current#get",
                         "excluded": true
                     },
@@ -17981,10 +18118,6 @@
                         "excluded": true
                     },
                     {
-                        "name": "hdr#get",
-                        "excluded": true
-                    },
-                    {
                         "name": "hdr#set",
                         "excluded": true
                     },
@@ -17994,10 +18127,6 @@
                     },
                     {
                         "name": "depthTextureMode#set",
-                        "excluded": true
-                    },
-                    {
-                        "name": "clearFlags#get",
                         "excluded": true
                     },
                     {
@@ -18069,15 +18198,7 @@
                         "excluded": true
                     },
                     {
-                        "name": "orthographicSize#get",
-                        "excluded": true
-                    },
-                    {
                         "name": "orthographic#set",
-                        "excluded": true
-                    },
-                    {
-                        "name": "cullingMask#get",
                         "excluded": true
                     },
                     {
@@ -18090,10 +18211,6 @@
                     },
                     {
                         "name": "projectionMatrix#set",
-                        "excluded": true
-                    },
-                    {
-                        "name": "targetTexture#get",
                         "excluded": true
                     },
                     {
@@ -18122,10 +18239,6 @@
                     },
                     {
                         "name": "pixelRect#set",
-                        "excluded": true
-                    },
-                    {
-                        "name": "rect#get",
                         "excluded": true
                     },
                     {
@@ -18423,19 +18536,19 @@
                         "excluded": false
                     },
                     {
+                        "name": "receiveShadows#set",
+                        "excluded": false
+                    },
+                    {
+                        "name": "shadowCastingMode#set",
+                        "excluded": false
+                    },
+                    {
                         "name": "receiveShadows#get",
                         "excluded": true
                     },
                     {
-                        "name": "receiveShadows#set",
-                        "excluded": true
-                    },
-                    {
                         "name": "shadowCastingMode#get",
-                        "excluded": true
-                    },
-                    {
-                        "name": "shadowCastingMode#set",
                         "excluded": true
                     },
                     {
@@ -18606,14 +18719,14 @@
                     },
                     {
                         "name": "offsetMin#set",
-                        "excluded": true
-                    },
-                    {
-                        "name": "offsetMax#set",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "anchoredPosition#set",
+                        "excluded": false
+                    },
+                    {
+                        "name": "offsetMax#set",
                         "excluded": true
                     },
                     {
@@ -19099,6 +19212,10 @@
                         "excluded": false
                     },
                     {
+                        "name": "disabledColor#get",
+                        "excluded": false
+                    },
+                    {
                         "name": "op_Equality",
                         "excluded": true
                     },
@@ -19125,10 +19242,6 @@
                     {
                         "name": "selectedColor#set",
                         "excluded": true
-                    },
-                    {
-                        "name": "disabledColor#get",
-                        "excluded": false
                     },
                     {
                         "name": "disabledColor#set",
@@ -23957,15 +24070,15 @@
                         "excluded": false
                     },
                     {
-                        "name": "Invoke$1",
-                        "excluded": true
-                    },
-                    {
                         "name": "AddListener",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "RemoveListener",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Invoke$1",
                         "excluded": true
                     }
                 ]
@@ -24093,6 +24206,10 @@
                         "excluded": false
                     },
                     {
+                        "name": "passCount#get",
+                        "excluded": false
+                    },
+                    {
                         "name": "mainTexture#set",
                         "excluded": true
                     },
@@ -24106,10 +24223,6 @@
                     },
                     {
                         "name": "shader#set",
-                        "excluded": true
-                    },
-                    {
-                        "name": "passCount#get",
                         "excluded": true
                     },
                     {
@@ -28071,11 +28184,15 @@
                         "excluded": false
                     },
                     {
-                        "name": "RegisterTextElementForLayoutRebuild",
-                        "excluded": true
+                        "name": "RegisterTextElementForGraphicRebuild",
+                        "excluded": false
                     },
                     {
-                        "name": "RegisterTextElementForGraphicRebuild",
+                        "name": "InternalRegisterTextElementForGraphicRebuild",
+                        "excluded": false
+                    },
+                    {
+                        "name": "RegisterTextElementForLayoutRebuild",
                         "excluded": true
                     },
                     {
@@ -28088,10 +28205,6 @@
                     },
                     {
                         "name": "InternalRegisterTextElementForLayoutRebuild",
-                        "excluded": true
-                    },
-                    {
-                        "name": "InternalRegisterTextElementForGraphicRebuild",
                         "excluded": true
                     },
                     {
@@ -28859,6 +28972,10 @@
                         "excluded": false
                     },
                     {
+                        "name": "CompleteAndReturnKilledTot$1",
+                        "excluded": false
+                    },
+                    {
                         "name": "logBehaviour#get",
                         "excluded": true
                     },
@@ -28989,10 +29106,6 @@
                     {
                         "name": "CompleteAndReturnKilledTot",
                         "excluded": true
-                    },
-                    {
-                        "name": "CompleteAndReturnKilledTot$1",
-                        "excluded": false
                     },
                     {
                         "name": "CompleteAndReturnKilledTot$2",
@@ -31841,16 +31954,40 @@
                         "excluded": false
                     },
                     {
-                        "name": "FindPackUnderMouse",
-                        "excluded": true
-                    },
-                    {
                         "name": "FindPackUnderItem",
                         "excluded": false
                     },
                     {
                         "name": "MoveToPack",
                         "excluded": false
+                    },
+                    {
+                        "name": "OnEnable",
+                        "excluded": false
+                    },
+                    {
+                        "name": "OnDisable",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Start",
+                        "excluded": false
+                    },
+                    {
+                        "name": "HideOutline",
+                        "excluded": false
+                    },
+                    {
+                        "name": "LockItem",
+                        "excluded": false
+                    },
+                    {
+                        "name": "UnLockItem",
+                        "excluded": false
+                    },
+                    {
+                        "name": "FindPackUnderMouse",
+                        "excluded": true
                     }
                 ]
             },
@@ -32605,6 +32742,14 @@
                     {
                         "name": "FlyDiskUp",
                         "excluded": false
+                    },
+                    {
+                        "name": "ChangeItemSprite",
+                        "excluded": true
+                    },
+                    {
+                        "name": "MoveToTarget",
+                        "excluded": true
                     }
                 ]
             },
@@ -32621,14 +32766,6 @@
                         "excluded": false
                     },
                     {
-                        "name": "InitializeRoutine",
-                        "excluded": false
-                    },
-                    {
-                        "name": "InitPool",
-                        "excluded": false
-                    },
-                    {
                         "name": "SpawnTrayAtTop",
                         "excluded": false
                     },
@@ -32637,23 +32774,11 @@
                         "excluded": false
                     },
                     {
-                        "name": "AlignInstant",
-                        "excluded": false
-                    },
-                    {
                         "name": "AlignAnimated",
                         "excluded": false
                     },
                     {
-                        "name": "InitActiveTraysFromScene",
-                        "excluded": false
-                    },
-                    {
                         "name": "IsAlive",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Awake",
                         "excluded": false
                     },
                     {
@@ -32699,6 +32824,26 @@
                     {
                         "name": "GetSpriteByPrefix",
                         "excluded": false
+                    },
+                    {
+                        "name": "inherits",
+                        "excluded": false
+                    },
+                    {
+                        "name": "CacheInitialBaseY",
+                        "excluded": false
+                    },
+                    {
+                        "name": "InitTray",
+                        "excluded": false
+                    },
+                    {
+                        "name": "ApplyLayout",
+                        "excluded": false
+                    },
+                    {
+                        "name": "SetUpTutorial",
+                        "excluded": true
                     }
                 ]
             },
@@ -34267,6 +34412,10 @@
                         "excluded": false
                     },
                     {
+                        "name": "SetUpdate",
+                        "excluded": false
+                    },
+                    {
                         "name": "SetAutoKill",
                         "excluded": true
                     },
@@ -34305,10 +34454,6 @@
                     {
                         "name": "SetRecyclable$1",
                         "excluded": true
-                    },
-                    {
-                        "name": "SetUpdate",
-                        "excluded": false
                     },
                     {
                         "name": "SetUpdate$1",
@@ -34529,6 +34674,10 @@
                         "excluded": false
                     },
                     {
+                        "name": "WaitForCompletion",
+                        "excluded": false
+                    },
+                    {
                         "name": "DestroyInstance",
                         "excluded": true
                     },
@@ -34550,10 +34699,6 @@
                     },
                     {
                         "name": "OnApplicationQuit",
-                        "excluded": true
-                    },
-                    {
-                        "name": "WaitForCompletion",
                         "excluded": true
                     },
                     {
@@ -34683,6 +34828,10 @@
                         "excluded": false
                     },
                     {
+                        "name": "WaitForCompletion",
+                        "excluded": false
+                    },
+                    {
                         "name": "Complete",
                         "excluded": true
                     },
@@ -34748,10 +34897,6 @@
                     },
                     {
                         "name": "GotoWaypoint",
-                        "excluded": true
-                    },
-                    {
-                        "name": "WaitForCompletion",
                         "excluded": true
                     },
                     {
@@ -40307,6 +40452,10 @@
                         "excluded": false
                     },
                     {
+                        "name": "FinishGame",
+                        "excluded": true
+                    },
+                    {
                         "name": "EndGame",
                         "excluded": true
                     }
@@ -40399,16 +40548,20 @@
                         "excluded": false
                     },
                     {
-                        "name": "GetSpriteRenderer",
-                        "excluded": true
-                    },
-                    {
                         "name": "CanAccept",
                         "excluded": false
                     },
                     {
                         "name": "AcceptItem",
                         "excluded": false
+                    },
+                    {
+                        "name": "Start",
+                        "excluded": true
+                    },
+                    {
+                        "name": "GetSpriteRenderer",
+                        "excluded": true
                     }
                 ]
             },
@@ -40457,12 +40610,12 @@
                         "excluded": false
                     },
                     {
-                        "name": "ScaleTo",
-                        "excluded": true
-                    },
-                    {
                         "name": "inherits",
                         "excluded": false
+                    },
+                    {
+                        "name": "ScaleTo",
+                        "excluded": true
                     }
                 ]
             },
@@ -40497,6 +40650,14 @@
                     {
                         "name": "StartButtonPulse",
                         "excluded": false
+                    },
+                    {
+                        "name": "OnEnable",
+                        "excluded": true
+                    },
+                    {
+                        "name": "OnDisable",
+                        "excluded": true
                     },
                     {
                         "name": "Hide",
@@ -40552,6 +40713,10 @@
                     },
                     {
                         "name": "OnDisable",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Update",
                         "excluded": false
                     }
                 ]
@@ -40961,20 +41126,24 @@
                         "excluded": false
                     },
                     {
-                        "name": "fillRect#set",
-                        "excluded": true
-                    },
-                    {
                         "name": "handleRect#get",
                         "excluded": false
                     },
                     {
-                        "name": "handleRect#set",
+                        "name": "direction#get",
+                        "excluded": false
+                    },
+                    {
+                        "name": "value#set",
+                        "excluded": false
+                    },
+                    {
+                        "name": "fillRect#set",
                         "excluded": true
                     },
                     {
-                        "name": "direction#get",
-                        "excluded": false
+                        "name": "handleRect#set",
+                        "excluded": true
                     },
                     {
                         "name": "direction#set",
@@ -40991,10 +41160,6 @@
                     {
                         "name": "wholeNumbers#set",
                         "excluded": true
-                    },
-                    {
-                        "name": "value#set",
-                        "excluded": false
                     },
                     {
                         "name": "normalizedValue#set",
@@ -41113,6 +41278,10 @@
                 "staticMethods": [],
                 "instanceMethods": [
                     {
+                        "name": "ctor",
+                        "excluded": false
+                    },
+                    {
                         "name": "componentMenu#get",
                         "excluded": true
                     },
@@ -41121,11 +41290,743 @@
                         "excluded": true
                     },
                     {
+                        "name": "$ctor1",
+                        "excluded": true
+                    }
+                ]
+            },
+            {
+                "className": "TextAgeScale",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "inherits",
+                        "excluded": false
+                    },
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Awake",
+                        "excluded": false
+                    },
+                    {
+                        "name": "OnEnable",
+                        "excluded": false
+                    },
+                    {
+                        "name": "CacheOriginScale",
+                        "excluded": false
+                    },
+                    {
+                        "name": "DotNudge",
+                        "excluded": false
+                    },
+                    {
+                        "name": "DotPunch",
+                        "excluded": true
+                    },
+                    {
+                        "name": "UpdateText",
+                        "excluded": true
+                    }
+                ]
+            },
+            {
+                "className": "TMPro.TMP_SubMesh",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "AddSubTextObject",
+                        "excluded": true
+                    },
+                    {
+                        "name": "fontAsset#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "fontAsset#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "spriteAsset#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "spriteAsset#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "material#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "material#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "sharedMaterial#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "sharedMaterial#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "fallbackMaterial#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "fallbackMaterial#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "fallbackSourceMaterial#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "fallbackSourceMaterial#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "isDefaultMaterial#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "isDefaultMaterial#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "padding#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "padding#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "renderer#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "meshFilter#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "mesh#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "mesh#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "textComponent#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "OnEnable",
+                        "excluded": true
+                    },
+                    {
+                        "name": "OnDisable",
+                        "excluded": true
+                    },
+                    {
+                        "name": "OnDestroy",
+                        "excluded": true
+                    },
+                    {
+                        "name": "DestroySelf",
+                        "excluded": true
+                    },
+                    {
+                        "name": "GetMaterial",
+                        "excluded": true
+                    },
+                    {
+                        "name": "CreateMaterialInstance",
+                        "excluded": true
+                    },
+                    {
+                        "name": "GetSharedMaterial",
+                        "excluded": true
+                    },
+                    {
+                        "name": "SetSharedMaterial",
+                        "excluded": true
+                    },
+                    {
+                        "name": "GetPaddingForMaterial",
+                        "excluded": true
+                    },
+                    {
+                        "name": "UpdateMeshPadding",
+                        "excluded": true
+                    },
+                    {
+                        "name": "SetVerticesDirty",
+                        "excluded": true
+                    },
+                    {
+                        "name": "SetMaterialDirty",
+                        "excluded": true
+                    },
+                    {
+                        "name": "UpdateMaterial",
+                        "excluded": true
+                    }
+                ]
+            },
+            {
+                "className": "TMPro.TextMeshPro",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "transform$2#get",
+                        "excluded": false
+                    },
+                    {
+                        "name": "renderer#get",
+                        "excluded": false
+                    },
+                    {
+                        "name": "mesh#get",
+                        "excluded": false
+                    },
+                    {
+                        "name": "meshFilter#get",
+                        "excluded": false
+                    },
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "SetVerticesDirty",
+                        "excluded": false
+                    },
+                    {
+                        "name": "SetLayoutDirty",
+                        "excluded": false
+                    },
+                    {
+                        "name": "SetMaterialDirty",
+                        "excluded": false
+                    },
+                    {
+                        "name": "SetAllDirty",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Rebuild",
+                        "excluded": false
+                    },
+                    {
+                        "name": "UpdateMaterial",
+                        "excluded": false
+                    },
+                    {
+                        "name": "OnAfterDeserialize",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Awake",
+                        "excluded": false
+                    },
+                    {
+                        "name": "OnEnable",
+                        "excluded": false
+                    },
+                    {
+                        "name": "LoadFontAsset",
+                        "excluded": false
+                    },
+                    {
+                        "name": "SetArraySizes",
+                        "excluded": false
+                    },
+                    {
+                        "name": "ComputeMarginSize",
+                        "excluded": false
+                    },
+                    {
+                        "name": "InternalUpdate",
+                        "excluded": false
+                    },
+                    {
+                        "name": "OnPreRenderObject",
+                        "excluded": false
+                    },
+                    {
+                        "name": "GenerateTextMesh",
+                        "excluded": false
+                    },
+                    {
+                        "name": "GetTextContainerLocalCorners",
+                        "excluded": false
+                    },
+                    {
+                        "name": "SetActiveSubMeshes",
+                        "excluded": false
+                    },
+                    {
+                        "name": "SetActiveSubTextObjectRenderers",
+                        "excluded": false
+                    },
+                    {
+                        "name": "UpdateSDFScale",
+                        "excluded": false
+                    },
+                    {
+                        "name": "sortingLayerID#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "sortingLayerID#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "sortingOrder#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "sortingOrder#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "autoSizeTextContainer#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "autoSizeTextContainer#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "textContainer#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "maskType#get",
+                        "excluded": true
+                    },
+                    {
+                        "name": "maskType#set",
+                        "excluded": true
+                    },
+                    {
+                        "name": "SetMask",
+                        "excluded": true
+                    },
+                    {
+                        "name": "SetMask$1",
+                        "excluded": true
+                    },
+                    {
+                        "name": "SetMask$2",
+                        "excluded": true
+                    },
+                    {
+                        "name": "UpdateMeshPadding",
+                        "excluded": true
+                    },
+                    {
+                        "name": "ForceMeshUpdate",
+                        "excluded": true
+                    },
+                    {
+                        "name": "GetTextInfo",
+                        "excluded": true
+                    },
+                    {
+                        "name": "ClearMesh$1",
+                        "excluded": true
+                    },
+                    {
+                        "name": "UpdateGeometry$1",
+                        "excluded": true
+                    },
+                    {
+                        "name": "UpdateVertexData$1",
+                        "excluded": true
+                    },
+                    {
+                        "name": "UpdateVertexData",
+                        "excluded": true
+                    },
+                    {
+                        "name": "UpdateFontAsset",
+                        "excluded": true
+                    },
+                    {
+                        "name": "CalculateLayoutInputHorizontal",
+                        "excluded": true
+                    },
+                    {
+                        "name": "CalculateLayoutInputVertical",
+                        "excluded": true
+                    },
+                    {
+                        "name": "OnDisable",
+                        "excluded": true
+                    },
+                    {
+                        "name": "OnDestroy",
+                        "excluded": true
+                    },
+                    {
+                        "name": "UpdateEnvMapMatrix",
+                        "excluded": true
+                    },
+                    {
+                        "name": "SetMaskCoordinates",
+                        "excluded": true
+                    },
+                    {
+                        "name": "SetMaskCoordinates$1",
+                        "excluded": true
+                    },
+                    {
+                        "name": "EnableMasking",
+                        "excluded": true
+                    },
+                    {
+                        "name": "DisableMasking",
+                        "excluded": true
+                    },
+                    {
+                        "name": "UpdateMask",
+                        "excluded": true
+                    },
+                    {
+                        "name": "GetMaterial",
+                        "excluded": true
+                    },
+                    {
+                        "name": "GetMaterials",
+                        "excluded": true
+                    },
+                    {
+                        "name": "SetSharedMaterial",
+                        "excluded": true
+                    },
+                    {
+                        "name": "GetSharedMaterials",
+                        "excluded": true
+                    },
+                    {
+                        "name": "SetSharedMaterials",
+                        "excluded": true
+                    },
+                    {
+                        "name": "SetOutlineThickness",
+                        "excluded": true
+                    },
+                    {
+                        "name": "SetFaceColor",
+                        "excluded": true
+                    },
+                    {
+                        "name": "SetOutlineColor",
+                        "excluded": true
+                    },
+                    {
+                        "name": "CreateMaterialInstance$1",
+                        "excluded": true
+                    },
+                    {
+                        "name": "SetShaderDepth",
+                        "excluded": true
+                    },
+                    {
+                        "name": "SetCulling",
+                        "excluded": true
+                    },
+                    {
+                        "name": "SetPerspectiveCorrection",
+                        "excluded": true
+                    },
+                    {
+                        "name": "OnDidApplyAnimationProperties",
+                        "excluded": true
+                    },
+                    {
+                        "name": "OnTransformParentChanged",
+                        "excluded": true
+                    },
+                    {
+                        "name": "OnRectTransformDimensionsChange",
+                        "excluded": true
+                    },
+                    {
+                        "name": "SetMeshFilters",
+                        "excluded": true
+                    },
+                    {
+                        "name": "DestroySubMeshObjects",
+                        "excluded": true
+                    },
+                    {
+                        "name": "UpdateSubMeshSortingLayerID",
+                        "excluded": true
+                    },
+                    {
+                        "name": "UpdateSubMeshSortingOrder",
+                        "excluded": true
+                    },
+                    {
+                        "name": "GetCompoundBounds",
+                        "excluded": true
+                    }
+                ]
+            },
+            {
+                "className": "EndCardManager",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "OnEnable",
+                        "excluded": false
+                    },
+                    {
+                        "name": "OnShowEndCard",
+                        "excluded": false
+                    },
+                    {
+                        "name": "OnDisable",
+                        "excluded": true
+                    }
+                ]
+            },
+            {
+                "className": "GameEvent",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "MatchConfig",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "MatchFlowManager",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "OnEnable",
+                        "excluded": false
+                    },
+                    {
+                        "name": "OnTrayMatched",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Setup",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Run",
+                        "excluded": false
+                    },
+                    {
+                        "name": "RunFlow",
+                        "excluded": false
+                    },
+                    {
+                        "name": "OnDisable",
+                        "excluded": true
+                    }
+                ]
+            },
+            {
+                "className": "TrayConfig",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "UpdateTarget",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "OnEnable",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Start",
+                        "excluded": false
+                    },
+                    {
+                        "name": "StartTimer",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Update",
+                        "excluded": false
+                    },
+                    {
+                        "name": "UpPoint",
+                        "excluded": false
+                    },
+                    {
+                        "name": "DownPoint",
+                        "excluded": false
+                    },
+                    {
+                        "name": "OnDisable",
+                        "excluded": true
+                    }
+                ]
+            },
+            {
+                "className": "VerticalTrayLayout",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "Apply",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "BlinkBounceStep",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Execute",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "DisappearTrayStep",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "Execute",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "FireStep",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "ctor",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Execute",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "FlySequentialStep",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "ctor",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Execute",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "FlyToTextTarget",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "ctor",
+                        "excluded": false
+                    },
+                    {
+                        "name": "IsValid",
+                        "excluded": false
+                    },
+                    {
+                        "name": "GetAttachPoint",
+                        "excluded": false
+                    },
+                    {
+                        "name": "OnArrived",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "GatherStep",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "ctor",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Execute",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "UnityEngine.WaitUntil",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "ctor",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Update",
+                        "excluded": false
+                    },
+                    {
+                        "name": "keepWaiting#get",
+                        "excluded": true
+                    }
+                ]
+            },
+            {
+                "className": "UnityEngine.RequireComponent",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
                         "name": "ctor",
                         "excluded": false
                     },
                     {
                         "name": "$ctor1",
+                        "excluded": true
+                    },
+                    {
+                        "name": "$ctor2",
                         "excluded": true
                     }
                 ]

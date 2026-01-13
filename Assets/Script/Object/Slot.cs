@@ -11,15 +11,6 @@ public class Slot : MonoBehaviour
     {
         EnsureCurrentItem();
     }
-
-#if UNITY_EDITOR
-    private void OnValidate()
-    {
-        // Keep currentItem in sync while editing
-        EnsureCurrentItem();
-    }
-#endif
-
     void EnsureCurrentItem()
     {
         if (currentItem == null)

@@ -17,6 +17,7 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
     public AudioClip match;
     public AudioClip sake;
     public AudioClip excell;
+    public AudioClip closeBox;
     bool soundOn = true;
     void Start()
     {

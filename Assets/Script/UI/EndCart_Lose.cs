@@ -25,14 +25,24 @@ public class EndCart_Lose : MonoBehaviour
     [Header("Item Final Scale")]
     public float emojiFinalScale = 1.8f;
     public float otherItemFinalScale = 0.85f;
-
+    private bool hasShown = false;
 
 
     void Awake()
     {
         InitState();
     }
+    void OnEnable()
+    {
+        if (hasShown) return;
+        hasShown = true;
+        Show();
+    }
 
+    void OnDisable()
+    {
+        hasShown = false;
+    }
     void InitState()
     {
         SetItemInit(emoji);
@@ -75,7 +85,6 @@ public class EndCart_Lose : MonoBehaviour
             JoinItemAnim(seq, icon, otherItemFinalScale);
 
 
-            // ===== BUTTON SAU =====
             seq.AppendInterval(itemInTime + itemSettleTime + 0.1f);
             seq.Append(
                 actionButton.transform
