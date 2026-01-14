@@ -9,7 +9,10 @@ public class MatchFlowManager : MonoBehaviour
 
     private bool isRunning;
     public PackTarget parkTarget;
-
+    [Header("-------------- FirePrefabs --------------")]
+    public GameObject firePrefabs;
+    [Header("-------------- FirePrefabs --------------")]
+    public GameObject effctPrefabs;
     [Header("-------------- GatherStep --------------")]
     public float moveTime;
     public float spacingItem;
@@ -22,6 +25,7 @@ public class MatchFlowManager : MonoBehaviour
     [Header("---------- Text perfect -----------")]
     public List<GameObject> textLists = new List<GameObject>();  
     public List<AudioClip> audioLists = new List<AudioClip>();
+
     private void OnEnable()
     {
         GameEvent.OnTrayMatched.AddListener(OnTrayMatched);
@@ -49,8 +53,9 @@ public class MatchFlowManager : MonoBehaviour
         steps = new List<IMatchStep>();
 
         if (config.useFire)
-            steps.Add(new FireStep(config.firePrefab));
-
+            steps.Add(new FireStep(firePrefabs));
+        if (config.useEffect)
+            steps.Add(new EffectStep(effctPrefabs));
         if (config.useBlink)
             steps.Add(new BlinkBounceStep());
         if (config.useGather)

@@ -87,6 +87,7 @@ public class Tray : MonoBehaviour
             if (g.Count() < 3) continue;
 
             var matchedItems = g.Take(3).ToList();
+            GameEvent.SliderValue?.Invoke();
             for (int i = 0; i < matchedItems.Count; i++)
             {
                 matchedItems[i].GetComponent<SpriteRenderer>().sortingOrder = i + 3;

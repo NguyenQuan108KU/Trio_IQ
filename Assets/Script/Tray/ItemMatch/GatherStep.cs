@@ -29,9 +29,6 @@ public class GatherStep : IMatchStep
         {
             var item = ctx.items[i];
             if (item == null) continue;
-
-            // spacing = 0  → gộp chồng
-            // spacing > 0  → có khoảng cách
             float offsetX = (i - (count - 1) / 2f) * spacing;
             Vector3 targetPos = centerPos + Vector3.right * offsetX;
 

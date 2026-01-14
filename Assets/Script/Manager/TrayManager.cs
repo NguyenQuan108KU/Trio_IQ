@@ -125,11 +125,13 @@ public class TrayManager : MonoBehaviourSingleton<TrayManager>
     }
     public bool ShowTutorial()
     {
+        Debug.Log("Show");
         if (GameManager.instance.finishGame) return false;
         if (isFirstTutorial && manualTray != null && manualItem != null)
         {
             if (!manualTray.isCompleted)
             {
+                Debug.Log("Shoasasdasaw");
                 Slot toSlot = manualTray.GetEmptySlot();
                 Slot fromSlot = manualItem.GetComponentInParent<Slot>();
 

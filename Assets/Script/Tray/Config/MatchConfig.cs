@@ -5,11 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "LevelMatchConfig",menuName = "Game/Match/Level Match Config")]
 public class MatchConfig : ScriptableObject
 {
-    [Header("Visual")]
-    public bool useFire = true;
-    public GameObject firePrefab;
-
     [Header("Steps")]
+    public bool useFire = true;
+    public bool useEffect = true;
     public bool useBlink = true;
     public bool useGather = true;
     public bool useFlyToTarget = true;

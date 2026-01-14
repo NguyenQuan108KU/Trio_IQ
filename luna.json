@@ -132,9 +132,10 @@
             ]
         },
         "scenes": [
-            "Assets/Scenes/BrainAge.unity"
+            "Assets/Scenes/RainbowDocIQ.unity"
         ],
         "disabledScenes": [
+            "Assets/Scenes/BrainAge.unity",
             "Assets/Scenes/Color Pack.unity",
             "Assets/Scenes/Double Match.unity",
             "Assets/Scenes/Grill Remove.unity"
@@ -7959,7 +7960,7 @@
             },
             {
                 "name": "UnityEngine.EventSystems.IDropHandler",
-                "excluded": true
+                "excluded": false
             },
             {
                 "name": "UnityEngine.EventSystems.EventTrigger.TriggerEvent",
@@ -8362,10 +8363,6 @@
                 "excluded": true
             },
             {
-                "name": "DG.Tweening.Plugins.ColorPlugin",
-                "excluded": true
-            },
-            {
                 "name": "DG.Tweening.Plugins.DoublePlugin",
                 "excluded": true
             },
@@ -8462,10 +8459,6 @@
                 "excluded": true
             },
             {
-                "name": "ActiveTutorialBegin",
-                "excluded": true
-            },
-            {
                 "name": "Anim",
                 "excluded": true
             },
@@ -8503,10 +8496,6 @@
             },
             {
                 "name": "DG.Tweening.DOTweenModulePhysics2D",
-                "excluded": true
-            },
-            {
-                "name": "DG.Tweening.DOTweenModuleSprite",
                 "excluded": true
             },
             {
@@ -8706,14 +8695,6 @@
                 "excluded": true
             },
             {
-                "name": "TutorialBeginRunner",
-                "excluded": true
-            },
-            {
-                "name": "CloseBoxStep",
-                "excluded": true
-            },
-            {
                 "name": "DelayStep",
                 "excluded": true
             },
@@ -8734,19 +8715,7 @@
                 "excluded": true
             },
             {
-                "name": "GridTrayLayout",
-                "excluded": true
-            },
-            {
-                "name": "HideStep",
-                "excluded": true
-            },
-            {
                 "name": "SetText",
-                "excluded": true
-            },
-            {
-                "name": "ShowStep",
                 "excluded": true
             },
             {
@@ -8859,10 +8828,6 @@
             },
             {
                 "name": "VerticalSpecialTrayLayout",
-                "excluded": true
-            },
-            {
-                "name": "WaitClickStep",
                 "excluded": true
             },
             {
@@ -8983,7 +8948,7 @@
             },
             {
                 "name": "ITutorialBeginStep",
-                "excluded": true
+                "excluded": false
             },
             {
                 "name": "DG.Tweening.DOTweenCYInstruction",
@@ -8991,7 +8956,7 @@
             },
             {
                 "name": "HideMode",
-                "excluded": true
+                "excluded": false
             },
             {
                 "name": "IAmAnEmptyScriptJustToMakeCodelessProjectsCompileProperty",
@@ -9003,7 +8968,7 @@
             },
             {
                 "name": "LockType",
-                "excluded": true
+                "excluded": false
             },
             {
                 "name": "Spine.PositionMode",
@@ -9075,11 +9040,11 @@
             },
             {
                 "name": "TutorialCase",
-                "excluded": true
+                "excluded": false
             },
             {
                 "name": "TutorialContext",
-                "excluded": true
+                "excluded": false
             },
             {
                 "name": "Spine.Unity.IHasSkeletonComponent",
@@ -22951,15 +22916,15 @@
                 "instanceMethods": [
                     {
                         "name": "getDefaultValue",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "ctor",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Reset",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "getHashCode",
@@ -22971,7 +22936,7 @@
                     },
                     {
                         "name": "$clone",
-                        "excluded": true
+                        "excluded": false
                     }
                 ]
             },
@@ -29077,7 +29042,7 @@
                     },
                     {
                         "name": "ToAlpha",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Shake",
@@ -29421,7 +29386,7 @@
                     },
                     {
                         "name": "$ctor2",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "$ctor1",
@@ -29553,15 +29518,15 @@
                     },
                     {
                         "name": "ScreenPointToLocalPointInRectangle",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "ScreenPointToWorldPointInRectangle",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "ScreenPointToRay",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "PixelAdjustPoint",
@@ -31836,28 +31801,6 @@
                 ]
             },
             {
-                "className": "Button",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "OnEnable",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnDisable",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnDestroy",
-                        "excluded": true
-                    },
-                    {
-                        "name": "ScaleUp",
-                        "excluded": true
-                    }
-                ]
-            },
-            {
                 "className": "ConveyorBelt",
                 "staticMethods": [],
                 "instanceMethods": [
@@ -31988,24 +31931,6 @@
                     {
                         "name": "FindPackUnderMouse",
                         "excluded": true
-                    }
-                ]
-            },
-            {
-                "className": "EndCart_Win",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnEnable",
-                        "excluded": false
-                    },
-                    {
-                        "name": "WinSequence",
-                        "excluded": false
                     }
                 ]
             },
@@ -34581,7 +34506,7 @@
                     },
                     {
                         "name": "SetOptions$4",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "SetOptions$6",
@@ -40722,20 +40647,6 @@
                 ]
             },
             {
-                "className": "RotateLoop",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Update",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
                 "className": "TutorialManager",
                 "staticMethods": [],
                 "instanceMethods": [
@@ -41163,7 +41074,7 @@
                     },
                     {
                         "name": "normalizedValue#set",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "onValueChanged#get",
@@ -41211,19 +41122,19 @@
                     },
                     {
                         "name": "UpdateDrag",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "MayDrag",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "OnPointerDown",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "OnDrag",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "OnMove",
@@ -41247,7 +41158,7 @@
                     },
                     {
                         "name": "OnInitializePotentialDrag",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "SetDirection",
@@ -41846,6 +41757,10 @@
                     {
                         "name": "OnDisable",
                         "excluded": true
+                    },
+                    {
+                        "name": "init",
+                        "excluded": false
                     }
                 ]
             },
@@ -42027,6 +41942,218 @@
                     },
                     {
                         "name": "$ctor2",
+                        "excluded": true
+                    }
+                ]
+            },
+            {
+                "className": "ActiveTutorialBegin",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "Start",
+                        "excluded": false
+                    },
+                    {
+                        "name": "BuildSteps",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "CheckSize",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Awake",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Update",
+                        "excluded": false
+                    },
+                    {
+                        "name": "UpdateCamera",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "TutorialBeginRunner",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "Run",
+                        "excluded": false
+                    },
+                    {
+                        "name": "RunCo",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "GridTrayLayout",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "Apply",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "HideStep",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "ctor",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Execute",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "ShowStep",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "ctor",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Execute",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "WaitClickStep",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "Execute",
+                        "excluded": false
+                    },
+                    {
+                        "name": "IsClicked",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "CloseBoxStep",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "ctor",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Execute",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "EffectStep",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "ctor",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Execute",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "PerfectStep",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "ctor",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Execute",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "DG.Tweening.Plugins.ColorPlugin",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "Reset",
+                        "excluded": false
+                    },
+                    {
+                        "name": "SetFrom$1",
+                        "excluded": true
+                    },
+                    {
+                        "name": "SetFrom",
+                        "excluded": true
+                    },
+                    {
+                        "name": "ConvertToStartValue",
+                        "excluded": false
+                    },
+                    {
+                        "name": "SetRelativeEndValue",
+                        "excluded": true
+                    },
+                    {
+                        "name": "SetChangeValue",
+                        "excluded": false
+                    },
+                    {
+                        "name": "GetSpeedBasedDuration",
+                        "excluded": true
+                    },
+                    {
+                        "name": "EvaluateAndApply",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "DG.Tweening.DOTweenModuleSprite",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "DOColor",
+                        "excluded": true
+                    },
+                    {
+                        "name": "DOFade",
+                        "excluded": false
+                    },
+                    {
+                        "name": "DOGradientColor",
+                        "excluded": true
+                    },
+                    {
+                        "name": "DOBlendableColor",
                         "excluded": true
                     }
                 ]

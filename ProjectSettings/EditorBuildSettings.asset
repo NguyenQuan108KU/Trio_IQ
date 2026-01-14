@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BrainAge.unity
     guid: 5482a34133df0644fad2d5b36caa8e34
+  - enabled: 1
+    path: Assets/Scenes/RainbowDocIQ.unity
+    guid: 3b0f434a1a8a8ae46927d330e32b73a2
   m_configObjects: {}

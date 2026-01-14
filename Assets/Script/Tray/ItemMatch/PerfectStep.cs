@@ -8,7 +8,7 @@ public class PerfectStep : IMatchStep
 {
     private List<GameObject> textList;
     private List<AudioClip> audioClipList;
-
+    private int index = 0;
     public PerfectStep(List<GameObject> textList, List<AudioClip> audioList)
     {
         this.textList = textList;
@@ -23,7 +23,7 @@ public class PerfectStep : IMatchStep
         int index = Random.Range(0, textList.Count);
 
         GameObject text = Object.Instantiate(textList[index], ctx.tray.transform);
-        AudioManager.instance.PlaySFX(audioClipList[0]);
+        AudioManager.instance.PlaySFX(audioClipList[index]);
 
         text.transform.localPosition = new Vector3(0f, 0.85f, 0f);
 
@@ -43,7 +43,7 @@ public class PerfectStep : IMatchStep
         Sequence seq = DOTween.Sequence();
 
         seq.Append(
-            text.transform.DOScale(0.7f, scaleTime)
+            text.transform.DOScale(0.35f, scaleTime)
                 .SetEase(Ease.OutBack)
         );
 
@@ -59,5 +59,4 @@ public class PerfectStep : IMatchStep
 
         Object.Destroy(text);
     }
-
 }

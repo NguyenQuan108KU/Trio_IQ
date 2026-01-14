@@ -68,7 +68,7 @@ public class DragItem : MonoBehaviour
         {
             Drop();
             TrayManager.instance.OnUserEndInteract();
-            AudioManager.instance.PlaySFX(AudioManager.instance.drog);
+            //AudioManager.instance.PlaySFX(AudioManager.instance.drog);
         }
 
     }

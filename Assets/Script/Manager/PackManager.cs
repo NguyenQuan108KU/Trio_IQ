@@ -175,7 +175,6 @@ public class PackManager : MonoBehaviourSingleton<PackManager>
 
     public void RemoveAndShiftPacks(PackTarget removedPack)
     {
-        Debug.Log($"Removing pack at slot {removedPack.slotIndex}");
         activePacks.Remove(removedPack);
 
         activePacks = activePacks
@@ -231,7 +230,6 @@ public class PackManager : MonoBehaviourSingleton<PackManager>
         float yellow = yellowSlider.slider.value;
         float red = redSlider.slider.value;
         float green = greenSlider.slider.value;
-        Debug.Log($"Yellow: {yellow}, Red: {red}, Green: {green}");
         if (yellow == 3 && red == 1 && green == 1)
         {
             if (!GameManager.instance.finishGame && !GameManager.instance.isCheckLose)

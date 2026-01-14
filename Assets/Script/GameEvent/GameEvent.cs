@@ -32,4 +32,7 @@ public static class GameEvent
     //DownScore
     public static UnityEvent DownScore = new UnityEvent();
 
+    //Slider
+    public static UnityEvent SliderValue = new UnityEvent();
+
 }

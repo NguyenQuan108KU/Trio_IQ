@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: MatchToClose
   m_EditorClassIdentifier: 
   useFire: 0
-  firePrefab: {fileID: 1847458354238678972, guid: d68c05dd008eac1478e83814d7b929be, type: 3}
+  useEffect: 1
   useBlink: 0
   useGather: 0
   useFlyToTarget: 0
   useCloseBox: 1
+  useTextPerfect: 1
   flyType: 4
